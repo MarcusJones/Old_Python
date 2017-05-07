@@ -1,0 +1,22 @@
+easy_install 
+
+numpy
+matplotlib
+lxml
+boto
+wxPython
+
+
+
+    The MSAVis source
+    Python 2.4–2.6
+    wxPython 2.8+
+    BioPython
+    NumPy
+    PyOpenGL, tested w/ version 2.09+
+    GLUT, see the PyOpenGL installation page linked above
+    
+
+    
+easy_install biopython
+   
