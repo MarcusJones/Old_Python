@@ -1,0 +1,39 @@
+<project>
+<a>test</a>
+<variables list="variable">
+	<variable list="val">
+		<name>Color</name>
+		<ordered>False</ordered>
+		<val>Red</val>
+		<val>Brown</val>
+		<val>Blue</val>
+		<val>Orange</val>
+		<val>Green</val>
+		<val>Purple</val>
+	</variable>
+	<variable>
+		<name>Size</name>
+		<ordered>True</ordered>
+			<val>1</val>
+			<val>2</val>
+			<val>45</val>
+			<val>100</val>
+	</variable>
+	<variable>
+		<name>Slope</name>
+		<ordered>True</ordered>
+		<min>1</min>
+		<step>2</step>
+		<max>45</max>
+	</variable>
+</variables>
+
+<operators list="operator">
+	<operator>
+		<name>Recombine</name>
+		<arity>2</arity>
+		
+		<parameter name="rate">2</parameter>
+	</operator>
+</operators>
+</project>

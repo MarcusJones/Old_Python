@@ -1,0 +1,5 @@
+http://www.ibm.com/developerworks/library/ws-pyth10.html
+http://www.pha.com.au/kb/index.php/Python_SOAP_Tutorial_-_Creating_a_WEB_Service_with_ZSI#SOAPUI_Request
+http://diveintopython.org/soap_web_services/index.html
+http://pywebsvcs.sourceforge.net/
+http://www.tutorialized.com/view/tutorial/SOAP-Tutorial/21947

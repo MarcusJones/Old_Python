@@ -1,0 +1,313 @@
+<TRNSYS_XML XML_version="0.1">
+  <!--XML Schema for TRNSYS version 17 DCK file-->
+  <!--Schema created Feb. 2011 by Marcus Jones-->
+  <ControlCards>
+    <SIMULATION StartTime="START" StopTime="STOP" TimeStep="STEP"/>
+    <TOLERANCES Integration="0.001" Convergence="0.001"/>
+    <LIMITS MaxIterations="30" MaxWarnings="30" TraceLimit="30"/>
+    <DFQ SolverMethod="1"/>
+    <WIDTH NumberOfCharacters="80"/>
+    <LIST NOLISTstatement="!"/>
+    <SOLVER SolverStatement="0" MinimumRelaxationFactor="1" MaximumRelaxationFactor="1"/>
+    <NAN_CHECK NanDEBUGStatement="0"/>
+    <OVERWRITE_CHECK OverwriteDEBUGStatement="0"/>
+    <TIME_REPORT DisableTimeReport="0"/>
+    <EQSOLVER EQUATIONSOLVERstatement="0"/>
+  </ControlCards>
+  <Units>
+    <UNIT Number="3" TypeNumber="3" SubType="Type3b">
+      <Parameters>
+        <PARAMETER Desc=" 1 Maximum flow rate">50</PARAMETER>
+        <PARAMETER Desc=" 2 Fluid specific heat">4.19</PARAMETER>
+        <PARAMETER Desc=" 3 Maximum power">60</PARAMETER>
+        <PARAMETER Desc=" 4 Conversion coefficient">0.05</PARAMETER>
+      </Parameters>
+      <Inputs>
+        <INPUT>
+          <INITIAL_VALUE>40</INITIAL_VALUE>
+          <FROM_UNIT Desc="Unconnected">0</FROM_UNIT>
+          <INTO_PORT Desc="Inlet fluid temperature">0</INTO_PORT>
+        </INPUT>
+        <INPUT>
+          <INITIAL_VALUE>1</INITIAL_VALUE>
+          <FROM_UNIT Desc="Unconnected">0</FROM_UNIT>
+          <INTO_PORT Desc="Inlet mass flow rate">0</INTO_PORT>
+        </INPUT>
+      </Inputs>
+      <ExternalFiles/>
+      <Labels/>
+      <UNIT_NAME> Type3b
+</UNIT_NAME>
+      <MODEL> .\Hydronics\Pumps\Single Speed\Type3b.tmf
+</MODEL>
+      <POSITION> 56 192
+</POSITION>
+      <LAYER> Water Loop # 
+</LAYER>
+    </UNIT>
+    <UNIT Number="4" TypeNumber="1" SubType="Type1b">
+      <Parameters>
+        <PARAMETER Desc=" 1 Number in series">1</PARAMETER>
+        <PARAMETER Desc=" 2 Collector area">2</PARAMETER>
+        <PARAMETER Desc=" 3 Fluid specific heat">4.190</PARAMETER>
+        <PARAMETER Desc=" 4 Efficiency mode">1</PARAMETER>
+        <PARAMETER Desc=" 5 Tested flow rate">40.0</PARAMETER>
+        <PARAMETER Desc=" 6 Intercept efficiency">0.80</PARAMETER>
+        <PARAMETER Desc=" 7 Efficiency slope">13.0</PARAMETER>
+        <PARAMETER Desc=" 8 Efficiency curvature">0.05</PARAMETER>
+        <PARAMETER Desc=" 9 Optical mode 2">2</PARAMETER>
+        <PARAMETER Desc=" 10 1st-order IAM">0.2</PARAMETER>
+      </Parameters>
+      <Inputs>
+        <INPUT>
+          <INITIAL_VALUE>100.0</INITIAL_VALUE>
+          <FROM_UNIT Desc="Type3b:Outlet fluid temperature">3</FROM_UNIT>
+          <INTO_PORT Desc="Inlet temperature">1</INTO_PORT>
+        </INPUT>
+        <INPUT>
+          <INITIAL_VALUE>10.0</INITIAL_VALUE>
+          <FROM_UNIT Desc="Type3b:Outlet flow rate">3</FROM_UNIT>
+          <INTO_PORT Desc="Inlet flowrate">2</INTO_PORT>
+        </INPUT>
+        <INPUT>
+          <INITIAL_VALUE>0.</INITIAL_VALUE>
+          <FROM_UNIT Desc="Type15-2:Dry bulb temperature">10</FROM_UNIT>
+          <INTO_PORT Desc="Ambient temperature">1</INTO_PORT>
+        </INPUT>
+        <INPUT>
+          <INITIAL_VALUE>0.0</INITIAL_VALUE>
+          <FROM_UNIT Desc="Type15-2:Total tilted surface radiation for surface">10</FROM_UNIT>
+          <INTO_PORT Desc="Incident radiation">24</INTO_PORT>
+        </INPUT>
+        <INPUT>
+          <INITIAL_VALUE>0.0</INITIAL_VALUE>
+          <FROM_UNIT Desc="Type15-2:Total horizontal radiation">10</FROM_UNIT>
+          <INTO_PORT Desc="Total horizontal radiation">18</INTO_PORT>
+        </INPUT>
+        <INPUT>
+          <INITIAL_VALUE>0.2</INITIAL_VALUE>
+          <FROM_UNIT Desc="Type15-2:Sky diffuse radiation on the horizontal">10</FROM_UNIT>
+          <INTO_PORT Desc="Horizontal diffuse radiation">20</INTO_PORT>
+        </INPUT>
+        <INPUT>
+          <INITIAL_VALUE>45.0</INITIAL_VALUE>
+          <FROM_UNIT Desc="Type15-2:Ground reflectance">10</FROM_UNIT>
+          <INTO_PORT Desc="Ground reflectance">59</INTO_PORT>
+        </INPUT>
+        <INPUT>
+          <INITIAL_VALUE>0.</INITIAL_VALUE>
+          <FROM_UNIT Desc="Type15-2:Angle of incidence for surface">10</FROM_UNIT>
+          <INTO_PORT Desc="Incidence angle">29</INTO_PORT>
+        </INPUT>
+      </Inputs>
+      <ExternalFiles/>
+      <Labels/>
+      <UNIT_NAME> Type1b
+</UNIT_NAME>
+      <MODEL> .\Solar Thermal Collectors\Quadratic Efficiency Collector\2nd-Order Incidence Angle Modifiers\Type1b.tmf
+</MODEL>
+      <POSITION> 205 192
+</POSITION>
+      <LAYER> Main # 
+</LAYER>
+    </UNIT>
+    <UNIT Number="5" TypeNumber="6" SubType="Type6">
+      <Parameters>
+        <PARAMETER Desc=" 1 Maximum heating rate">5000</PARAMETER>
+        <PARAMETER Desc=" 2 Specific heat of fluid">4.19</PARAMETER>
+        <PARAMETER Desc=" 3 Overall loss coefficient for heater during operation">0</PARAMETER>
+      </Parameters>
+      <Inputs>
+        <INPUT>
+          <INITIAL_VALUE>100</INITIAL_VALUE>
+          <FROM_UNIT Desc="Type1b:Outlet temperature">4</FROM_UNIT>
+          <INTO_PORT Desc="Inlet fluid temperature">1</INTO_PORT>
+        </INPUT>
+        <INPUT>
+          <INITIAL_VALUE>1</INITIAL_VALUE>
+          <FROM_UNIT Desc="Type1b:Outlet flowrate">4</FROM_UNIT>
+          <INTO_PORT Desc="Fluid mass flow rate">2</INTO_PORT>
+        </INPUT>
+        <INPUT>
+          <INITIAL_VALUE>60</INITIAL_VALUE>
+          <FROM_UNIT Desc="Unconnected">0</FROM_UNIT>
+          <INTO_PORT Desc="Control Function">0</INTO_PORT>
+        </INPUT>
+        <INPUT>
+          <INITIAL_VALUE>20</INITIAL_VALUE>
+          <FROM_UNIT Desc="Unconnected">0</FROM_UNIT>
+          <INTO_PORT Desc="Set point temperature">0</INTO_PORT>
+        </INPUT>
+      </Inputs>
+      <ExternalFiles/>
+      <Labels/>
+      <UNIT_NAME> Type6
+</UNIT_NAME>
+      <MODEL> .\HVAC\Auxiliary Heaters\Type6.tmf
+</MODEL>
+      <POSITION> 340 192
+</POSITION>
+      <LAYER> Water Loop # 
+</LAYER>
+    </UNIT>
+    <UNIT Number="6" TypeNumber="24" SubType="TYPE24">
+      <Parameters>
+        <PARAMETER Desc=" 1 Integration period">STOP</PARAMETER>
+      </Parameters>
+      <Inputs>
+        <INPUT>
+          <INITIAL_VALUE>0.0</INITIAL_VALUE>
+          <FROM_UNIT Desc="Type1b:Useful energy gain">4</FROM_UNIT>
+          <INTO_PORT Desc="Input to be integrated-1">3</INTO_PORT>
+        </INPUT>
+      </Inputs>
+      <ExternalFiles/>
+      <Labels/>
+      <UNIT_NAME> TYPE24
+</UNIT_NAME>
+      <MODEL> .\Utility\Integrators\Quantity Integrator\TYPE24.tmf
+</MODEL>
+      <POSITION> 503 212
+</POSITION>
+      <LAYER> Main # 
+</LAYER>
+    </UNIT>
+    <UNIT Number="7" TypeNumber="25" SubType="Type25c">
+      <Parameters>
+        <PARAMETER Desc=" 1 Printing interval">STEP</PARAMETER>
+        <PARAMETER Desc=" 2 Start time">START</PARAMETER>
+        <PARAMETER Desc=" 3 Stop time">STOP</PARAMETER>
+        <PARAMETER Desc=" 4 Logical unit">36</PARAMETER>
+        <PARAMETER Desc=" 5 Units printing mode">0</PARAMETER>
+        <PARAMETER Desc=" 6 Relative or absolute start time">0</PARAMETER>
+        <PARAMETER Desc=" 7 Overwrite or Append">-1</PARAMETER>
+        <PARAMETER Desc=" 8 Print header">-1</PARAMETER>
+        <PARAMETER Desc=" 9 Delimiter">0</PARAMETER>
+      </Parameters>
+      <Inputs>
+        <INPUT>
+          <INITIAL_VALUE>QAux</INITIAL_VALUE>
+          <FROM_UNIT Desc="TYPE24:Result of integration-1">6</FROM_UNIT>
+          <INTO_PORT Desc="Input to be printed-1">1</INTO_PORT>
+        </INPUT>
+      </Inputs>
+      <ExternalFiles>
+        <ASSIGN> "C:\Doktorat\Phase2\OUT\output.out" 36</ASSIGN>
+      </ExternalFiles>
+      <Labels/>
+      <UNIT_NAME> Type25c
+</UNIT_NAME>
+      <MODEL> .\Output\Printer\Unformatted\No Units\Type25c.tmf
+</MODEL>
+      <POSITION> 643 212
+</POSITION>
+      <LAYER> Outputs # 
+</LAYER>
+    </UNIT>
+    <UNIT Number="8" TypeNumber="65" SubType="Type65d">
+      <Parameters>
+        <PARAMETER Desc=" 1 Nb. of left-axis variables">3</PARAMETER>
+        <PARAMETER Desc=" 2 Nb. of right-axis variables">2</PARAMETER>
+        <PARAMETER Desc=" 3 Left axis minimum">-100</PARAMETER>
+        <PARAMETER Desc=" 4 Left axis maximum">100</PARAMETER>
+        <PARAMETER Desc=" 5 Right axis minimum">0.0</PARAMETER>
+        <PARAMETER Desc=" 6 Right axis maximum">10000</PARAMETER>
+        <PARAMETER Desc=" 7 Number of plots per simulation">1</PARAMETER>
+        <PARAMETER Desc=" 8 X-axis gridpoints">12</PARAMETER>
+        <PARAMETER Desc=" 9 Shut off Online w/o removing">0</PARAMETER>
+        <PARAMETER Desc=" 10 Logical unit for output file">-1</PARAMETER>
+        <PARAMETER Desc=" 11 Output file units">0</PARAMETER>
+      </Parameters>
+      <Inputs>
+        <INPUT>
+          <INITIAL_VALUE>ToColl</INITIAL_VALUE>
+          <FROM_UNIT Desc="Type3b:Outlet fluid temperature">3</FROM_UNIT>
+          <INTO_PORT Desc="Left axis variable-1">1</INTO_PORT>
+        </INPUT>
+        <INPUT>
+          <INITIAL_VALUE>ToAux</INITIAL_VALUE>
+          <FROM_UNIT Desc="Type1b:Outlet temperature">4</FROM_UNIT>
+          <INTO_PORT Desc="Left axis variable-2">1</INTO_PORT>
+        </INPUT>
+        <INPUT>
+          <INITIAL_VALUE>QColl</INITIAL_VALUE>
+          <FROM_UNIT Desc="Type6:Outlet fluid temperature">5</FROM_UNIT>
+          <INTO_PORT Desc="Left axis variable-3">1</INTO_PORT>
+        </INPUT>
+        <INPUT>
+          <INITIAL_VALUE>QAux</INITIAL_VALUE>
+          <FROM_UNIT Desc="Type1b:Useful energy gain">4</FROM_UNIT>
+          <INTO_PORT Desc="Right axis variable-1">3</INTO_PORT>
+        </INPUT>
+      </Inputs>
+      <ExternalFiles/>
+      <Labels>
+        <LABEL>"Temperatures"
+</LABEL>
+        <LABEL>"Heat transfer rates"
+</LABEL>
+        <LABEL>"Graph 1"
+</LABEL>
+      </Labels>
+      <UNIT_NAME> Type65d
+</UNIT_NAME>
+      <MODEL> .\Output\Online Plotter\Online Plotter Without File\Type65d.tmf
+</MODEL>
+      <POSITION> 506 85
+</POSITION>
+      <LAYER> Main # 
+</LAYER>
+    </UNIT>
+    <UNIT Number="9" TypeNumber="14" SubType="Type14h">
+      <Parameters>
+        <PARAMETER Desc=" 1 Initial value of time">0</PARAMETER>
+        <PARAMETER Desc=" 2 Initial value of function">0</PARAMETER>
+        <PARAMETER Desc=" 3 Time at point-1">8</PARAMETER>
+        <PARAMETER Desc=" 4 Value at point -1">0</PARAMETER>
+        <PARAMETER Desc=" 5 Time at point-2">8</PARAMETER>
+        <PARAMETER Desc=" 6 Value at point -2">1</PARAMETER>
+        <PARAMETER Desc=" 7 Time at point-3">18</PARAMETER>
+        <PARAMETER Desc=" 8 Value at point -3">1</PARAMETER>
+        <PARAMETER Desc=" 9 Time at point-4">18</PARAMETER>
+        <PARAMETER Desc=" 10 Value at point -4">0</PARAMETER>
+        <PARAMETER Desc=" 11 Time at point-5">24</PARAMETER>
+      </Parameters>
+      <Inputs/>
+      <ExternalFiles/>
+      <Labels/>
+      <UNIT_NAME> Type14h
+</UNIT_NAME>
+      <MODEL> .\Utility\Forcing Functions\General\Type14h.tmf
+</MODEL>
+      <POSITION> 54 288
+</POSITION>
+      <LAYER> Main # 
+</LAYER>
+    </UNIT>
+    <UNIT Number="10" TypeNumber="15" SubType="Type15-2">
+      <Parameters>
+        <PARAMETER Desc=" 1 File Type">2</PARAMETER>
+        <PARAMETER Desc=" 2 Logical unit">37</PARAMETER>
+        <PARAMETER Desc=" 3 Tilted Surface Radiation Mode">3</PARAMETER>
+        <PARAMETER Desc=" 4 Ground reflectance - no snow">.2</PARAMETER>
+        <PARAMETER Desc=" 5 Ground reflectance - snow cover">.7</PARAMETER>
+        <PARAMETER Desc=" 6 Number of surfaces">1</PARAMETER>
+        <PARAMETER Desc=" 7 Tracking mode">1</PARAMETER>
+        <PARAMETER Desc=" 8 Slope of surface">45</PARAMETER>
+      </Parameters>
+      <Inputs/>
+      <ExternalFiles>
+        <ASSIGN> "..\WEA\BF-Ouagadougou-655030.tm2" 37</ASSIGN>
+      </ExternalFiles>
+      <Labels/>
+      <UNIT_NAME> Type15-2
+</UNIT_NAME>
+      <MODEL> .\Weather Data Reading and Processing\Standard Format\TMY2\Type15-2.tmf
+</MODEL>
+      <POSITION> 120 104
+</POSITION>
+      <LAYER> Weather - Data Files # 
+</LAYER>
+    </UNIT>
+  </Units>
+</TRNSYS_XML>

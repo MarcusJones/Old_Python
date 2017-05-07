@@ -1,0 +1,4 @@
+http://broadcast.oreilly.com/2009/04/pymotw-multiprocessing-part-2.html
+
+http://www.ibm.com/developerworks/aix/library/au-multiprocessing/
+

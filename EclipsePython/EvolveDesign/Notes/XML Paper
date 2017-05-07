@@ -1,0 +1,38 @@
+XML general intro
+
+Comparison of
+- TRNSYS .DCK
+- EnergyPlus .IDF
+- SOmething else?
+
+Tangible advantages
+- XSLT transform
+- Validation
+	. DTD
+- Extensible!
+	. Adding genetic information
+- Existing tools
+	. API's
+- Adoption
+	. Microsoft and Open office
+	. INKScape
+- XPATH
+	. Context aware
+	. Selection based
+- XSLT Pipeline
+- Self describing? 
+- Robust
+	
+Alternatives
+- Current status
+- 
+
+Qualitative advantages
+- Mature technology
+- Widespread among IT
+
+Disadvantages
+- Size?
+
+
+An exciting technology that warrants more support and interest from the community

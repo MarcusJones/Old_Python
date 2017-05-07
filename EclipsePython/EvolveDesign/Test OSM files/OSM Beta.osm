@@ -1,0 +1,132 @@
+OS:Version,
+  0.2;
+
+OS:Facility;
+
+OS:WeatherFile,
+  SINGAPORE,                ! City
+  -,                        ! State Province Region
+  SGP,                      ! Country
+  IWEC Data,                ! Data Source
+  486980,                   ! WMO Number
+  1.3700000000000001,       ! Latitude
+  103.98,                   ! Longitude
+  8,                        ! Time Zone
+  16,
+  C:/Freelance/042_TheSurin/WEA/SGP_Singapore.486980_IWEC.epw,
+  C69A8DF4;
+
+OS:DefaultConstructionSet,
+  Default Constructions;    !- Name
+
+OS:ConstructionSet,
+  Default Constructions,    !- Name
+  Exterior Floor,           !- Exterior Floor
+  Exterior Wall,            !- Exterior Wall
+  Exterior Roof,            !- Exterior Roof
+  Exterior Window,          !- Exterior Window
+  Exterior Door,            !- Exterior Door
+  Interior Floor,           !- Interior Floor
+  Interior Wall,            !- Interior Wall
+  Interior Ceiling,         !- Interior Ceiling
+  Interior Partition,       !- Interior Partition
+  Interior Window,          !- Interior Window
+  Interior Door,            !- Interior Door
+  Exterior Window,          !- Glass Door
+  Exterior Window,          !- Skylight
+  Interior Window,          !- Tubular Daylight Dome
+  Interior Window;          !- Tubular Daylight Diffuser
+
+OS:ZoneLoads,
+  Office Zone Loads,        !- Name
+  0.05382,                  !- People per Zone Floor Area
+  Office Occupancy Schedule,  !- Number of People Schedule Name
+  Office Activity Schedule,  !- People Activity Level Schedule Name
+  10.7639,                  !- Lighting Watts per Zone Floor Area
+  Office Lights Schedule,   !- Lighting Schedule Name
+  10.7639,                  !- Electric Equipment Watts per Zone Floor Area
+  Office Equipment Schedule,  !- Electric Equipment Schedule Name
+  0,                        !- Gas Equipment Watts per Zone Floor Area
+  Office Equipment Schedule,  !- Gas Equipment Schedule Name
+  0.0023600000000000001,    !- Ventilation Flow Rate per Person
+  Office Occupancy Schedule,  !- Ventilation per Person Schedule Name
+  0.00030499999999999999,   !- Ventilation Flow Rate per Zone Floor Area
+  Always On,                !- Ventilation per Floor Area Schedule Name
+  0.5,                      !- Infiltration Air Changes per Hour
+  Infiltration Half On Schedule;  !- Infiltration Schedule Name
+
+OS:ZoneLoads,
+  Restaurant,               ! Name
+  0.10800000000000001,      ! People per Zone Floor Area
+  Restaurant Occupancy,     ! Number of People Schedule Name
+  Office Activity Schedule,  ! People Activity Level Schedule Name
+  15.1,                     ! Lighting Watts per Zone Floor Area
+  Restaurant Lighting,      ! Lighting Schedule Name
+  1.0800000000000001,       ! Electric Equipment Watts per Zone Floor Area
+  Restaurant Lighting,      ! Electric Equipment Schedule Name
+  0,                        ! Gas Equipment Watts per Zone Floor Area
+  Restaurant Lighting,      ! Gas Equipment Schedule Name
+  0.0025000000000000001,    ! Ventilation Flow Rate per Person
+  Restaurant HVAC,          ! Ventilation per Person Schedule Name
+  0.00029999999999999997,   ! Ventilation Flow Rate per Zone Floor Area
+  Restaurant HVAC,          ! Ventilation per Floor Area Schedule Name
+  0.5,                      ! Infiltration Air Changes per Hour
+  Infiltration Half On Schedule;  ! Infiltration Schedule Name
+
+OS:ZoneLoads,
+  Gym,                      ! Name
+  0.0040000000000000001,    ! People per Zone Floor Area
+  Office Occupancy Schedule,  ! Number of People Schedule Name
+  Office Activity Schedule,  ! People Activity Level Schedule Name
+  9.6799999999999997,       ! Lighting Watts per Zone Floor Area
+  Office Lights Schedule,   ! Lighting Schedule Name
+  1,                        ! Electric Equipment Watts per Zone Floor Area
+  Office Lights Schedule,   ! Electric Equipment Schedule Name
+  0,                        ! Gas Equipment Watts per Zone Floor Area
+  ,                         ! Gas Equipment Schedule Name
+  0.010800000000000001,     ! Ventilation Flow Rate per Person
+  Office Occupancy Schedule,  ! Ventilation per Person Schedule Name
+  0.0001,                   ! Ventilation Flow Rate per Zone Floor Area
+  Always On,                ! Ventilation per Floor Area Schedule Name
+  0.5,                      ! Infiltration Air Changes per Hour
+  Infiltration Half On Schedule;  ! Infiltration Schedule Name
+
+OS:ZoneLoads,
+  MEP Rooms,                ! Name
+  0.02,                     ! People per Zone Floor Area
+  Warehouse Occupancy,      ! Number of People Schedule Name
+  Office Activity Schedule,  ! People Activity Level Schedule Name
+  16.140000000000001,       ! Lighting Watts per Zone Floor Area
+  Warehouse Lighting,       ! Lighting Schedule Name
+  1.0700000000000001,       ! Electric Equipment Watts per Zone Floor Area
+  Warehouse Lighting,       ! Electric Equipment Schedule Name
+  0,                        ! Gas Equipment Watts per Zone Floor Area
+  ,                         ! Gas Equipment Schedule Name
+  0.0025000000000000001,    ! Ventilation Flow Rate per Person
+  Warehouse HVAC,           ! Ventilation per Person Schedule Name
+  0.00029999999999999997,   ! Ventilation Flow Rate per Zone Floor Area
+  Warehouse HVAC,           ! Ventilation per Floor Area Schedule Name
+  0.5,                      ! Infiltration Air Changes per Hour
+  Infiltration Half On Schedule;  ! Infiltration Schedule Name
+
+OS:ZoneLoads,
+  Hotel guest rooms,        ! Name
+  0.040000000000000001,     ! People per Zone Floor Area
+  Hotel Occupancy,          ! Number of People Schedule Name
+  Office Activity Schedule,  ! People Activity Level Schedule Name
+  11.84,                    ! Lighting Watts per Zone Floor Area
+  Hotel Lighting,           ! Lighting Schedule Name
+  2.6899999999999999,       ! Electric Equipment Watts per Zone Floor Area
+  Multifamily OneZone Equipment,  ! Electric Equipment Schedule Name
+  0,                        ! Gas Equipment Watts per Zone Floor Area
+  ,                         ! Gas Equipment Schedule Name
+  0.0025000000000000001,    ! Ventilation Flow Rate per Person
+  Hotel HVAC,               ! Ventilation per Person Schedule Name
+  0.00029999999999999997,   ! Ventilation Flow Rate per Zone Floor Area
+  Hotel HVAC,               ! Ventilation per Floor Area Schedule Name
+  0.5,                      ! Infiltration Air Changes per Hour
+  Infiltration Quarter On Schedule;  ! Infiltration Schedule Name
+
+OS:Material:AirWall,
+  Air Wall Material;        !- Name
+

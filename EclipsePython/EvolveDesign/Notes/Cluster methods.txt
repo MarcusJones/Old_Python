@@ -1,0 +1,23 @@
+http://pypi.python.org/pypi/Pycluster
+
+JPPF
+
+http://www.parallelpython.com/
+
+http://hadoop.apache.org/
+
+https://artemis.ms.mff.cuni.cz/pogamut/tiki-index.php?page=Pogamut+GRID
+
+http://code.google.com/p/happy/
+
+https://github.com/klbostee/dumbo/wiki
+
+General list: http://wiki.python.org/moin/ParallelProcessing
+
+http://tex.stackexchange.com/questions/13585/baselinestretch-outside-of-latex-preamble
+
+http://www.theserverside.com/news/1365083/Distributed-Computing-Made-Easy
+
+http://pypi.python.org/pypi/Jug
+
+http://sandersn.com/blog//index.php/2010/01/05/parallelising-embarrassingly-parallel-co

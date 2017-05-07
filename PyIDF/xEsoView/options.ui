@@ -1,0 +1,1240 @@
+<ui version="4.0" >
+ <author>Christian Schiefer</author>
+ <comment></comment>
+ <exportmacro></exportmacro>
+ <class>DialogOptions</class>
+ <widget class="QDialog" name="DialogOptions" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>369</width>
+    <height>455</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>xEsoView - Options</string>
+  </property>
+  <property name="windowIcon" >
+   <iconset resource="../xEsoView.qrc" >:/images/xEsoViewIconBig.png</iconset>
+  </property>
+  <property name="modal" >
+   <bool>true</bool>
+  </property>
+  <layout class="QGridLayout" >
+   <property name="margin" >
+    <number>9</number>
+   </property>
+   <property name="spacing" >
+    <number>6</number>
+   </property>
+   <item row="0" column="0" >
+    <widget class="QGroupBox" name="groupBoxCopyDataFormat" >
+     <property name="acceptDrops" >
+      <bool>false</bool>
+     </property>
+     <property name="title" >
+      <string>Settings for copying data</string>
+     </property>
+     <layout class="QGridLayout" >
+      <property name="margin" >
+       <number>9</number>
+      </property>
+      <property name="spacing" >
+       <number>6</number>
+      </property>
+      <item row="0" column="0" >
+       <layout class="QVBoxLayout" >
+        <property name="margin" >
+         <number>0</number>
+        </property>
+        <property name="spacing" >
+         <number>6</number>
+        </property>
+        <item>
+         <layout class="QHBoxLayout" >
+          <property name="margin" >
+           <number>0</number>
+          </property>
+          <property name="spacing" >
+           <number>6</number>
+          </property>
+          <item>
+           <widget class="QLabel" name="labelDecimalPoint" >
+            <property name="minimumSize" >
+             <size>
+              <width>150</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="text" >
+             <string>Decimal point character</string>
+            </property>
+            <property name="buddy" >
+             <cstring>lineEditDecimalPoint</cstring>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="lineEditDecimalPoint" >
+            <property name="enabled" >
+             <bool>true</bool>
+            </property>
+            <property name="toolTip" >
+             <string>Set decimal point character</string>
+            </property>
+            <property name="text" >
+             <string>,</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" >
+          <property name="margin" >
+           <number>0</number>
+          </property>
+          <property name="spacing" >
+           <number>6</number>
+          </property>
+          <item>
+           <widget class="QLabel" name="labelDateFormat" >
+            <property name="minimumSize" >
+             <size>
+              <width>150</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="text" >
+             <string>Date/Time format</string>
+            </property>
+            <property name="buddy" >
+             <cstring>lineEditDateFormat</cstring>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="lineEditDateFormat" >
+            <property name="enabled" >
+             <bool>true</bool>
+            </property>
+            <property name="toolTip" >
+             <string>Set the time format string e.g. "yyyy-MM-dd hh:mm"</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" >
+          <property name="margin" >
+           <number>0</number>
+          </property>
+          <property name="spacing" >
+           <number>6</number>
+          </property>
+          <item>
+           <widget class="QLabel" name="labelColumSep" >
+            <property name="minimumSize" >
+             <size>
+              <width>150</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="text" >
+             <string>Column separator</string>
+            </property>
+            <property name="buddy" >
+             <cstring>lineEditColumnSep</cstring>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="lineEditColumnSep" >
+            <property name="toolTip" >
+             <string>Set column separator</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="1" column="0" >
+    <widget class="QGroupBox" name="groupBoxDisplayGraph" >
+     <property name="sizePolicy" >
+      <sizepolicy>
+       <hsizetype>7</hsizetype>
+       <vsizetype>5</vsizetype>
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="title" >
+      <string>Settings for displaying the graph</string>
+     </property>
+     <layout class="QGridLayout" >
+      <property name="margin" >
+       <number>9</number>
+      </property>
+      <property name="spacing" >
+       <number>6</number>
+      </property>
+      <item row="0" column="0" >
+       <layout class="QHBoxLayout" >
+        <property name="margin" >
+         <number>0</number>
+        </property>
+        <property name="spacing" >
+         <number>6</number>
+        </property>
+        <item>
+         <widget class="QLabel" name="label" >
+          <property name="minimumSize" >
+           <size>
+            <width>150</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize" >
+           <size>
+            <width>120</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="text" >
+           <string>Background color</string>
+          </property>
+          <property name="buddy" >
+           <cstring>pushButtonColorBackground</cstring>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QFrame" name="frame_BackgroundColor" >
+          <property name="sizePolicy" >
+           <sizepolicy>
+            <hsizetype>7</hsizetype>
+            <vsizetype>5</vsizetype>
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="palette" >
+           <palette>
+            <active>
+             <color>
+              <red>0</red>
+              <green>0</green>
+              <blue>0</blue>
+             </color>
+             <color>
+              <red>221</red>
+              <green>223</green>
+              <blue>228</blue>
+             </color>
+             <color>
+              <red>255</red>
+              <green>255</green>
+              <blue>255</blue>
+             </color>
+             <color>
+              <red>255</red>
+              <green>255</green>
+              <blue>255</blue>
+             </color>
+             <color>
+              <red>85</red>
+              <green>85</green>
+              <blue>85</blue>
+             </color>
+             <color>
+              <red>199</red>
+              <green>199</green>
+              <blue>199</blue>
+             </color>
+             <color>
+              <red>0</red>
+              <green>0</green>
+              <blue>0</blue>
+             </color>
+             <color>
+              <red>255</red>
+              <green>255</green>
+              <blue>255</blue>
+             </color>
+             <color>
+              <red>0</red>
+              <green>0</green>
+              <blue>0</blue>
+             </color>
+             <color>
+              <red>255</red>
+              <green>255</green>
+              <blue>255</blue>
+             </color>
+             <color>
+              <red>239</red>
+              <green>239</green>
+              <blue>239</blue>
+             </color>
+             <color>
+              <red>0</red>
+              <green>0</green>
+              <blue>0</blue>
+             </color>
+             <color>
+              <red>103</red>
+              <green>141</green>
+              <blue>178</blue>
+             </color>
+             <color>
+              <red>255</red>
+              <green>255</green>
+              <blue>255</blue>
+             </color>
+             <color>
+              <red>0</red>
+              <green>0</green>
+              <blue>238</blue>
+             </color>
+             <color>
+              <red>82</red>
+              <green>24</green>
+              <blue>139</blue>
+             </color>
+             <color>
+              <red>232</red>
+              <green>232</green>
+              <blue>232</blue>
+             </color>
+            </active>
+            <inactive>
+             <color>
+              <red>0</red>
+              <green>0</green>
+              <blue>0</blue>
+             </color>
+             <color>
+              <red>221</red>
+              <green>223</green>
+              <blue>228</blue>
+             </color>
+             <color>
+              <red>255</red>
+              <green>255</green>
+              <blue>255</blue>
+             </color>
+             <color>
+              <red>255</red>
+              <green>255</green>
+              <blue>255</blue>
+             </color>
+             <color>
+              <red>85</red>
+              <green>85</green>
+              <blue>85</blue>
+             </color>
+             <color>
+              <red>199</red>
+              <green>199</green>
+              <blue>199</blue>
+             </color>
+             <color>
+              <red>0</red>
+              <green>0</green>
+              <blue>0</blue>
+             </color>
+             <color>
+              <red>255</red>
+              <green>255</green>
+              <blue>255</blue>
+             </color>
+             <color>
+              <red>0</red>
+              <green>0</green>
+              <blue>0</blue>
+             </color>
+             <color>
+              <red>255</red>
+              <green>255</green>
+              <blue>255</blue>
+             </color>
+             <color>
+              <red>239</red>
+              <green>239</green>
+              <blue>239</blue>
+             </color>
+             <color>
+              <red>0</red>
+              <green>0</green>
+              <blue>0</blue>
+             </color>
+             <color>
+              <red>103</red>
+              <green>141</green>
+              <blue>178</blue>
+             </color>
+             <color>
+              <red>255</red>
+              <green>255</green>
+              <blue>255</blue>
+             </color>
+             <color>
+              <red>0</red>
+              <green>0</green>
+              <blue>238</blue>
+             </color>
+             <color>
+              <red>82</red>
+              <green>24</green>
+              <blue>139</blue>
+             </color>
+             <color>
+              <red>232</red>
+              <green>232</green>
+              <blue>232</blue>
+             </color>
+            </inactive>
+            <disabled>
+             <color>
+              <red>128</red>
+              <green>128</green>
+              <blue>128</blue>
+             </color>
+             <color>
+              <red>221</red>
+              <green>223</green>
+              <blue>228</blue>
+             </color>
+             <color>
+              <red>255</red>
+              <green>255</green>
+              <blue>255</blue>
+             </color>
+             <color>
+              <red>255</red>
+              <green>255</green>
+              <blue>255</blue>
+             </color>
+             <color>
+              <red>85</red>
+              <green>85</green>
+              <blue>85</blue>
+             </color>
+             <color>
+              <red>199</red>
+              <green>199</green>
+              <blue>199</blue>
+             </color>
+             <color>
+              <red>199</red>
+              <green>199</green>
+              <blue>199</blue>
+             </color>
+             <color>
+              <red>255</red>
+              <green>255</green>
+              <blue>255</blue>
+             </color>
+             <color>
+              <red>128</red>
+              <green>128</green>
+              <blue>128</blue>
+             </color>
+             <color>
+              <red>239</red>
+              <green>239</green>
+              <blue>239</blue>
+             </color>
+             <color>
+              <red>239</red>
+              <green>239</green>
+              <blue>239</blue>
+             </color>
+             <color>
+              <red>0</red>
+              <green>0</green>
+              <blue>0</blue>
+             </color>
+             <color>
+              <red>86</red>
+              <green>117</green>
+              <blue>148</blue>
+             </color>
+             <color>
+              <red>255</red>
+              <green>255</green>
+              <blue>255</blue>
+             </color>
+             <color>
+              <red>0</red>
+              <green>0</green>
+              <blue>238</blue>
+             </color>
+             <color>
+              <red>82</red>
+              <green>24</green>
+              <blue>139</blue>
+             </color>
+             <color>
+              <red>232</red>
+              <green>232</green>
+              <blue>232</blue>
+             </color>
+            </disabled>
+           </palette>
+          </property>
+          <property name="autoFillBackground" >
+           <bool>true</bool>
+          </property>
+          <property name="frameShape" >
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="frameShadow" >
+           <enum>QFrame::Raised</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButtonColorBackground" >
+          <property name="sizePolicy" >
+           <sizepolicy>
+            <hsizetype>1</hsizetype>
+            <vsizetype>0</vsizetype>
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize" >
+           <size>
+            <width>80</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="text" >
+           <string>Select color ...</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="1" column="0" >
+       <layout class="QHBoxLayout" >
+        <property name="margin" >
+         <number>0</number>
+        </property>
+        <property name="spacing" >
+         <number>6</number>
+        </property>
+        <item>
+         <widget class="QLabel" name="labelLineColor" >
+          <property name="minimumSize" >
+           <size>
+            <width>150</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="text" >
+           <string>Line color</string>
+          </property>
+          <property name="buddy" >
+           <cstring>pushButtonLineColor</cstring>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QFrame" name="frameLine" >
+          <property name="sizePolicy" >
+           <sizepolicy>
+            <hsizetype>7</hsizetype>
+            <vsizetype>5</vsizetype>
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize" >
+           <size>
+            <width>40</width>
+            <height>16</height>
+           </size>
+          </property>
+          <property name="palette" >
+           <palette>
+            <active>
+             <color>
+              <red>0</red>
+              <green>0</green>
+              <blue>0</blue>
+             </color>
+             <color>
+              <red>221</red>
+              <green>223</green>
+              <blue>228</blue>
+             </color>
+             <color>
+              <red>255</red>
+              <green>255</green>
+              <blue>255</blue>
+             </color>
+             <color>
+              <red>255</red>
+              <green>255</green>
+              <blue>255</blue>
+             </color>
+             <color>
+              <red>85</red>
+              <green>85</green>
+              <blue>85</blue>
+             </color>
+             <color>
+              <red>199</red>
+              <green>199</green>
+              <blue>199</blue>
+             </color>
+             <color>
+              <red>0</red>
+              <green>0</green>
+              <blue>0</blue>
+             </color>
+             <color>
+              <red>255</red>
+              <green>255</green>
+              <blue>255</blue>
+             </color>
+             <color>
+              <red>0</red>
+              <green>0</green>
+              <blue>0</blue>
+             </color>
+             <color>
+              <red>255</red>
+              <green>255</green>
+              <blue>255</blue>
+             </color>
+             <color>
+              <red>239</red>
+              <green>239</green>
+              <blue>239</blue>
+             </color>
+             <color>
+              <red>0</red>
+              <green>0</green>
+              <blue>0</blue>
+             </color>
+             <color>
+              <red>103</red>
+              <green>141</green>
+              <blue>178</blue>
+             </color>
+             <color>
+              <red>255</red>
+              <green>255</green>
+              <blue>255</blue>
+             </color>
+             <color>
+              <red>0</red>
+              <green>0</green>
+              <blue>238</blue>
+             </color>
+             <color>
+              <red>82</red>
+              <green>24</green>
+              <blue>139</blue>
+             </color>
+             <color>
+              <red>232</red>
+              <green>232</green>
+              <blue>232</blue>
+             </color>
+            </active>
+            <inactive>
+             <color>
+              <red>0</red>
+              <green>0</green>
+              <blue>0</blue>
+             </color>
+             <color>
+              <red>221</red>
+              <green>223</green>
+              <blue>228</blue>
+             </color>
+             <color>
+              <red>255</red>
+              <green>255</green>
+              <blue>255</blue>
+             </color>
+             <color>
+              <red>255</red>
+              <green>255</green>
+              <blue>255</blue>
+             </color>
+             <color>
+              <red>85</red>
+              <green>85</green>
+              <blue>85</blue>
+             </color>
+             <color>
+              <red>199</red>
+              <green>199</green>
+              <blue>199</blue>
+             </color>
+             <color>
+              <red>0</red>
+              <green>0</green>
+              <blue>0</blue>
+             </color>
+             <color>
+              <red>255</red>
+              <green>255</green>
+              <blue>255</blue>
+             </color>
+             <color>
+              <red>0</red>
+              <green>0</green>
+              <blue>0</blue>
+             </color>
+             <color>
+              <red>255</red>
+              <green>255</green>
+              <blue>255</blue>
+             </color>
+             <color>
+              <red>239</red>
+              <green>239</green>
+              <blue>239</blue>
+             </color>
+             <color>
+              <red>0</red>
+              <green>0</green>
+              <blue>0</blue>
+             </color>
+             <color>
+              <red>103</red>
+              <green>141</green>
+              <blue>178</blue>
+             </color>
+             <color>
+              <red>255</red>
+              <green>255</green>
+              <blue>255</blue>
+             </color>
+             <color>
+              <red>0</red>
+              <green>0</green>
+              <blue>238</blue>
+             </color>
+             <color>
+              <red>82</red>
+              <green>24</green>
+              <blue>139</blue>
+             </color>
+             <color>
+              <red>232</red>
+              <green>232</green>
+              <blue>232</blue>
+             </color>
+            </inactive>
+            <disabled>
+             <color>
+              <red>128</red>
+              <green>128</green>
+              <blue>128</blue>
+             </color>
+             <color>
+              <red>221</red>
+              <green>223</green>
+              <blue>228</blue>
+             </color>
+             <color>
+              <red>255</red>
+              <green>255</green>
+              <blue>255</blue>
+             </color>
+             <color>
+              <red>255</red>
+              <green>255</green>
+              <blue>255</blue>
+             </color>
+             <color>
+              <red>85</red>
+              <green>85</green>
+              <blue>85</blue>
+             </color>
+             <color>
+              <red>199</red>
+              <green>199</green>
+              <blue>199</blue>
+             </color>
+             <color>
+              <red>199</red>
+              <green>199</green>
+              <blue>199</blue>
+             </color>
+             <color>
+              <red>255</red>
+              <green>255</green>
+              <blue>255</blue>
+             </color>
+             <color>
+              <red>128</red>
+              <green>128</green>
+              <blue>128</blue>
+             </color>
+             <color>
+              <red>239</red>
+              <green>239</green>
+              <blue>239</blue>
+             </color>
+             <color>
+              <red>239</red>
+              <green>239</green>
+              <blue>239</blue>
+             </color>
+             <color>
+              <red>0</red>
+              <green>0</green>
+              <blue>0</blue>
+             </color>
+             <color>
+              <red>86</red>
+              <green>117</green>
+              <blue>148</blue>
+             </color>
+             <color>
+              <red>255</red>
+              <green>255</green>
+              <blue>255</blue>
+             </color>
+             <color>
+              <red>0</red>
+              <green>0</green>
+              <blue>238</blue>
+             </color>
+             <color>
+              <red>82</red>
+              <green>24</green>
+              <blue>139</blue>
+             </color>
+             <color>
+              <red>232</red>
+              <green>232</green>
+              <blue>232</blue>
+             </color>
+            </disabled>
+           </palette>
+          </property>
+          <property name="frameShape" >
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="frameShadow" >
+           <enum>QFrame::Raised</enum>
+          </property>
+          <layout class="QGridLayout" >
+           <property name="margin" >
+            <number>9</number>
+           </property>
+           <property name="spacing" >
+            <number>6</number>
+           </property>
+           <item row="0" column="0" >
+            <widget class="Line" name="lineColor" >
+             <property name="orientation" >
+              <enum>Qt::Horizontal</enum>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButtonLineColor" >
+          <property name="sizePolicy" >
+           <sizepolicy>
+            <hsizetype>1</hsizetype>
+            <vsizetype>0</vsizetype>
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize" >
+           <size>
+            <width>80</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="text" >
+           <string>Select color ...</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="2" column="0" >
+       <layout class="QHBoxLayout" >
+        <property name="margin" >
+         <number>0</number>
+        </property>
+        <property name="spacing" >
+         <number>6</number>
+        </property>
+        <item>
+         <widget class="QLabel" name="labelLineColorMaxMin" >
+          <property name="minimumSize" >
+           <size>
+            <width>150</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="text" >
+           <string>Line color for max/min</string>
+          </property>
+          <property name="buddy" >
+           <cstring>pushButtonLineColorMaxMin</cstring>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QFrame" name="frameLineMaxMin" >
+          <property name="sizePolicy" >
+           <sizepolicy>
+            <hsizetype>7</hsizetype>
+            <vsizetype>5</vsizetype>
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize" >
+           <size>
+            <width>40</width>
+            <height>16</height>
+           </size>
+          </property>
+          <property name="frameShape" >
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="frameShadow" >
+           <enum>QFrame::Raised</enum>
+          </property>
+          <layout class="QGridLayout" >
+           <property name="margin" >
+            <number>9</number>
+           </property>
+           <property name="spacing" >
+            <number>6</number>
+           </property>
+           <item row="0" column="0" >
+            <widget class="Line" name="lineColorMaxMin" >
+             <property name="orientation" >
+              <enum>Qt::Horizontal</enum>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButtonLineColorMaxMin" >
+          <property name="sizePolicy" >
+           <sizepolicy>
+            <hsizetype>1</hsizetype>
+            <vsizetype>0</vsizetype>
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize" >
+           <size>
+            <width>80</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="text" >
+           <string>Select color ...</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="3" column="0" >
+       <layout class="QHBoxLayout" >
+        <property name="margin" >
+         <number>0</number>
+        </property>
+        <property name="spacing" >
+         <number>6</number>
+        </property>
+        <item>
+         <widget class="QLabel" name="labelColorMarker" >
+          <property name="minimumSize" >
+           <size>
+            <width>150</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="text" >
+           <string>Marker color</string>
+          </property>
+          <property name="buddy" >
+           <cstring>pushButtonColorMarker</cstring>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QFrame" name="frameMarker" >
+          <property name="sizePolicy" >
+           <sizepolicy>
+            <hsizetype>7</hsizetype>
+            <vsizetype>5</vsizetype>
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize" >
+           <size>
+            <width>40</width>
+            <height>16</height>
+           </size>
+          </property>
+          <property name="frameShape" >
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="frameShadow" >
+           <enum>QFrame::Raised</enum>
+          </property>
+          <layout class="QGridLayout" >
+           <property name="margin" >
+            <number>9</number>
+           </property>
+           <property name="spacing" >
+            <number>6</number>
+           </property>
+           <item row="0" column="0" >
+            <widget class="Line" name="lineColorMarker" >
+             <property name="orientation" >
+              <enum>Qt::Horizontal</enum>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButtonColorMarker" >
+          <property name="sizePolicy" >
+           <sizepolicy>
+            <hsizetype>1</hsizetype>
+            <vsizetype>0</vsizetype>
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize" >
+           <size>
+            <width>80</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="text" >
+           <string>Select color ...</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="4" column="0" >
+       <layout class="QHBoxLayout" >
+        <property name="margin" >
+         <number>0</number>
+        </property>
+        <property name="spacing" >
+         <number>6</number>
+        </property>
+        <item>
+         <widget class="QLabel" name="labelMarkerStyle" >
+          <property name="minimumSize" >
+           <size>
+            <width>150</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="text" >
+           <string>Marker style</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="comboBoxMarkerStyle" >
+          <property name="sizePolicy" >
+           <sizepolicy>
+            <hsizetype>7</hsizetype>
+            <vsizetype>0</vsizetype>
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="3" column="0" >
+    <layout class="QHBoxLayout" >
+     <property name="margin" >
+      <number>0</number>
+     </property>
+     <property name="spacing" >
+      <number>6</number>
+     </property>
+     <item>
+      <spacer>
+       <property name="orientation" >
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" >
+        <size>
+         <width>131</width>
+         <height>31</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="okButton" >
+       <property name="text" >
+        <string>OK</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="cancelButton" >
+       <property name="text" >
+        <string>Cancel</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="2" column="0" >
+    <widget class="QGroupBox" name="groupBoxGeneral" >
+     <property name="title" >
+      <string>General settings</string>
+     </property>
+     <property name="alignment" >
+      <set>Qt::AlignLeading</set>
+     </property>
+     <layout class="QVBoxLayout" >
+      <property name="margin" >
+       <number>9</number>
+      </property>
+      <property name="spacing" >
+       <number>6</number>
+      </property>
+      <item>
+       <layout class="QHBoxLayout" >
+        <property name="margin" >
+         <number>0</number>
+        </property>
+        <property name="spacing" >
+         <number>6</number>
+        </property>
+        <item>
+         <widget class="QLabel" name="labelAppStyle" >
+          <property name="minimumSize" >
+           <size>
+            <width>150</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="text" >
+           <string>Application style</string>
+          </property>
+          <property name="buddy" >
+           <cstring>comboBoxAppStyle</cstring>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="comboBoxAppStyle" >
+          <property name="sizePolicy" >
+           <sizepolicy>
+            <hsizetype>7</hsizetype>
+            <vsizetype>0</vsizetype>
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="toolTip" >
+           <string>The changes become effective after restarting the application.</string>
+          </property>
+          <property name="statusTip" >
+           <string/>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <pixmapfunction></pixmapfunction>
+ <tabstops>
+  <tabstop>lineEditDecimalPoint</tabstop>
+  <tabstop>lineEditDateFormat</tabstop>
+  <tabstop>lineEditColumnSep</tabstop>
+  <tabstop>pushButtonColorBackground</tabstop>
+  <tabstop>pushButtonLineColor</tabstop>
+  <tabstop>pushButtonLineColorMaxMin</tabstop>
+  <tabstop>pushButtonColorMarker</tabstop>
+  <tabstop>comboBoxMarkerStyle</tabstop>
+  <tabstop>comboBoxAppStyle</tabstop>
+  <tabstop>okButton</tabstop>
+  <tabstop>cancelButton</tabstop>
+ </tabstops>
+ <resources>
+  <include location="xEsoView.qrc" />
+  <include location="../xEsoView.qrc" />
+ </resources>
+ <connections>
+  <connection>
+   <sender>okButton</sender>
+   <signal>clicked()</signal>
+   <receiver>DialogOptions</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>267</x>
+     <y>442</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>96</x>
+     <y>254</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cancelButton</sender>
+   <signal>clicked()</signal>
+   <receiver>DialogOptions</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>358</x>
+     <y>442</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>179</x>
+     <y>282</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

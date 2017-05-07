@@ -1,0 +1,72 @@
+<project>
+
+<name>LoadDSpace</name>
+<databasePath>:memory:</databasePath>
+
+<designspace list="variables">
+	<variables list="val">
+		<name>Color</name>
+		<ordered>False</ordered>
+		<type>string</type>
+		<val>Red</val>
+		<val>Brown</val>
+		<val>Blue</val>
+		<val>Orange</val>
+		<val>Green</val>
+		<val>Purple</val>
+	</variables>
+	<variables list="val">
+		<name>Size</name>
+		<ordered>True</ordered>
+		<type>int</type>
+		<val>1</val>
+	</variables>	
+	<variables list="val">
+		<name>Unit</name>
+		<ordered>True</ordered>
+		<type>int</type>
+			<val>1</val>
+			<val>2</val>
+			<val>45</val>
+			<val>100</val>
+	</variables>
+	<variables list="val">
+		<type>float</type>
+		<name>Slope</name>
+		<ordered>True</ordered>
+		<min>1</min>
+		<step>2</step>
+		<max>45</max>
+	</variables>
+</designspace>
+
+
+<objective_space list="objectives">
+	<objectives>obj1</objectives>
+	<objectives>obj2</objectives>
+</objective_space>
+
+<algorithm list="operators">
+	<evaluator>sumMaxFitness</evaluator>
+	
+	<operators>
+		<name>Neutral</name>
+		<arity>1</arity>
+	</operators>
+	
+	<operators list="parameters">
+		<name>SimpleMutate</name>
+		<arity>1</arity>
+		<parameters>
+			<name>numberToPerturb</name>
+			<val>2</val>
+		</parameters>
+		<parameters>
+			<name>stepSize</name>
+			<val>2</val>
+		</parameters>		
+	</operators>
+	
+
+</algorithm>
+</project>

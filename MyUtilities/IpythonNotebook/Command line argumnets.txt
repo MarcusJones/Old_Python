@@ -1,0 +1,226 @@
+D:\Users\Anonymous>ipython notebook -h
+The IPython HTML Notebook.
+
+This launches a Tornado based HTML Notebook Server that serves up an
+HTML5/Javascript Notebook client.
+
+Options
+-------
+
+Arguments that take values are actually convenience aliases to full
+Configurables, whose aliases are listed on the help line. For more information
+on full configurables, see '--help-all'.
+
+--no-autoindent
+    Turn off autoindenting.
+--pprint
+    Enable auto pretty printing of results.
+--secure
+    Use HMAC digests for authentication of messages.
+    Setting this flag will generate a new UUID to use as the HMAC key.
+--pylab
+    Pre-load matplotlib and numpy for interactive use with
+    the default matplotlib backend.
+--autoindent
+    Turn on autoindenting.
+--no-mathjax
+    Disable MathJax
+
+    MathJax is the javascript library IPython uses to render math/LaTeX. It is
+    very large, so you may want to disable it if you have a slow internet
+    connection, or for offline use of the notebook.
+
+    When disabled, equations etc. will appear as their untransformed TeX source.
+
+--read-only
+    Allow read-only access to notebooks.
+
+    When using a password to protect the notebook server, this flag
+    allows unauthenticated clients to view the notebook list, and
+    individual notebooks, but not edit them, start kernels, or run
+    code.
+
+    If no password is set, the server will be entirely read-only.
+--automagic
+    Turn on the auto calling of magic commands. Type %%magic at the
+    IPython  prompt  for  more information.
+--no-secure
+    Don't authenticate messages.
+--color-info
+    IPython can display information about objects via a set of func-
+    tions, and optionally can use colors for this, syntax highlighting
+    source code and various other elements.  However, because this
+    information is passed through a pager (like 'less') and many pagers get
+    confused with color codes, this option is off by default.  You can test
+    it and turn it on permanently in your ipython_config.py file if it
+    works for you.  Test it and turn it on permanently if it works with
+    your system.  The magic function %%color_info allows you to toggle this
+    interactively for testing.
+--no-stdout
+    redirect stdout to the null device
+--no-automagic
+    Turn off the auto calling of magic commands.
+--nosep
+    Eliminate all spacing between prompts.
+--script
+    Auto-save a .py script everytime the .ipynb notebook is saved
+--deep-reload
+    Enable deep (recursive) reloading by default. IPython can use the
+    deep_reload module which reloads changes in modules recursively (it
+    replaces the reload() function, so you don't need to change anything to
+    use it). deep_reload() forces a full reload of modules whose code may
+    have changed, which the default reload() function does not.  When
+    deep_reload is off, IPython will use the normal reload(), but
+    deep_reload will still be available as dreload(). This feature is off
+    by default [which means that you have both normal reload() and
+    dreload()].
+--quiet
+    set log level to logging.CRITICAL (minimize logging output)
+--pdb
+    Enable auto calling the pdb debugger after every exception.
+--no-deep-reload
+    Disable deep (recursive) reloading by default.
+--init
+    Initialize profile with default config files.  This is equivalent
+    to running `ipython profile create <profile>` prior to startup.
+--no-browser
+    Don't open the notebook in a browser after startup.
+--no-pprint
+    Disable auto auto pretty printing of results.
+--no-pdb
+    Disable auto calling the pdb debugger after every exception.
+--debug
+    set log level to logging.DEBUG (maximize logging output)
+--pydb
+    Use the third party 'pydb' package as debugger, instead of pdb.
+    Requires that pydb is installed.
+--no-color-info
+    Disable using colors for info related things.
+--no-script
+    Do not auto-save .py scripts for every notebook
+--no-stderr
+    redirect stderr to the null device
+--profile=<Unicode> (BaseIPythonApplication.profile)
+    Default: u'default'
+    The IPython profile to use.
+--shell=<Integer> (KernelApp.shell_port)
+    Default: 0
+    set the shell (ROUTER) port [default: random]
+--parent=<Integer> (KernelApp.parent)
+    Default: 0
+    kill this process if its parent dies.  On Windows, the argument specifies
+    the HANDLE of the parent process, otherwise it is simply boolean.
+--logappend=<Unicode> (InteractiveShell.logappend)
+    Default: ''
+    Start logging to the given file in append mode.
+--ip=<Unicode> (NotebookApp.ip)
+    Default: '127.0.0.1'
+    The IP address the notebook server will listen on.
+--pylab=<CaselessStrEnum> (InteractiveShellApp.pylab)
+    Default: None
+    Choices: ['tk', 'qt', 'wx', 'gtk', 'osx', 'inline', 'auto']
+    Pre-load matplotlib and numpy for interactive use, selecting a particular
+    matplotlib backend and loop integration.
+--cache-size=<Integer> (InteractiveShell.cache_size)
+    Default: 1000
+    Set the size of the output cache.  The default is 1000, you can change it
+    permanently in your config file.  Setting it to 0 completely disables the
+    caching system, and the minimum value accepted is 20 (if you provide a value
+
+    less than 20, it is reset to 0 and a warning is issued).  This limit is
+    defined because otherwise you'll spend more time re-flushing a too small
+    cache than working
+--port-retries=<Integer> (NotebookApp.port_retries)
+    Default: 50
+    The number of additional ports to try if the specified port is not
+    available.
+--interrupt=<Integer> (KernelApp.interrupt)
+    Default: 0
+    ONLY USED ON WINDOWS Interrupt this process when the parent is signalled.
+--colors=<CaselessStrEnum> (InteractiveShell.colors)
+    Default: 'Linux'
+    Choices: ('NoColor', 'LightBG', 'Linux')
+    Set the color scheme (NoColor, Linux, or LightBG).
+--iopub=<Integer> (KernelApp.iopub_port)
+    Default: 0
+    set the iopub (PUB) port [default: random]
+--user=<Unicode> (Session.username)
+    Default: u'username'
+    Username for the Session. Default is your system username.
+--hb=<Integer> (KernelApp.hb_port)
+    Default: 0
+    set the heartbeat port [default: random]
+--logfile=<Unicode> (InteractiveShell.logfile)
+    Default: ''
+    The name of the logfile to use.
+--port=<Integer> (NotebookApp.port)
+    Default: 8888
+    The port the notebook server will listen on.
+-c <Unicode> (InteractiveShellApp.code_to_run)
+    Default: ''
+    Execute the given command string.
+--ident=<CUnicode> (Session.session)
+    Default: u''
+    The UUID identifying this session.
+--certfile=<Unicode> (NotebookApp.certfile)
+    Default: u''
+    The full path to an SSL/TLS certificate file.
+--autocall=<Enum> (InteractiveShell.autocall)
+    Default: 0
+    Choices: (0, 1, 2)
+    Make IPython automatically call any callable object even if you didn't type
+    explicit parentheses. For example, 'str 43' becomes 'str(43)' automatically.
+
+    The value can be '0' to disable the feature, '1' for 'smart' autocall, where
+
+    it is not applied if there are no more arguments on the line, and '2' for
+    'full' autocall, where all callable objects are automatically called (even
+    if no arguments are present).
+--ipython-dir=<Unicode> (BaseIPythonApplication.ipython_dir)
+    Default: u'D:\\Users\\Anonymous\\.ipython'
+    The name of the IPython directory. This directory is used for logging
+    configuration (through profiles), history storage, etc. The default is
+    usually $HOME/.ipython. This options can also be specified through the
+    environment variable IPYTHONDIR.
+--gui=<CaselessStrEnum> (InteractiveShellApp.gui)
+    Default: None
+    Choices: ('qt', 'wx', 'gtk', 'glut', 'pyglet', 'osx')
+    Enable GUI event loop integration ('qt', 'wx', 'gtk', 'glut', 'pyglet',
+    'osx').
+--stdin=<Integer> (KernelApp.stdin_port)
+    Default: 0
+    set the stdin (DEALER) port [default: random]
+-m <Unicode> (InteractiveShellApp.module_to_run)
+    Default: ''
+    Run the module as a script.
+--log-level=<Enum> (Application.log_level)
+    Default: 30
+    Choices: (0, 10, 20, 30, 40, 50, 'DEBUG', 'INFO', 'WARN', 'ERROR', 'CRITICAL
+')
+    Set the log level by value or name.
+--ext=<Unicode> (InteractiveShellApp.extra_extension)
+    Default: ''
+    dotted module name of an IPython extension to load.
+--notebook-dir=<Unicode> (NotebookManager.notebook_dir)
+    Default: u'D:\\Users\\Anonymous'
+    The directory to use for notebooks.
+--keyfile=<Unicode> (NotebookApp.keyfile)
+    Default: u''
+    The full path to a private key file for usage with SSL/TLS.
+--browser=<Unicode> (NotebookApp.browser)
+    Default: u''
+    Specify what command to use to invoke a web browser when opening the
+    notebook. If not specified, the default browser will be determined by the
+    `webbrowser` standard library module, which allows setting of the BROWSER
+    environment variable to override it.
+
+To see all available configurables, use `--help-all`
+
+Examples
+--------
+
+    ipython notebook                       # start the notebook
+    ipython notebook --profile=sympy       # use the sympy profile
+    ipython notebook --pylab=inline        # pylab in inline plotting mode
+    ipython notebook --certfile=mycert.pem # use SSL/TLS certificate
+    ipython notebook --port=5555 --ip=*    # Listen on port 5555, all interfaces

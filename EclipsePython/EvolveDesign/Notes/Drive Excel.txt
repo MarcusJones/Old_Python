@@ -1,0 +1,5 @@
+http://my.safaribooksonline.com/1565926218/ch09-84996
+http://docs.activestate.com/activepython/2.4/pywin32/html/com/win32com/HTML/docindex.html
+http://msdn.microsoft.com/en-us/library/aa220733.aspx
+
+http://www.blog.pythonlibrary.org/

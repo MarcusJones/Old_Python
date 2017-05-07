@@ -1,0 +1,15 @@
+OS:Surface,
+  OS:Surface 3,             ! Name
+  Wall,                     ! Surface Type
+  ,                         ! Construction Name
+  OS:Space 1,               ! Space Name
+  Outdoors,                 ! Outside Boundary Condition
+  ,                         ! Outside Boundary Condition Object
+  SunExposed,               ! Sun Exposure
+  WindExposed,              ! Wind Exposure
+  ,                         ! View Factor to Ground
+  ,                         ! Number of Vertices
+  7.5054000000000025,7.5054000000000016,3,  ! X,Y,Z Vertex 1 {m}
+  7.5054000000000025,7.5054000000000016,0,  ! X,Y,Z Vertex 2 {m}
+  0,7.5054000000000016,0,   ! X,Y,Z Vertex 3 {m}
+  0,7.5054000000000016,3;   ! X,Y,Z Vertex 4 {m}

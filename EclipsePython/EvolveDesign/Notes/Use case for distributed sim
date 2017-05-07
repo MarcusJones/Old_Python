@@ -1,0 +1,13 @@
+
+Call an exe in Windows (which is a simulation file)
+
+exe 
+	. Called
+		. By a single computer, 1 .. n times, n = number of cores
+		. By a remote computer within the LAN
+		. By a remote computer in the WAN
+	. Connected to
+		. Main input file in text format
+			. Stored by server computer
+		. Other dependent input files 
+		. 

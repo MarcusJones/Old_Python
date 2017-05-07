@@ -1,0 +1,7 @@
+- Create a script to
+	- Remove all system objects (ideal HVAC)
+	- Add ideal HVAC for all 
+	- Remove all zoneload objects
+	- Apply zoneload objects
+	- Alternatively, just SELECT only the non-hvac objects and use them as a subset
+	

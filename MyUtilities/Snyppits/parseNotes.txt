@@ -1,0 +1,32 @@
+
+
+
+re.compile(pattern, flags=0)
+The sequence
+
+prog = re.compile(pattern)
+result = prog.match(string)
+
+is equivalent to
+
+result = re.match(pattern, string)
+
+but using re.compile() and saving the resulting regular expression object for reuse is more efficient when the expression will be used several times in a single program.
+
+
+
+re.search(pattern, string, flags=0)
+
+    Scan through string looking for a location where the regular expression pattern produces a match, and return a corresponding MatchObject instance. Return None if no position in the string matches the pattern; note that this is different from finding a zero-length match at some point in the string.
+
+re.match(pattern, string, flags=0)
+
+    If zero or more characters at the beginning of string match the regular expression pattern, return a corresponding MatchObject instance. Return None if the string does not match the pattern; note that this is different from a zero-length match.
+
+    Note that even in MULTILINE mode, re.match() will only match at the beginning of the string and not at the beginning of each line.
+
+    If you want to locate a match anywhere in string, use search() instead (see also search() vs. match()).
+
+
+
+http://effbot.org/zone/simple-top-down-parsing.htm

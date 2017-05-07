@@ -1,0 +1,11 @@
+
+
+You can right-click a folder/file and choose Run as > Python unittest or if you have the file open in an editor,
+you can use 'Ctrl+F9' to run the tests (and even filter to select the test(s) you want to run).
+
+Note: for this to work with nose you have to select the nose test runner in the preferences
+(window > preferences > pydev > pyunit) -- and the same is true if you're using the py.test runner
+(but note that if you're using regular unittest tests, the default runner should work fine).
+
+
+https://nose.readthedocs.org/en/latest/

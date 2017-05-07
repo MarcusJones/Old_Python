@@ -1,0 +1,4 @@
+Autoload TRNSYS!
+
+Automate SVN
+http://gael-varoquaux.info/computers/svnautocommit/source.html

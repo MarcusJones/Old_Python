@@ -1,0 +1,26 @@
+<EnergyPlus_XML XML_version="0.1">
+  <!--XML Schema for EnergyPlus version 6 'IDF' files and OpenStudio version 0.3.0 'OSM' files-->
+  <!--Schema created April. 2011 by Marcus Jones-->
+  <OBJECT>
+    <NAME>SimulationControl</NAME>
+    <ATTR Comment="- Do Zone Sizing Calculation">No</ATTR>
+    <ATTR Comment="- Do System Sizing Calculation">No</ATTR>
+    <ATTR Comment="- Do Plant Sizing Calculation">No</ATTR>
+    <ATTR Comment="- Run Simulation for Sizing Periods">Yes</ATTR>
+    <ATTR Comment="- Run Simulation for Weather File Run Periods">Yes</ATTR>
+  </OBJECT>
+  <OBJECT>
+    <NAME>Building</NAME>
+    <ATTR Comment="- Name">Untitled</ATTR>
+    <ATTR Comment="- North Axis {deg}">-0</ATTR>
+    <ATTR Comment="- Terrain">CITY</ATTR>
+    <ATTR Comment="- Loads Convergence Tolerance Value">0.040000000000000001</ATTR>
+    <ATTR Comment="- Temperature Convergence Tolerance Value {deltaC}">0.40000000000000002</ATTR>
+    <ATTR Comment="- Solar Distribution">FULLINTERIORANDEXTERIOR</ATTR>
+    <ATTR Comment="- Maximum Number of Warmup Days">25</ATTR>
+  </OBJECT>
+  <OBJECT>
+    <NAME>Timestep</NAME>
+    <ATTR Comment="">4</ATTR>
+  </OBJECT>
+</EnergyPlus_XML>

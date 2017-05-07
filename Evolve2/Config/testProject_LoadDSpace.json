@@ -1,0 +1,84 @@
+{
+    "note:": "http://www.jsoneditoronline.org/",
+    "project": {
+        "name": "LoadDSpace",
+        "databasePath": "C:\\TestProjects\\MyTestProject\\DB.sql",
+		"projectPath": "C:\\TestProjects\\MyTestProject",
+        "designspace": {
+            "variables": [
+                {
+                    "name": "Color",
+                    "ordered": "False",
+                    "type": "string",
+                    "val": [
+                        "Red",
+                        "Brown",
+                        "Blue",
+                        "Orange",
+                        "Green",
+                        "Purple"
+                    ]
+                },
+                {
+                    "name": "Size",
+                    "ordered": "True",
+                    "type": "int",
+                    "val": [
+                        "1"
+                    ]
+                },
+                {
+                    "name": "Unit",
+                    "ordered": "True",
+                    "type": "int",
+                    "val": [
+                        "1",
+                        "2",
+                        "45",
+                        "100"
+                    ]
+                },
+                {
+                    "type": "float",
+                    "name": "Slope",
+                    "ordered": "True",
+                    "min": "1",
+                    "step": "2",
+                    "max": "45"
+                }
+            ]
+        },
+        "objective_space": {
+            "objectives": [
+                "obj1",
+                "obj2"
+            ]
+        },
+        "algorithm": {
+            "controller": "Controller_randomSearch",
+            "evaluator": "sumMaxFitness",
+            "settings": {
+                "populationSize": 20,
+				"generations":5
+            },
+            "operators": [
+                {
+                    "name": "Neutral",
+                    "arity": "1"
+                },
+                {
+                    "name": "SimpleMutate",
+                    "arity": "1",
+                    "parameters": [
+                        {
+                            "numberToPerturb": "2"
+                        },
+                        {
+                            "stepSize": "2"
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}

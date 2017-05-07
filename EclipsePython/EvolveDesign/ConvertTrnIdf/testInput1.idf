@@ -1,0 +1,5203 @@
+
+
+Version,
+  6.0;
+
+SimulationControl,
+  No,                       !- Do Zone Sizing Calculation
+  No,                       !- Do System Sizing Calculation
+  No,                       !- Do Plant Sizing Calculation
+  No,                       !- Run Simulation for Sizing Periods
+  Yes;                      !- Run Simulation for Weather File Run Periods
+
+Building,
+  Medium Office,            ! Name
+  -0,                       ! North Axis
+  City,                     ! Terrain
+  0.04,                     ! Loads Convergence Tolerance Value
+  0.4,                      ! Temperature Convergence Tolerance Value
+  FullExterior,             ! Solar Distribution
+  25;                       ! Maximum Number of Warmup Days
+
+Timestep,
+  4;
+
+RunPeriodControl:SpecialDays,
+  Labor Day,                !- Name
+  1st Monday in September,  !- Start Date
+  1,                        !- Duration {days}
+  Holiday;                  !- Special Day Type
+
+RunPeriodControl:SpecialDays,
+  Independence Day,         !- Name
+  July 4,                   !- Start Date
+  1,                        !- Duration {days}
+  Holiday;                  !- Special Day Type
+
+RunPeriodControl:SpecialDays,
+  New Years Day,            !- Name
+  January 1,                !- Start Date
+  1,                        !- Duration {days}
+  Holiday;                  !- Special Day Type
+
+RunPeriodControl:SpecialDays,
+  Presidents Day,           !- Name
+  3rd Monday in February,   !- Start Date
+  1,                        !- Duration {days}
+  Holiday;                  !- Special Day Type
+
+RunPeriodControl:SpecialDays,
+  Veterans Day,             !- Name
+  November 11,              !- Start Date
+  1,                        !- Duration {days}
+  Holiday;                  !- Special Day Type
+
+RunPeriodControl:SpecialDays,
+  Memorial Day,             !- Name
+  Last Monday in May,       !- Start Date
+  1,                        !- Duration {days}
+  Holiday;                  !- Special Day Type
+
+RunPeriodControl:SpecialDays,
+  Thanksgiving,             !- Name
+  4th Thursday in November,  !- Start Date
+  1,                        !- Duration {days}
+  Holiday;                  !- Special Day Type
+
+RunPeriodControl:SpecialDays,
+  MLK Day,                  !- Name
+  3rd Monday in January,    !- Start Date
+  1,                        !- Duration {days}
+  Holiday;                  !- Special Day Type
+
+RunPeriodControl:SpecialDays,
+  Christmas,                !- Name
+  December 25,              !- Start Date
+  1,                        !- Duration {days}
+  Holiday;                  !- Special Day Type
+
+RunPeriodControl:SpecialDays,
+  Columbus Day,             !- Name
+  2nd Monday in October,    !- Start Date
+  1,                        !- Duration {days}
+  Holiday;                  !- Special Day Type
+
+! Daylight Saving Period in US
+RunPeriodControl:DaylightSavingTime,
+  2nd Sunday in March,      !- Start Date
+  1st Sunday in November;   !- End Date
+
+ScheduleTypeLimits,
+  Temperature,              !- Name
+  -60,                      !- Lower Limit Value
+  200,                      !- Upper Limit Value
+  CONTINUOUS;               !- Numeric Type
+
+ScheduleTypeLimits,
+  On/Off,                   !- Name
+  0,                        !- Lower Limit Value
+  1,                        !- Upper Limit Value
+  DISCRETE;                 !- Numeric Type
+
+ScheduleTypeLimits,
+  Fraction,                 !- Name
+  0.0,                      !- Lower Limit Value
+  1.0,                      !- Upper Limit Value
+  CONTINUOUS;               !- Numeric Type
+
+ScheduleTypeLimits,
+  Control Type,             !- Name
+  0,                        !- Lower Limit Value
+  4,                        !- Upper Limit Value
+  DISCRETE;                 !- Numeric Type
+
+ScheduleTypeLimits,
+  Any Number;               !- Name
+
+Schedule:Compact,
+  Medium Office_ACTIVITY_SCH,  !- Name
+  Any Number,               !- Schedule Type Limits Name
+  Through: 12/31,           !- Field 1
+  For: AllDays,             !- Field 2
+  Until: 24:00,
+  120.;                     !- Field 3
+
+Schedule:Compact,
+  Medium Office_CLOTHING_SCH,  !- Name
+  Any Number,               !- Schedule Type Limits Name
+  Through: 04/30,           !- Field 1
+  For: AllDays,             !- Field 2
+  Until: 24:00,
+  1.0,                      !- Field 3
+  Through: 09/30,           !- Field 5
+  For: AllDays,             !- Field 6
+  Until: 24:00,
+  0.5,                      !- Field 7
+  Through: 12/31,           !- Field 9
+  For: AllDays,             !- Field 10
+  Until: 24:00,
+  1.0;                      !- Field 11
+
+Schedule:Compact,
+  Always_On,                !- Name
+  On/Off,                   !- Schedule Type Limits Name
+  Through: 12/31,           !- Field 1
+  For: AllDays,             !- Field 2
+  Until: 24:00,
+  1;                        !- Field 3
+
+Schedule:Compact,
+  Medium Office_BLDG_LIGHT_SCH,  !- Name
+  Fraction,                 !- Schedule Type Limits Name
+  Through: 12/31,           !- Field 1
+  For: Weekdays,            !- Field 2
+  Until: 05:00,
+  0.05,                     !- Field 3
+  Until: 07:00,
+  0.1,                      !- Field 5
+  Until: 08:00,
+  0.3,                      !- Field 7
+  Until: 17:00,
+  0.9,                      !- Field 9
+  Until: 18:00,
+  0.7,                      !- Field 11
+  Until: 20:00,
+  0.5,                      !- Field 13
+  Until: 22:00,
+  0.3,                      !- Field 15
+  Until: 23:00,
+  0.1,                      !- Field 17
+  Until: 24:00,
+  0.05,                     !- Field 19
+  For: Saturday,            !- Field 21
+  Until: 06:00,
+  0.05,                     !- Field 22
+  Until: 08:00,
+  0.1,                      !- Field 24
+  Until: 14:00,
+  0.5,                      !- Field 26
+  Until: 17:00,
+  0.15,                     !- Field 28
+  Until: 24:00,
+  0.05,                     !- Field 30
+  For: SummerDesignDay,     !- Field 32
+  Until: 24:00,
+  1.0,                      !- Field 33
+  For: WinterDesignDay,     !- Field 35
+  Until: 24:00,
+  0.0,                      !- Field 36
+  For: AllOtherDays,        !- Field 38
+  Until: 24:00,
+  0.05;                     !- Field 39
+
+Schedule:Compact,
+  Medium Office_WORK_EFF_SCH,  !- Name
+  Fraction,                 !- Schedule Type Limits Name
+  Through: 12/31,           !- Field 1
+  For: AllDays,             !- Field 2
+  Until: 24:00,
+  0.0;                      !- Field 3
+
+Schedule:Compact,
+  Medium Office_BLDG_OCC_SCH,  !- Name
+  Fraction,                 !- Schedule Type Limits Name
+  Through: 12/31,           !- Field 1
+  For: SummerDesignDay,     !- Field 2
+  Until: 06:00,
+  0.0,                      !- Field 3
+  Until: 22:00,
+  1.0,                      !- Field 5
+  Until: 24:00,
+  0.05,                     !- Field 7
+  For: Weekdays,            !- Field 9
+  Until: 06:00,
+  0.0,                      !- Field 10
+  Until: 07:00,
+  0.1,                      !- Field 12
+  Until: 08:00,
+  0.2,                      !- Field 14
+  Until: 12:00,
+  0.95,                     !- Field 16
+  Until: 13:00,
+  0.5,                      !- Field 18
+  Until: 17:00,
+  0.95,                     !- Field 20
+  Until: 18:00,
+  0.7,                      !- Field 22
+  Until: 20:00,
+  0.4,                      !- Field 24
+  Until: 22:00,
+  0.1,                      !- Field 26
+  Until: 24:00,
+  0.05,                     !- Field 28
+  For: Saturday,            !- Field 30
+  Until: 06:00,
+  0.0,                      !- Field 31
+  Until: 08:00,
+  0.1,                      !- Field 33
+  Until: 14:00,
+  0.5,                      !- Field 35
+  Until: 17:00,
+  0.1,                      !- Field 37
+  Until: 24:00,
+  0.0,                      !- Field 39
+  For: AllOtherDays,        !- Field 41
+  Until: 24:00,
+  0.0;                      !- Field 42
+
+Schedule:Compact,
+  Medium Office_BLDG_ELEVATORS,  !- Name
+  Fraction,                 !- Schedule Type Limits Name
+  Through: 12/31,           !- Field 1
+  For: Weekdays SummerDesignDay,  !- Field 2
+  Until: 07:00,
+  0.0,                      !- Field 3
+  Until: 08:00,
+  0.35,                     !- Field 5
+  Until: 09:00,
+  0.69,                     !- Field 7
+  Until: 10:00,
+  0.43,                     !- Field 9
+  Until: 11:00,
+  0.37,                     !- Field 11
+  Until: 12:00,
+  0.43,                     !- Field 13
+  Until: 13:00,
+  0.58,                     !- Field 15
+  Until: 14:00,
+  0.48,                     !- Field 17
+  Until: 15:00,
+  0.37,                     !- Field 19
+  Until: 16:00,
+  0.37,                     !- Field 21
+  Until: 17:00,
+  0.46,                     !- Field 23
+  Until: 18:00,
+  0.62,                     !- Field 25
+  Until: 19:00,
+  0.12,                     !- Field 27
+  Until: 20:00,
+  0.04,                     !- Field 29
+  Until: 21:00,
+  0.04,                     !- Field 31
+  Until: 24:00,
+  0.00,                     !- Field 33
+  For: Saturday WinterDesignDay,  !- Field 35
+  Until: 07:00,
+  0.0,                      !- Field 36
+  Until: 08:00,
+  0.16,                     !- Field 38
+  Until: 09:00,
+  0.14,                     !- Field 40
+  Until: 10:00,
+  0.21,                     !- Field 42
+  Until: 11:00,
+  0.18,                     !- Field 44
+  Until: 12:00,
+  0.25,                     !- Field 46
+  Until: 13:00,
+  0.21,                     !- Field 48
+  Until: 14:00,
+  0.13,                     !- Field 50
+  Until: 15:00,
+  0.08,                     !- Field 52
+  Until: 16:00,
+  0.04,                     !- Field 54
+  Until: 17:00,
+  0.05,                     !- Field 56
+  Until: 18:00,
+  0.06,                     !- Field 58
+  Until: 24:00,
+  0.00,                     !- Field 60
+  For: Sunday Holidays AllOtherDays,  !- Field 62
+  Until: 24:00,
+  0.0;                      !- Field 63
+
+Schedule:Compact,
+  Medium Office_INFIL_QUARTER_ON_SCH,  !- Name
+  Fraction,                 !- Schedule Type Limits Name
+  Through: 12/31,           !- Field 1
+  For: Weekdays SummerDesignDay,  !- Field 2
+  Until: 06:00,
+  1.0,                      !- Field 3
+  Until: 22:00,
+  0.25,                     !- Field 5
+  Until: 24:00,
+  1.0,                      !- Field 7
+  For: Saturday WinterDesignDay,  !- Field 9
+  Until: 06:00,
+  1.0,                      !- Field 10
+  Until: 18:00,
+  0.25,                     !- Field 12
+  Until: 24:00,
+  1.0,                      !- Field 14
+  For: Sunday Holidays AllOtherDays,  !- Field 16
+  Until: 24:00,
+  1.0;                      !- Field 17
+
+Schedule:Compact,
+  Medium Office_BLDG_SWH_SCH,  !- Name
+  Fraction,                 !- Schedule Type Limits Name
+  Through: 12/31,           !- Field 1
+  For: Weekdays SummerDesignDay,  !- Field 2
+  Until: 05:00,
+  0.05,                     !- Field 3
+  Until: 06:00,
+  0.08,                     !- Field 5
+  Until: 07:00,
+  0.07,                     !- Field 7
+  Until: 08:00,
+  0.19,                     !- Field 9
+  Until: 09:00,
+  0.35,                     !- Field 11
+  Until: 10:00,
+  0.38,                     !- Field 13
+  Until: 11:00,
+  0.39,                     !- Field 15
+  Until: 12:00,
+  0.47,                     !- Field 17
+  Until: 13:00,
+  0.57,                     !- Field 19
+  Until: 14:00,
+  0.54,                     !- Field 21
+  Until: 15:00,
+  0.34,                     !- Field 23
+  Until: 16:00,
+  0.33,                     !- Field 25
+  Until: 17:00,
+  0.44,                     !- Field 27
+  Until: 18:00,
+  0.26,                     !- Field 29
+  Until: 19:00,
+  0.21,                     !- Field 31
+  Until: 20:00,
+  0.15,                     !- Field 33
+  Until: 21:00,
+  0.17,                     !- Field 35
+  Until: 22:00,
+  0.08,                     !- Field 37
+  Until: 24:00,
+  0.05,                     !- Field 39
+  For: Saturday WinterDesignDay,  !- Field 41
+  Until: 05:00,
+  0.05,                     !- Field 42
+  Until: 06:00,
+  0.08,                     !- Field 44
+  Until: 07:00,
+  0.07,                     !- Field 46
+  Until: 08:00,
+  0.11,                     !- Field 48
+  Until: 09:00,
+  0.15,                     !- Field 50
+  Until: 10:00,
+  0.21,                     !- Field 52
+  Until: 11:00,
+  0.19,                     !- Field 54
+  Until: 12:00,
+  0.23,                     !- Field 56
+  Until: 13:00,
+  0.20,                     !- Field 58
+  Until: 14:00,
+  0.19,                     !- Field 60
+  Until: 15:00,
+  0.15,                     !- Field 62
+  Until: 16:00,
+  0.13,                     !- Field 64
+  Until: 17:00,
+  0.14,                     !- Field 66
+  Until: 21:00,
+  0.07,                     !- Field 68
+  Until: 22:00,
+  0.09,                     !- Field 70
+  Until: 24:00,
+  0.05,                     !- Field 72
+  For: Sunday Holidays AllOtherDays,  !- Field 74
+  Until: 05:00,
+  0.04,                     !- Field 75
+  Until: 06:00,
+  0.07,                     !- Field 77
+  Until: 11:00,
+  0.04,                     !- Field 79
+  Until: 13:00,
+  0.06,                     !- Field 81
+  Until: 14:00,
+  0.09,                     !- Field 83
+  Until: 15:00,
+  0.06,                     !- Field 85
+  Until: 21:00,
+  0.04,                     !- Field 87
+  Until: 22:00,
+  0.07,                     !- Field 89
+  Until: 24:00,
+  0.04;                     !- Field 91
+
+Schedule:Compact,
+  Medium Office_CLGSETP_SCH,  !- Name
+  Temperature,              !- Schedule Type Limits Name
+  Through: 12/31,           !- Field 1
+  For: Weekdays SummerDesignDay,  !- Field 2
+  Until: 06:00,
+  26.7,                     !- Field 3
+  Until: 22:00,
+  24.0,                     !- Field 5
+  Until: 24:00,
+  26.7,                     !- Field 7
+  For: Saturday,            !- Field 9
+  Until: 06:00,
+  26.7,                     !- Field 10
+  Until: 18:00,
+  24.0,                     !- Field 12
+  Until: 24:00,
+  26.7,                     !- Field 14
+  For WinterDesignDay,      !- Field 16
+  Until: 24:00,
+  26.7,                     !- Field 17
+  For: AllOtherDays,        !- Field 19
+  Until: 24:00,
+  26.7;                     !- Field 20
+
+Schedule:Compact,
+  Medium Office_BLDG_EQUIP_SCH,  !- Name
+  Fraction,                 !- Schedule Type Limits Name
+  Through: 12/31,           !- Field 1
+  For: Weekdays,            !- Field 2
+  Until: 08:00,
+  0.40,                     !- Field 3
+  Until: 12:00,
+  0.90,                     !- Field 5
+  Until: 13:00,
+  0.80,                     !- Field 7
+  Until: 17:00,
+  0.90,                     !- Field 9
+  Until: 18:00,
+  0.80,                     !- Field 11
+  Until: 20:00,
+  0.60,                     !- Field 13
+  Until: 22:00,
+  0.50,                     !- Field 15
+  Until: 24:00,
+  0.40,                     !- Field 17
+  For: Saturday,            !- Field 19
+  Until: 06:00,
+  0.30,                     !- Field 20
+  Until: 08:00,
+  0.4,                      !- Field 22
+  Until: 14:00,
+  0.5,                      !- Field 24
+  Until: 17:00,
+  0.35,                     !- Field 26
+  Until: 24:00,
+  0.30,                     !- Field 28
+  For: SummerDesignDay,     !- Field 30
+  Until: 24:00,
+  1.0,                      !- Field 31
+  For: WinterDesignDay,     !- Field 33
+  Until: 24:00,
+  0.0,                      !- Field 34
+  For: AllOtherDays,        !- Field 36
+  Until: 24:00,
+  0.30;                     !- Field 37
+
+Schedule:Compact,
+  Medium Office_HTGSETP_SCH,  !- Name
+  Temperature,              !- Schedule Type Limits Name
+  Through: 12/31,           !- Field 1
+  For: Weekdays,            !- Field 2
+  Until: 06:00,
+  15.6,                     !- Field 3
+  Until: 22:00,
+  21.0,                     !- Field 5
+  Until: 24:00,
+  15.6,                     !- Field 7
+  For SummerDesignDay,      !- Field 9
+  Until: 24:00,
+  15.6,                     !- Field 10
+  For: Saturday,            !- Field 12
+  Until: 06:00,
+  15.6,                     !- Field 13
+  Until: 18:00,
+  21.0,                     !- Field 15
+  Until: 24:00,
+  15.6,                     !- Field 17
+  For: WinterDesignDay,     !- Field 19
+  Until: 24:00,
+  21.0,                     !- Field 20
+  For: AllOtherDays,        !- Field 22
+  Until: 24:00,
+  15.6;                     !- Field 23
+
+Material,
+  IEAD NonRes Roof Insulation-2.75,  !- Name
+  MediumRough,              !- Roughness
+  0.122523123620942,        !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Mass NonRes Wall Insulation-0.78,  !- Name
+  MediumRough,              !- Roughness
+  0.0177431538563263,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Wall Insulation [36],     !- Name
+  MediumRough,              !- Roughness
+  0.0566,                   !- Thickness {m}
+  0.0432,                   !- Conductivity {W/m-K}
+  91.0000,                  !- Density {kg/m3}
+  837.0000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.5000,                   !- Solar Absorptance
+  0.5000;                   !- Visible Absorptance
+
+Material,
+  AtticFloor Insulation,    !- Name
+  MediumRough,              !- Roughness
+  0.2379,                   !- Thickness {m}
+  0.0490,                   !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Wood Frame NonRes Wall Insulation-2.44,  !- Name
+  MediumRough,              !- Roughness
+  0.104179072774682,        !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Metal Semi-Cond Roof Insulation-2.44,  !- Name
+  MediumRough,              !- Roughness
+  0.110450208299624,        !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Metal Building Semi-Cond Wall Insulation-0.61,  !- Name
+  MediumRough,              !- Roughness
+  0.0186148507477484,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  AtticFloor NonRes Insulation-4.40,  !- Name
+  MediumRough,              !- Roughness
+  0.196057107696372,        !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  MAT-CC05 4 HW CONCRETE,   !- Name
+  Rough,                    !- Roughness
+  0.1016,                   !- Thickness {m}
+  1.3110,                   !- Conductivity {W/m-K}
+  2240.0000,                !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  IEAD NonRes Roof Insulation-3.97,  !- Name
+  MediumRough,              !- Roughness
+  0.182131064601726,        !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Mass NonRes Wall Insulation-0.52,  !- Name
+  MediumRough,              !- Roughness
+  0.0047702530604555,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Metal Semi-Cond Roof Insulation-2.67,  !- Name
+  MediumRough,              !- Roughness
+  0.121346419442401,        !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Mass NonRes Wall Insulation-0.43,  !- Name
+  MediumRough,              !- Roughness
+  0.000436781426628043,     !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  AtticFloor NonRes Insulation-3.91,  !- Name
+  MediumRough,              !- Roughness
+  0.174760680942037,        !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Steel Frame NonRes Wall Insulation-1.36,  !- Name
+  MediumRough,              !- Roughness
+  0.0507038211662853,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Wood Frame NonRes Wall Insulation-0.80,  !- Name
+  MediumRough,              !- Roughness
+  0.0235471103181338,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Wood Frame NonRes Wall Insulation-3.04,  !- Name
+  MediumRough,              !- Roughness
+  0.133110392015848,        !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Roof Insulation [22],     !- Name
+  MediumRough,              !- Roughness
+  0.2358,                   !- Thickness {m}
+  0.0490,                   !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Steel Frame NonRes Wall Insulation-0.96,  !- Name
+  MediumRough,              !- Roughness
+  0.0312218329491331,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Metal Building Semi-Cond Wall Insulation-1.12,  !- Name
+  MediumRough,              !- Roughness
+  0.0437899773880746,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  AtticFloor NonRes Insulation-3.67,  !- Name
+  MediumRough,              !- Roughness
+  0.160099610925208,        !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Wood Frame NonRes Wall Insulation-0.73,  !- Name
+  MediumRough,              !- Roughness
+  0.0202782469753007,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  AtticFloor Res Insulation-2.05,  !- Name
+  MediumRough,              !- Roughness
+  0.0806586296865913,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Mass NonRes Wall Insulation-1.30,  !- Name
+  MediumRough,              !- Roughness
+  0.042842896700511,        !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Mass NonRes Wall Insulation-0.99,  !- Name
+  MediumRough,              !- Roughness
+  0.0278705087521746,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Metal Building Semi-Cond Wall Insulation-1.96,  !- Name
+  MediumRough,              !- Roughness
+  0.084629944598133,        !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Wood Frame NonRes Wall Insulation-1.98,  !- Name
+  MediumRough,              !- Roughness
+  0.0812847864409827,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Wood Frame NonRes Wall Insulation-2.15,  !- Name
+  MediumRough,              !- Roughness
+  0.0895622041685183,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Roof Insulation [19],     !- Name
+  MediumRough,              !- Roughness
+  0.1868,                   !- Thickness {m}
+  0.0490,                   !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Wall Insulation [31],     !- Name
+  MediumRough,              !- Roughness
+  0.0337,                   !- Thickness {m}
+  0.0432,                   !- Conductivity {W/m-K}
+  91.0000,                  !- Density {kg/m3}
+  837.0000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.5000,                   !- Solar Absorptance
+  0.5000;                   !- Visible Absorptance
+
+Material,
+  Wood Siding,              !- Name
+  MediumSmooth,             !- Roughness
+  0.0100,                   !- Thickness {m}
+  0.1100,                   !- Conductivity {W/m-K}
+  544.6200,                 !- Density {kg/m3}
+  1210.0000,                !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7800,                   !- Solar Absorptance
+  0.7800;                   !- Visible Absorptance
+
+Material,
+  IEAD NonRes Roof Insulation-2.85,  !- Name
+  MediumRough,              !- Roughness
+  0.127338688569477,        !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Roof Insulation [24],     !- Name
+  MediumRough,              !- Roughness
+  0.2601,                   !- Thickness {m}
+  0.0490,                   !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Metal Semi-Cond Roof Insulation-1.76,  !- Name
+  MediumRough,              !- Roughness
+  0.0768898779798716,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Metal Building Semi-Cond Wall Insulation-0.90,  !- Name
+  MediumRough,              !- Roughness
+  0.0329897280566043,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Steel Frame NonRes Wall Insulation-2.10,  !- Name
+  MediumRough,              !- Roughness
+  0.0870564552646045,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Metal Building Semi-Cond Wall Insulation-2.52,  !- Name
+  MediumRough,              !- Roughness
+  0.112154632558048,        !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Steel Frame NonRes Wall Insulation-2.71,  !- Name
+  MediumRough,              !- Roughness
+  0.117086892128433,        !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Metal Building Semi-Cond Wall Insulation-0.59,  !- Name
+  MediumRough,              !- Roughness
+  0.0177431538563263,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Metal Building Semi-Cond Wall Insulation-1.72,  !- Name
+  MediumRough,              !- Roughness
+  0.0731906561237437,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  IEAD NonRes Roof Insulation-3.83,  !- Name
+  MediumRough,              !- Roughness
+  0.175286841709063,        !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Wall Insulation [42],     !- Name
+  MediumRough,              !- Roughness
+  0.0914,                   !- Thickness {m}
+  0.0432,                   !- Conductivity {W/m-K}
+  91.0000,                  !- Density {kg/m3}
+  837.0000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.5000,                   !- Solar Absorptance
+  0.5000;                   !- Visible Absorptance
+
+Material,
+  Wood Frame NonRes Wall Insulation-2.71,  !- Name
+  MediumRough,              !- Roughness
+  0.117086892128433,        !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Metal Building Semi-Cond Wall Insulation-1.24,  !- Name
+  MediumRough,              !- Roughness
+  0.0495494599433393,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Wood Frame NonRes Wall Insulation-1.36,  !- Name
+  MediumRough,              !- Roughness
+  0.0507038211662853,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  000_I01 25mm insulation board,  !- Name
+  MediumRough,              !- Roughness
+  0.0254,                   !- Thickness {m}
+  0.03,                     !- Conductivity {W/m-K}
+  43,                       !- Density {kg/m3}
+  1210;                     !- Specific Heat {J/kg-K}
+
+Material,
+  Wood Frame NonRes Wall Insulation-3.45,  !- Name
+  MediumRough,              !- Roughness
+  0.153532499715495,        !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  IEAD NonRes Roof Insulation-1.98,  !- Name
+  MediumRough,              !- Roughness
+  0.0846465469659246,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+!-NOTE: All comments with '!-' are ignored by the IDFEditor and are generated automatically.
+!-      Use '!' comments if they need to be retained when using the IDFEditor.
+!-   ===========  ALL OBJECTS IN CLASS: VERSION ===========
+!-   ===========  ALL OBJECTS IN CLASS: MATERIAL ===========
+Material,
+  1/2IN Gypsum,             !- Name
+  Smooth,                   !- Roughness
+  0.0127,                   !- Thickness {m}
+  0.1600,                   !- Conductivity {W/m-K}
+  784.9000,                 !- Density {kg/m3}
+  830.0000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.9200,                   !- Solar Absorptance
+  0.9200;                   !- Visible Absorptance
+
+Material,
+  Metal Building Semi-Cond Wall Insulation-1.57,  !- Name
+  MediumRough,              !- Roughness
+  0.0656864828845443,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Wall Insulation [32],     !- Name
+  MediumRough,              !- Roughness
+  0.0897,                   !- Thickness {m}
+  0.0450,                   !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Metal Semi-Cond Roof Insulation-2.50,  !- Name
+  MediumRough,              !- Roughness
+  0.113125446059399,        !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  000_M01 100mm brick,      !- Name
+  MediumRough,              !- Roughness
+  0.1016,                   !- Thickness {m}
+  0.89,                     !- Conductivity {W/m-K}
+  1920,                     !- Density {kg/m3}
+  790;                      !- Specific Heat {J/kg-K}
+
+Material,
+  Mass NonRes Wall Insulation-1.69,  !- Name
+  MediumRough,              !- Roughness
+  0.0623673293364369,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Mass NonRes Wall Insulation-3.75,  !- Name
+  MediumRough,              !- Roughness
+  0.163001240103523,        !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Mass NonRes Wall Insulation-1.76,  !- Name
+  MediumRough,              !- Roughness
+  0.0656864828845443,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Metal Semi-Cond Roof Insulation-2.00,  !- Name
+  MediumRough,              !- Roughness
+  0.0886577860140706,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Steel Frame NonRes Wall Insulation-2.15,  !- Name
+  MediumRough,              !- Roughness
+  0.0895622041685183,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Metal Roofing,            !- Name
+  MediumSmooth,             !- Roughness
+  0.0015,                   !- Thickness {m}
+  45.0060,                  !- Conductivity {W/m-K}
+  7680.0000,                !- Density {kg/m3}
+  418.4000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.3000,                   !- Solar Absorptance
+  0.3000;                   !- Visible Absorptance
+
+Material,
+  AtticFloor NonRes Insulation-3.59,  !- Name
+  MediumRough,              !- Roughness
+  0.159105716361395,        !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Mass NonRes Wall Insulation-2.20,  !- Name
+  MediumRough,              !- Roughness
+  0.0872609809472425,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  IEAD NonRes Roof Insulation-2.79,  !- Name
+  MediumRough,              !- Roughness
+  0.124663450809702,        !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Metal Semi-Cond Roof Insulation-3.65,  !- Name
+  MediumRough,              !- Roughness
+  0.169385475021083,        !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  AtticFloor NonRes Insulation-2.00,  !- Name
+  MediumRough,              !- Roughness
+  0.0783780273543822,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  IEAD NonRes Roof Insulation-2.44,  !- Name
+  MediumRough,              !- Roughness
+  0.107540833299624,        !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Steel Frame NonRes Wall Insulation-0.80,  !- Name
+  MediumRough,              !- Roughness
+  0.0235471103181338,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  IEAD NonRes Roof Insulation-2.50,  !- Name
+  MediumRough,              !- Roughness
+  0.110216071059399,        !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Metal Building Semi-Cond Wall Insulation-0.91,  !- Name
+  MediumRough,              !- Roughness
+  0.0333247357904971,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Metal Siding,             !- Name
+  Smooth,                   !- Roughness
+  0.0015,                   !- Thickness {m}
+  44.9600,                  !- Conductivity {W/m-K}
+  7688.8600,                !- Density {kg/m3}
+  410.0000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.2000,                   !- Solar Absorptance
+  0.2000;                   !- Visible Absorptance
+
+Material,
+  AtticFloor NonRes Insulation-2.45,  !- Name
+  MediumRough,              !- Roughness
+  0.100170449639936,        !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  000_M11 100mm lightweight concrete,  !- Name
+  MediumRough,              !- Roughness
+  0.1016,                   !- Thickness {m}
+  0.53,                     !- Conductivity {W/m-K}
+  1280,                     !- Density {kg/m3}
+  840;                      !- Specific Heat {J/kg-K}
+
+Material,
+  Metal Building Semi-Cond Wall Insulation-1.16,  !- Name
+  MediumRough,              !- Roughness
+  0.0457715615958999,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  IEAD NonRes Roof Insulation-3.65,  !- Name
+  MediumRough,              !- Roughness
+  0.166476100021083,        !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Wall Insulation [46],     !- Name
+  MediumRough,              !- Roughness
+  0.1634,                   !- Thickness {m}
+  0.0432,                   !- Conductivity {W/m-K}
+  91.0000,                  !- Density {kg/m3}
+  837.0000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.5000,                   !- Solar Absorptance
+  0.5000;                   !- Visible Absorptance
+
+Material,
+  Steel Frame NonRes Wall Insulation-2.44,  !- Name
+  MediumRough,              !- Roughness
+  0.104179072774682,        !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Wall Insulation [43],     !- Name
+  MediumRough,              !- Roughness
+  0.1583,                   !- Thickness {m}
+  0.0450,                   !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Steel Frame NonRes Wall Insulation-1.42,  !- Name
+  MediumRough,              !- Roughness
+  0.0539159052,             !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Steel Frame NonRes Wall Insulation-3.04,  !- Name
+  MediumRough,              !- Roughness
+  0.133110392015848,        !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Steel Frame NonRes Wall Insulation-0.99,  !- Name
+  MediumRough,              !- Roughness
+  0.03280276832256,         !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Wall Insulation [44],     !- Name
+  MediumRough,              !- Roughness
+  0.1104,                   !- Thickness {m}
+  0.0432,                   !- Conductivity {W/m-K}
+  91.0000,                  !- Density {kg/m3}
+  837.0000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.5000,                   !- Solar Absorptance
+  0.5000;                   !- Visible Absorptance
+
+Material,
+  Metal Building Semi-Cond Wall Insulation-0.98,  !- Name
+  MediumRough,              !- Roughness
+  0.0369204854676135,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Roof Insulation [25],     !- Name
+  MediumRough,              !- Roughness
+  0.2630,                   !- Thickness {m}
+  0.0490,                   !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  000_M15 200mm heavyweight concrete,  !- Name
+  MediumRough,              !- Roughness
+  0.2032,                   !- Thickness {m}
+  1.95,                     !- Conductivity {W/m-K}
+  2240,                     !- Density {kg/m3}
+  900;                      !- Specific Heat {J/kg-K}
+
+Material,
+  Metal Building Semi-Cond Wall Insulation-0.80,  !- Name
+  MediumRough,              !- Roughness
+  0.0278705087521746,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  000_G01a 19mm gypsum board,  !- Name
+  MediumSmooth,             !- Roughness
+  0.019,                    !- Thickness {m}
+  0.16,                     !- Conductivity {W/m-K}
+  800,                      !- Density {kg/m3}
+  1090;                     !- Specific Heat {J/kg-K}
+
+Material,
+  Wall Insulation [40],     !- Name
+  MediumRough,              !- Roughness
+  0.0794,                   !- Thickness {m}
+  0.0432,                   !- Conductivity {W/m-K}
+  91.0000,                  !- Density {kg/m3}
+  837.0000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.5000,                   !- Solar Absorptance
+  0.5000;                   !- Visible Absorptance
+
+Material,
+  Metal Building Semi-Cond Wall Insulation-0.94,  !- Name
+  MediumRough,              !- Roughness
+  0.0347077164355419,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Steel Frame NonRes Wall Insulation-3.21,  !- Name
+  MediumRough,              !- Roughness
+  0.14122619066012,         !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Mass NonRes Wall Insulation-1.26,  !- Name
+  MediumRough,              !- Roughness
+  0.0410299136700322,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Mass NonRes Wall Insulation-2.48,  !- Name
+  MediumRough,              !- Roughness
+  0.100934958592615,        !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  IEAD NonRes Roof Insulation-3.51,  !- Name
+  MediumRough,              !- Roughness
+  0.159569498000212,        !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  IEAD NonRes Roof Insulation-2.67,  !- Name
+  MediumRough,              !- Roughness
+  0.118437044442401,        !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Steel Frame NonRes Wall Insulation-0.77,  !- Name
+  MediumRough,              !- Roughness
+  0.0218416164001339,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  IEAD NonRes Roof Insulation-5.75,  !- Name
+  MediumRough,              !- Roughness
+  0.2687383686527,          !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Wood Frame NonRes Wall Insulation-1.17,  !- Name
+  MediumRough,              !- Roughness
+  0.0418527450379989,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Mass NonRes Wall Insulation-1.96,  !- Name
+  MediumRough,              !- Roughness
+  0.075275148690188,        !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  000_I02 50mm insulation board,  !- Name
+  MediumRough,              !- Roughness
+  0.0508,                   !- Thickness {m}
+  0.03,                     !- Conductivity {W/m-K}
+  43,                       !- Density {kg/m3}
+  1210;                     !- Specific Heat {J/kg-K}
+
+Material,
+  Mass NonRes Wall Insulation-1.22,  !- Name
+  MediumRough,              !- Roughness
+  0.0389043473584363,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  IEAD NonRes Roof Insulation-4.41,  !- Name
+  MediumRough,              !- Roughness
+  0.20342749135606,         !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Steel Frame NonRes Wall Insulation-1.22,  !- Name
+  MediumRough,              !- Roughness
+  0.0438366069288217,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Mass NonRes Wall Insulation-1.47,  !- Name
+  MediumRough,              !- Roughness
+  0.0513034841760789,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Metal Semi-Cond Roof Insulation-3.97,  !- Name
+  MediumRough,              !- Roughness
+  0.185040439601726,        !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Metal Semi-Cond Roof Insulation-3.03,  !- Name
+  MediumRough,              !- Roughness
+  0.13938152754079,         !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Metal Semi-Cond Roof Insulation-5.75,  !- Name
+  MediumRough,              !- Roughness
+  0.271647743652701,        !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  IEAD NonRes Roof Insulation-3.72,  !- Name
+  MediumRough,              !- Roughness
+  0.170145232344671,        !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Air Wall Material,        !- Name
+  MediumSmooth,             !- Roughness
+  0.01,                     !- Thickness {m}
+  0.6,                      !- Conductivity {W/m-K}
+  800,                      !- Density {kg/m3}
+  1000,                     !- Specific Heat {J/kg-K}
+  0.95,                     !-Thermal Absorptance
+  0.7,                      !-Solar Absorptance
+  0.7;                      !-Visible Absorptance
+
+Material,
+  Metal Building Semi-Cond Wall Insulation-1.02,  !- Name
+  MediumRough,              !- Roughness
+  0.0389043473584363,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  AtticFloor NonRes Insulation-2.75,  !- Name
+  MediumRough,              !- Roughness
+  0.115152739961254,        !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Steel Frame NonRes Wall Insulation-1.01,  !- Name
+  MediumRough,              !- Roughness
+  0.0336338886331615,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Mass NonRes Wall Insulation-0.61,  !- Name
+  MediumRough,              !- Roughness
+  0.00914641899609407,      !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Mass NonRes Wall Insulation-1.13,  !- Name
+  MediumRough,              !- Roughness
+  0.0347077164355419,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Wood Frame NonRes Wall Insulation-1.10,  !- Name
+  MediumRough,              !- Roughness
+  0.0382569953608825,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  IEAD NonRes Roof Insulation-2.00,  !- Name
+  MediumRough,              !- Roughness
+  0.0857484110140705,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Steel Frame NonRes Wall Insulation-1.17,  !- Name
+  MediumRough,              !- Roughness
+  0.0418527450379989,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Wall Insulation [35],     !- Name
+  MediumRough,              !- Roughness
+  0.0452,                   !- Thickness {m}
+  0.0432,                   !- Conductivity {W/m-K}
+  91.0000,                  !- Density {kg/m3}
+  837.0000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.5000,                   !- Solar Absorptance
+  0.5000;                   !- Visible Absorptance
+
+Material,
+  AtticFloor NonRes Insulation-1.76,  !- Name
+  MediumRough,              !- Roughness
+  0.0666101193201832,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  AtticFloor NonRes Insulation-2.38,  !- Name
+  MediumRough,              !- Roughness
+  0.0969310355164076,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Mass NonRes Wall Insulation-1.01,  !- Name
+  MediumRough,              !- Roughness
+  0.0287016290627761,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  AtticFloor NonRes Insulation-3.04,  !- Name
+  MediumRough,              !- Roughness
+  0.129101768881102,        !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Roof Insulation [21],     !- Name
+  MediumRough,              !- Roughness
+  0.2105,                   !- Thickness {m}
+  0.0490,                   !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Metal Semi-Cond Roof Insulation-2.38,  !- Name
+  MediumRough,              !- Roughness
+  0.107210794176096,        !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Steel Frame NonRes Wall Insulation-1.76,  !- Name
+  MediumRough,              !- Roughness
+  0.0706187424549297,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Metal Decking,            !- Name
+  MediumSmooth,             !- Roughness
+  0.0015,                   !- Thickness {m}
+  45.0060,                  !- Conductivity {W/m-K}
+  7680.0000,                !- Density {kg/m3}
+  418.4000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.3000;                   !- Visible Absorptance
+
+Material,
+  Roof Insulation [18],     !- Name
+  MediumRough,              !- Roughness
+  0.1693,                   !- Thickness {m}
+  0.0490,                   !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Metal Semi-Cond Roof Insulation-3.66,  !- Name
+  MediumRough,              !- Roughness
+  0.170379369584897,        !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  IEAD NonRes Roof Insulation-3.38,  !- Name
+  MediumRough,              !- Roughness
+  0.153184148962047,        !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  MAT-CC05 8 HW CONCRETE,   !- Name
+  Rough,                    !- Roughness
+  0.2032,                   !- Thickness {m}
+  1.3110,                   !- Conductivity {W/m-K}
+  2240.0000,                !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Steel Frame NonRes Wall Insulation-1.92,  !- Name
+  MediumRough,              !- Roughness
+  0.0781229156941291,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Steel Frame NonRes Wall Insulation-2.75,  !- Name
+  MediumRough,              !- Roughness
+  0.119161363096001,        !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  000_F08 Metal surface,    !- Name
+  Smooth,                   !- Roughness
+  0.0008,                   !- Thickness {m}
+  45.28,                    !- Conductivity {W/m-K}
+  7824,                     !- Density {kg/m3}
+  500;                      !- Specific Heat {J/kg-K}
+
+Material,
+  Mass NonRes Wall Insulation-2.23,  !- Name
+  MediumRough,              !- Roughness
+  0.0886264555081727,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Metal Building Semi-Cond Wall Insulation-2.85,  !- Name
+  MediumRough,              !- Roughness
+  0.128178132445463,        !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Metal Building Semi-Cond Wall Insulation-1.22,  !- Name
+  MediumRough,              !- Roughness
+  0.0484268844343858,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  IEAD NonRes Roof Insulation-2.38,  !- Name
+  MediumRough,              !- Roughness
+  0.1043014191761,          !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Steel Frame NonRes Wall Insulation-1.10,  !- Name
+  MediumRough,              !- Roughness
+  0.0382569953608825,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Mass NonRes Wall Insulation-0.96,  !- Name
+  MediumRough,              !- Roughness
+  0.0262895733787478,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  IEAD NonRes Roof Insulation-2.99,  !- Name
+  MediumRough,              !- Roughness
+  0.133950294204999,        !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Wood Frame NonRes Wall Insulation-3.91,  !- Name
+  MediumRough,              !- Roughness
+  0.17609406631701,         !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Steel Frame NonRes Wall Insulation-1.09,  !- Name
+  MediumRough,              !- Roughness
+  0.0379219876269897,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Steel Frame NonRes Wall Insulation-0.73,  !- Name
+  MediumRough,              !- Roughness
+  0.0202782469753007,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  AtticFloor NonRes Insulation-5.68,  !- Name
+  MediumRough,              !- Roughness
+  0.261367984993012,        !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  000_G05 25mm wood,        !- Name
+  MediumSmooth,             !- Roughness
+  0.0254,                   !- Thickness {m}
+  0.15,                     !- Conductivity {W/m-K}
+  608,                      !- Density {kg/m3}
+  1630;                     !- Specific Heat {J/kg-K}
+
+Material,
+  AtticFloor NonRes Insulation-3.83,  !- Name
+  MediumRough,              !- Roughness
+  0.167916458049374,        !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  AtticFloor NonRes Insulation-6.52,  !- Name
+  MediumRough,              !- Roughness
+  0.30260955835062,         !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Metal Building Semi-Cond Wall Insulation-3.72,  !- Name
+  MediumRough,              !- Roughness
+  0.171161806746624,        !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  8IN CONCRETE HW_RefBldg,  !- Name
+  Rough,                    !- Roughness
+  0.2032,                   !- Thickness {m}
+  1.3110,                   !- Conductivity {W/m-K}
+  2240.0000,                !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Roof Insulation [27],     !- Name
+  MediumRough,              !- Roughness
+  0.2970,                   !- Thickness {m}
+  0.0490,                   !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Metal Building Semi-Cond Wall Insulation-0.77,  !- Name
+  MediumRough,              !- Roughness
+  0.0262895733787478,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Mass NonRes Wall Insulation-0.79,  !- Name
+  MediumRough,              !- Roughness
+  0.0179143800314271,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Mass NonRes Wall Insulation-1.43,  !- Name
+  MediumRough,              !- Roughness
+  0.0495494599433393,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Steel Frame NonRes Wall Insulation-3.91,  !- Name
+  MediumRough,              !- Roughness
+  0.17609406631701,         !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Mass NonRes Wall Insulation-2.89,  !- Name
+  MediumRough,              !- Roughness
+  0.120860609077674,        !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Metal Semi-Cond Roof Insulation-1.87,  !- Name
+  MediumRough,              !- Roughness
+  0.0822341258092582,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Metal Building Semi-Cond Wall Insulation-2.25,  !- Name
+  MediumRough,              !- Roughness
+  0.099246813204297,        !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Mass NonRes Wall Insulation-0.77,  !- Name
+  MediumRough,              !- Roughness
+  0.0169093568297486,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Metal Semi-Cond Roof Insulation-4.41,  !- Name
+  MediumRough,              !- Roughness
+  0.20633686635606,         !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Metal Semi-Cond Roof Insulation-1.05,  !- Name
+  MediumRough,              !- Roughness
+  0.0422673301906314,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  AtticFloor Res Insulation-2.93,  !- Name
+  MediumRough,              !- Roughness
+  0.124142114154045,        !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Metal Building Semi-Cond Wall Insulation-1.10,  !- Name
+  MediumRough,              !- Roughness
+  0.042842896700511,        !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Metal Building Semi-Cond Wall Insulation-0.81,  !- Name
+  MediumRough,              !- Roughness
+  0.0287016290627761,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Metal Building Semi-Cond Wall Insulation-0.57,  !- Name
+  MediumRough,              !- Roughness
+  0.0169093568297486,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Wall Insulation [34],     !- Name
+  MediumRough,              !- Roughness
+  0.1104,                   !- Thickness {m}
+  0.0450,                   !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Metal Semi-Cond Roof Insulation-1.81,  !- Name
+  MediumRough,              !- Roughness
+  0.0795588880494837,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Steel Frame NonRes Wall Insulation-0.79,  !- Name
+  MediumRough,              !- Roughness
+  0.0228466396018124,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Metal Semi-Cond Roof Insulation-3.83,  !- Name
+  MediumRough,              !- Roughness
+  0.178196216709063,        !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  8IN Concrete HW,          !- Name
+  MediumRough,              !- Roughness
+  0.2033,                   !- Thickness {m}
+  1.7296,                   !- Conductivity {W/m-K}
+  2243.0000,                !- Density {kg/m3}
+  837.0000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.6500,                   !- Solar Absorptance
+  0.6500;                   !- Visible Absorptance
+
+Material,
+  Steel Frame NonRes Wall Insulation-1.41,  !- Name
+  MediumRough,              !- Roughness
+  0.0533591440047712,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  IEAD NonRes Roof Insulation-3.03,  !- Name
+  MediumRough,              !- Roughness
+  0.13647215254079,         !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  IEAD NonRes Roof Insulation-3.66,  !- Name
+  MediumRough,              !- Roughness
+  0.167469994584897,        !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Mass NonRes Wall Insulation-1.17,  !- Name
+  MediumRough,              !- Roughness
+  0.0365394788793098,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Metal Building Semi-Cond Wall Insulation-1.37,  !- Name
+  MediumRough,              !- Roughness
+  0.0557583952804709,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  AtticFloor NonRes Insulation-2.67,  !- Name
+  MediumRough,              !- Roughness
+  0.111066660782713,        !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Metal Semi-Cond Roof Insulation-2.75,  !- Name
+  MediumRough,              !- Roughness
+  0.125432498620942,        !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Wood Frame NonRes Wall Insulation-1.92,  !- Name
+  MediumRough,              !- Roughness
+  0.0781229156941291,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Mass NonRes Wall Insulation-1.41,  !- Name
+  MediumRough,              !- Roughness
+  0.0484268844343858,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Wood Frame NonRes Wall Insulation-1.76,  !- Name
+  MediumRough,              !- Roughness
+  0.0706187424549297,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  AtticFloor NonRes Insulation-3.45,  !- Name
+  MediumRough,              !- Roughness
+  0.152199114340523,        !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Roof Membrane,            !- Name
+  VeryRough,                !- Roughness
+  0.0095,                   !- Thickness {m}
+  0.1600,                   !- Conductivity {W/m-K}
+  1121.2900,                !- Density {kg/m3}
+  1460.0000,                !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Roof Insulation [26],     !- Name
+  MediumRough,              !- Roughness
+  0.2941,                   !- Thickness {m}
+  0.0490,                   !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Steel Frame NonRes Wall Insulation-1.30,  !- Name
+  MediumRough,              !- Roughness
+  0.0477751562708964,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Steel Frame NonRes Wall Insulation-1.13,  !- Name
+  MediumRough,              !- Roughness
+  0.0396399760059273,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  AtticFloor NonRes Insulation-3.32,  !- Name
+  MediumRough,              !- Roughness
+  0.145813765302359,        !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  IEAD NonRes Roof Insulation-2.37,  !- Name
+  MediumRough,              !- Roughness
+  0.103907738292528,        !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Mass NonRes Wall Insulation-0.93,  !- Name
+  MediumRough,              !- Roughness
+  0.0248084865552216,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  1IN Stucco,               !- Name
+  Smooth,                   !- Roughness
+  0.0253,                   !- Thickness {m}
+  0.6918,                   !- Conductivity {W/m-K}
+  1858.0000,                !- Density {kg/m3}
+  837.0000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.9200,                   !- Solar Absorptance
+  0.9200;                   !- Visible Absorptance
+
+Material,
+  Wall Insulation [39],     !- Name
+  MediumRough,              !- Roughness
+  0.1184,                   !- Thickness {m}
+  0.0450,                   !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Metal Building Semi-Cond Wall Insulation-0.54,  !- Name
+  MediumRough,              !- Roughness
+  0.0153459874049154,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  000_F16 Acoustic tile,    !- Name
+  MediumSmooth,             !- Roughness
+  0.0191,                   !- Thickness {m}
+  0.06,                     !- Conductivity {W/m-K}
+  368,                      !- Density {kg/m3}
+  590;                      !- Specific Heat {J/kg-K}
+
+Material,
+  IEAD NonRes Roof Insulation-1.76,  !- Name
+  MediumRough,              !- Roughness
+  0.0739805029798716,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  AtticFloor NonRes Insulation-5.18,  !- Name
+  MediumRough,              !- Roughness
+  0.302609558350619,        !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Metal Semi-Cond Roof Insulation-2.99,  !- Name
+  MediumRough,              !- Roughness
+  0.136859669204999,        !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  AtticFloor Res Insulation-2.37,  !- Name
+  MediumRough,              !- Roughness
+  0.0965373546328396,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  AtticFloor NonRes Insulation-2.99,  !- Name
+  MediumRough,              !- Roughness
+  0.12657991054531,         !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  IEAD NonRes Roof Insulation-2.07,  !- Name
+  MediumRough,              !- Roughness
+  0.0892095604358938,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Mass NonRes Wall Insulation-1.09,  !- Name
+  MediumRough,              !- Roughness
+  0.0329897280566043,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Wall Insulation [38],     !- Name
+  MediumRough,              !- Roughness
+  0.1396,                   !- Thickness {m}
+  0.0450,                   !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  IEAD NonRes Roof Insulation-2.04,  !- Name
+  MediumRough,              !- Roughness
+  0.0880290133462796,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Wall Insulation [37],     !- Name
+  MediumRough,              !- Roughness
+  0.0681,                   !- Thickness {m}
+  0.0432,                   !- Conductivity {W/m-K}
+  91.0000,                  !- Density {kg/m3}
+  837.0000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.5000,                   !- Solar Absorptance
+  0.5000;                   !- Visible Absorptance
+
+Material,
+  Steel Frame NonRes Wall Insulation-1.98,  !- Name
+  MediumRough,              !- Roughness
+  0.0812847864409827,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Wall Insulation [33],     !- Name
+  MediumRough,              !- Roughness
+  0.0781,                   !- Thickness {m}
+  0.0450,                   !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Metal Building Semi-Cond Wall Insulation-1.79,  !- Name
+  MediumRough,              !- Roughness
+  0.0763525268705974,       !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Metal Semi-Cond Roof Insulation-3.38,  !- Name
+  MediumRough,              !- Roughness
+  0.156093523962047,        !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  Wall Insulation [41],     !- Name
+  MediumRough,              !- Roughness
+  0.1405,                   !- Thickness {m}
+  0.0450,                   !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material,
+  IEAD NonRes Roof Insulation-2.93,  !- Name
+  MediumRough,              !- Roughness
+  0.131512497813733,        !- Thickness {m}
+  0.049,                    !- Conductivity {W/m-K}
+  265.0000,                 !- Density {kg/m3}
+  836.8000,                 !- Specific Heat {J/kg-K}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+!-   ===========  ALL OBJECTS IN CLASS: MATERIAL:NOMASS ===========
+Material:NoMass,
+  MAT-SHEATH,               !- Name
+  Rough,                    !- Roughness
+  0.3626,                   !- Thermal Resistance {m2-K/W}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.7000;                   !- Visible Absorptance
+
+Material:NoMass,
+  CP02 CARPET PAD,          !- Name
+  VeryRough,                !- Roughness
+  0.2165,                   !- Thermal Resistance {m2-K/W}
+  0.9000,                   !- Thermal Absorptance
+  0.7000,                   !- Solar Absorptance
+  0.8000;                   !- Visible Absorptance
+
+Material:AirGap,
+  000_F05 Ceiling air space resistance,  !- Name
+  0.18;                     !- Thermal Resistance {m2-K/W}
+
+Material:AirGap,
+  000_F04 Wall air space resistance,  !- Name
+  0.15;                     !- Thermal Resistance {m2-K/W}
+
+WindowMaterial:SimpleGlazingSystem,
+  Fixed Window 4.09/0.26/0.13,  !- Name
+  4.08816,                  !- U-Factor {W/m2-K}
+  0.25;                     !- Solar Heat Gain Coefficient
+
+WindowMaterial:SimpleGlazingSystem,
+  Fixed Window 2.96/0.49/0.41,  !- Name
+  2.95256,                  !- U-Factor {W/m2-K}
+  0.49;                     !- Solar Heat Gain Coefficient
+
+WindowMaterial:SimpleGlazingSystem,
+  Fixed Window 5.84/0.70/0.60,  !- Name
+  6.92716,                  !- U-Factor {W/m2-K}
+  0.7,                      !- Solar Heat Gain Coefficient
+  0.6;
+
+WindowMaterial:SimpleGlazingSystem,
+  Fixed Window 3.24/0.39/0.31,  !- Name
+  3.23646,                  !- U-Factor {W/m2-K}
+  0.39;                     !- Solar Heat Gain Coefficient
+
+WindowMaterial:SimpleGlazingSystem,
+  WindowMaterial:SimpleGlazingSystem 11,  !- Name
+  4.08816,                  !- U-Factor {W/m2-K}
+  0.25,                     !- Solar Heat Gain Coefficient
+  0.13;
+
+WindowMaterial:SimpleGlazingSystem,
+  Fixed Window 2.96/0.62/0.54,  !- Name
+  2.95256,                  !- U-Factor {W/m2-K}
+  0.615;                    !- Solar Heat Gain Coefficient
+
+WindowMaterial:SimpleGlazingSystem,
+  WindowMaterial:SimpleGlazingSystem 6,  !- Name
+  3.52036,                  !- U-Factor {W/m2-K}
+  0.41,                     !- Solar Heat Gain Coefficient
+  0.32;
+
+WindowMaterial:SimpleGlazingSystem,
+  WindowMaterial:SimpleGlazingSystem 7,  !- Name
+  3.23646,                  !- U-Factor {W/m2-K}
+  0.39,                     !- Solar Heat Gain Coefficient
+  0.31;
+
+WindowMaterial:SimpleGlazingSystem,
+  Fixed Window 3.24/0.25/0.16,  !- Name
+  3.23646,                  !- U-Factor {W/m2-K}
+  0.25,                     !- Solar Heat Gain Coefficient
+  0.16;
+
+WindowMaterial:SimpleGlazingSystem,
+  Fixed Window 3.35/0.39/0.31,  !- Name
+  3.35002,                  !- U-Factor {W/m2-K}
+  0.39;                     !- Solar Heat Gain Coefficient
+
+WindowMaterial:SimpleGlazingSystem,
+  WindowMaterial:SimpleGlazingSystem 3,  !- Name
+  6.92716,                  !- U-Factor {W/m2-K}
+  0.44,                     !- Solar Heat Gain Coefficient
+  0.27;
+
+WindowMaterial:SimpleGlazingSystem,
+  Fixed Window 5.84/0.61/0.47,  !- Name
+  6.92716,                  !- U-Factor {W/m2-K}
+  0.61,                     !- Solar Heat Gain Coefficient
+  0.47;
+
+WindowMaterial:SimpleGlazingSystem,
+  WindowMaterial:SimpleGlazingSystem 10,  !- Name
+  2.61188,                  !- U-Factor {W/m2-K}
+  0.3,                      !- Solar Heat Gain Coefficient
+  0.21;
+
+WindowMaterial:SimpleGlazingSystem,
+  Fixed Window 2.67/0.30/0.21,  !- Name
+  2.66866,                  !- U-Factor {W/m2-K}
+  0.49,                     !- Solar Heat Gain Coefficient
+  0.38;
+
+WindowMaterial:SimpleGlazingSystem,
+  Fixed Window 4.09/0.36/0.23,  !- Name
+  4.08816,                  !- U-Factor {W/m2-K}
+  0.36;                     !- Solar Heat Gain Coefficient
+
+WindowMaterial:SimpleGlazingSystem,
+  WindowMaterial:SimpleGlazingSystem 8,  !- Name
+  4.08816,                  !- U-Factor {W/m2-K}
+  0.39,                     !- Solar Heat Gain Coefficient
+  0.25;
+
+WindowMaterial:SimpleGlazingSystem,
+  WindowMaterial:SimpleGlazingSystem 13,  !- Name
+  3.35002,                  !- U-Factor {W/m2-K}
+  0.39,                     !- Solar Heat Gain Coefficient
+  0.31;
+
+WindowMaterial:SimpleGlazingSystem,
+  Fixed Window 2.96/0.39/0.31,  !- Name
+  2.95256,                  !- U-Factor {W/m2-K}
+  0.39;                     !- Solar Heat Gain Coefficient
+
+WindowMaterial:SimpleGlazingSystem,
+  WindowMaterial:SimpleGlazingSystem 15,  !- Name
+  2.95256,                  !- U-Factor {W/m2-K}
+  0.39,                     !- Solar Heat Gain Coefficient
+  0.31;
+
+WindowMaterial:SimpleGlazingSystem,
+  Fixed Window 4.09/0.39/0.25,  !- Name
+  4.08816,                  !- U-Factor {W/m2-K}
+  0.39;                     !- Solar Heat Gain Coefficient
+
+WindowMaterial:SimpleGlazingSystem,
+  WindowMaterial:SimpleGlazingSystem 9,  !- Name
+  3.35002,                  !- U-Factor {W/m2-K}
+  0.36,                     !- Solar Heat Gain Coefficient
+  0.27;
+
+WindowMaterial:SimpleGlazingSystem,
+  Fixed Window 3.53/0.41/0.32,  !- Name
+  3.52036,                  !- U-Factor {W/m2-K}
+  0.41;                     !- Solar Heat Gain Coefficient
+
+WindowMaterial:SimpleGlazingSystem,
+  Fixed Window 3.81/0.49/0.38,  !- Name
+  2.95256,                  !- U-Factor {W/m2-K}
+  0.49,                     !- Solar Heat Gain Coefficient
+  0.38;
+
+WindowMaterial:SimpleGlazingSystem,
+  WindowMaterial:SimpleGlazingSystem 12,  !- Name
+  3.23646,                  !- U-Factor {W/m2-K}
+  0.49,                     !- Solar Heat Gain Coefficient
+  0.41;
+
+WindowMaterial:SimpleGlazingSystem,
+  WindowMaterial:SimpleGlazingSystem 16,  !- Name
+  6.92716,                  !- U-Factor {W/m2-K}
+  0.39,                     !- Solar Heat Gain Coefficient
+  0.22;
+
+WindowMaterial:SimpleGlazingSystem,
+  WindowMaterial:SimpleGlazingSystem 4,  !- Name
+  2.95256,                  !- U-Factor {W/m2-K}
+  0.49,                     !- Solar Heat Gain Coefficient
+  0.41;
+
+WindowMaterial:SimpleGlazingSystem,
+  Fixed Window 5.84/0.44/0.27,  !- Name
+  6.92716,                  !- U-Factor {W/m2-K}
+  0.44;                     !- Solar Heat Gain Coefficient
+
+WindowMaterial:SimpleGlazingSystem,
+  Fixed Window 3.24/0.49/0.41,  !- Name
+  3.23646,                  !- U-Factor {W/m2-K}
+  0.49;                     !- Solar Heat Gain Coefficient
+
+!-   ===========  ALL OBJECTS IN CLASS: WINDOWMATERIAL:SIMPLEGLAZINGSYSTEM ===========
+WindowMaterial:SimpleGlazingSystem,
+  Fixed Window 5.84/0.25/0.11,  !- Name
+  6.92716,                  !- U-Factor {W/m2-K}
+  0.25;                     !- Solar Heat Gain Coefficient
+
+!-   ===========  ALL OBJECTS IN CLASS: WINDOWMATERIAL:SIMPLEGLAZINGSYSTEM ===========
+WindowMaterial:SimpleGlazingSystem,
+  WindowMaterial:SimpleGlazingSystem 1,  !- Name
+  6.92716,                  !- U-Factor {W/m2-K}
+  0.25,                     !- Solar Heat Gain Coefficient
+  0.11;
+
+WindowMaterial:SimpleGlazingSystem,
+  Fixed Window 5.84/0.39/0.22,  !- Name
+  6.92716,                  !- U-Factor {W/m2-K}
+  0.39;                     !- Solar Heat Gain Coefficient
+
+WindowMaterial:SimpleGlazingSystem,
+  Fixed Window 3.35/0.36/0.27,  !- Name
+  3.35002,                  !- U-Factor {W/m2-K}
+  0.36;                     !- Solar Heat Gain Coefficient
+
+WindowMaterial:SimpleGlazingSystem,
+  WindowMaterial:SimpleGlazingSystem 2,  !- Name
+  6.92716,                  !- U-Factor {W/m2-K}
+  0.54,                     !- Solar Heat Gain Coefficient
+  0.38;
+
+WindowMaterial:SimpleGlazingSystem,
+  Fixed Window 3.81/0.39/0.27,  !- Name
+  2.95256,                  !- U-Factor {W/m2-K}
+  0.39,                     !- Solar Heat Gain Coefficient
+  0.27;
+
+WindowMaterial:SimpleGlazingSystem,
+  WindowMaterial:SimpleGlazingSystem 14,  !- Name
+  4.08816,                  !- U-Factor {W/m2-K}
+  0.36,                     !- Solar Heat Gain Coefficient
+  0.23;
+
+WindowMaterial:SimpleGlazingSystem,
+  WindowMaterial:SimpleGlazingSystem 5,  !- Name
+  2.95256,                  !- U-Factor {W/m2-K}
+  0.615,                    !- Solar Heat Gain Coefficient
+  0.54;
+
+WindowMaterial:SimpleGlazingSystem,
+  Fixed Window 5.84/0.54/0.38,  !- Name
+  6.92716,                  !- U-Factor {W/m2-K}
+  0.54;                     !- Solar Heat Gain Coefficient
+
+WindowMaterial:SimpleGlazingSystem,
+  Fixed Window 2.62/0.30/0.21,  !- Name
+  2.61188,                  !- U-Factor {W/m2-K}
+  0.3;                      !- Solar Heat Gain Coefficient
+
+WindowMaterial:Glazing,
+  Theoretical Glass [202],  !- Name
+  SpectralAverage,          !- Optical Data Type
+  ,                         !- Window Glass Spectral Data Set Name
+  0.0030,                   !- Thickness {m}
+  0.2325,                   !- Solar Transmittance at Normal Incidence
+  0.7175,                   !- Front Side Solar Reflectance at Normal Incidence
+  0.7175,                   !- Back Side Solar Reflectance at Normal Incidence
+  0.3192,                   !- Visible Transmittance at Normal Incidence
+  0.6308,                   !- Front Side Visible Reflectance at Normal Incidence
+  0.6308,                   !- Back Side Visible Reflectance at Normal Incidence
+  0.0000,                   !- Infrared Transmittance at Normal Incidence
+  0.9000,                   !- Front Side Infrared Hemispherical Emissivity
+  0.9000,                   !- Back Side Infrared Hemispherical Emissivity
+  0.0192,                   !- Conductivity {W/m-K}
+  1.0000,                   !- Dirt Correction Factor for Solar and Visible Transmittance
+  No;                       !- Solar Diffusing
+
+WindowMaterial:Glazing,
+  000_Clear 3mm,            !- Name
+  SpectralAverage,          !- Optical Data Type
+  ,                         !- Window Glass Spectral Data Set Name
+  0.003,                    !- Thickness {m}
+  0.837,                    !- Solar Transmittance at Normal Incidence
+  0.075,                    !- Front Side Solar Reflectance at Normal Incidence
+  0.075,                    !- Back Side Solar Reflectance at Normal Incidence
+  0.898,                    !- Visible Transmittance at Normal Incidence
+  0.081,                    !- Front Side Visible Reflectance at Normal Incidence
+  0.081,                    !- Back Side Visible Reflectance at Normal Incidence
+  0,                        !- Infrared Transmittance at Normal Incidence
+  0.84,                     !- Front Side Infrared Hemispherical Emissivity
+  0.84,                     !- Back Side Infrared Hemispherical Emissivity
+  0.9;                      !- Conductivity {W/m-K}
+
+!-   ===========  ALL OBJECTS IN CLASS: WINDOWMATERIAL:GLAZING ===========
+WindowMaterial:Glazing,
+  Theoretical Glass [167],  !- Name
+  SpectralAverage,          !- Optical Data Type
+  ,                         !- Window Glass Spectral Data Set Name
+  0.0030,                   !- Thickness {m}
+  0.2374,                   !- Solar Transmittance at Normal Incidence
+  0.7126,                   !- Front Side Solar Reflectance at Normal Incidence
+  0.7126,                   !- Back Side Solar Reflectance at Normal Incidence
+  0.2512,                   !- Visible Transmittance at Normal Incidence
+  0.6988,                   !- Front Side Visible Reflectance at Normal Incidence
+  0.6988,                   !- Back Side Visible Reflectance at Normal Incidence
+  0.0000,                   !- Infrared Transmittance at Normal Incidence
+  0.9850,                   !- Front Side Infrared Hemispherical Emissivity
+  0.9850,                   !- Back Side Infrared Hemispherical Emissivity
+  2.1073,                   !- Conductivity {W/m-K}
+  1.0000,                   !- Dirt Correction Factor for Solar and Visible Transmittance
+  No;                       !- Solar Diffusing
+
+WindowMaterial:Glazing,
+  Theoretical Glass [216],  !- Name
+  SpectralAverage,          !- Optical Data Type
+  ,                         !- Window Glass Spectral Data Set Name
+  0.0030,                   !- Thickness {m}
+  0.3801,                   !- Solar Transmittance at Normal Incidence
+  0.5699,                   !- Front Side Solar Reflectance at Normal Incidence
+  0.5699,                   !- Back Side Solar Reflectance at Normal Incidence
+  0.5079,                   !- Visible Transmittance at Normal Incidence
+  0.4421,                   !- Front Side Visible Reflectance at Normal Incidence
+  0.4421,                   !- Back Side Visible Reflectance at Normal Incidence
+  0.0000,                   !- Infrared Transmittance at Normal Incidence
+  0.9000,                   !- Front Side Infrared Hemispherical Emissivity
+  0.9000,                   !- Back Side Infrared Hemispherical Emissivity
+  0.0133,                   !- Conductivity {W/m-K}
+  1.0000,                   !- Dirt Correction Factor for Solar and Visible Transmittance
+  No;                       !- Solar Diffusing
+
+WindowMaterial:Glazing,
+  Theoretical Glass [221],  !- Name
+  SpectralAverage,          !- Optical Data Type
+  ,                         !- Window Glass Spectral Data Set Name
+  0.0030,                   !- Thickness {m}
+  0.4296,                   !- Solar Transmittance at Normal Incidence
+  0.5204,                   !- Front Side Solar Reflectance at Normal Incidence
+  0.5204,                   !- Back Side Solar Reflectance at Normal Incidence
+  0.4503,                   !- Visible Transmittance at Normal Incidence
+  0.4997,                   !- Front Side Visible Reflectance at Normal Incidence
+  0.4997,                   !- Back Side Visible Reflectance at Normal Incidence
+  0.0000,                   !- Infrared Transmittance at Normal Incidence
+  0.9000,                   !- Front Side Infrared Hemispherical Emissivity
+  0.9000,                   !- Back Side Infrared Hemispherical Emissivity
+  0.0089,                   !- Conductivity {W/m-K}
+  1.0000,                   !- Dirt Correction Factor for Solar and Visible Transmittance
+  No;                       !- Solar Diffusing
+
+WindowMaterial:Glazing,
+  Theoretical Glass [207],  !- Name
+  SpectralAverage,          !- Optical Data Type
+  ,                         !- Window Glass Spectral Data Set Name
+  0.0030,                   !- Thickness {m}
+  0.3311,                   !- Solar Transmittance at Normal Incidence
+  0.6189,                   !- Front Side Solar Reflectance at Normal Incidence
+  0.6189,                   !- Back Side Solar Reflectance at Normal Incidence
+  0.4400,                   !- Visible Transmittance at Normal Incidence
+  0.5100,                   !- Front Side Visible Reflectance at Normal Incidence
+  0.5100,                   !- Back Side Visible Reflectance at Normal Incidence
+  0.0000,                   !- Infrared Transmittance at Normal Incidence
+  0.9000,                   !- Front Side Infrared Hemispherical Emissivity
+  0.9000,                   !- Back Side Infrared Hemispherical Emissivity
+  0.0133,                   !- Conductivity {W/m-K}
+  1.0000,                   !- Dirt Correction Factor for Solar and Visible Transmittance
+  No;                       !- Solar Diffusing
+
+WindowMaterial:Glazing,
+  Theoretical Glass [197],  !- Name
+  SpectralAverage,          !- Optical Data Type
+  ,                         !- Window Glass Spectral Data Set Name
+  0.0030,                   !- Thickness {m}
+  0.2349,                   !- Solar Transmittance at Normal Incidence
+  0.7151,                   !- Front Side Solar Reflectance at Normal Incidence
+  0.7151,                   !- Back Side Solar Reflectance at Normal Incidence
+  0.2512,                   !- Visible Transmittance at Normal Incidence
+  0.6988,                   !- Front Side Visible Reflectance at Normal Incidence
+  0.6988,                   !- Back Side Visible Reflectance at Normal Incidence
+  0.0000,                   !- Infrared Transmittance at Normal Incidence
+  0.9000,                   !- Front Side Infrared Hemispherical Emissivity
+  0.9000,                   !- Back Side Infrared Hemispherical Emissivity
+  0.0415,                   !- Conductivity {W/m-K}
+  1.0000,                   !- Dirt Correction Factor for Solar and Visible Transmittance
+  No;                       !- Solar Diffusing
+
+WindowMaterial:Gas,
+  000_Air 13mm,             !- Name
+  Air,                      !- Gas Type
+  0.0127;                   !- Thickness {m}
+
+Construction,
+  1979-Pre_ExtRoof_AtticFloor_ClimateZone 4a,  !- Name
+  1/2IN Gypsum,             !- Outside Layer
+  AtticFloor Res Insulation-2.05,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  1980-Post_ExtWall_Metal_ClimateZone 2b,  !- Name
+  Metal Siding,             !- Outside Layer
+  Metal Building Semi-Cond Wall Insulation-0.54,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  000_Interior Window,      !- Name
+  000_Clear 3mm;            !- Outside Layer
+
+Construction,
+  1979-Pre_ExtRoof_IEAD_ClimateZone 4c,  !- Name
+  Roof Membrane,            !- Outside Layer
+  IEAD NonRes Roof Insulation-2.07,  !- Layer 2
+  Metal Decking;            !- Layer 3
+
+Construction,
+  2004_ExtRoof_IEAD_ClimateZone 1-4,  !- Name
+  Roof Membrane,            !- Outside Layer
+  IEAD NonRes Roof Insulation-2.79,  !- Layer 2
+  Metal Decking;            !- Layer 3
+
+Construction,
+  2004_ExtWall_Mass_ClimateZone 7,  !- Name
+  1IN Stucco,               !- Outside Layer
+  8IN CONCRETE HW_RefBldg,  !- Layer 2
+  Mass NonRes Wall Insulation-1.96,  !- Layer 3
+  1/2IN Gypsum;             !- Layer 4
+
+Construction,
+  1980-Post_ExtWall_Metal_ClimateZone 2a,  !- Name
+  Metal Siding,             !- Outside Layer
+  Metal Building Semi-Cond Wall Insulation-0.98,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  2004_ExtWall_WoodFrame_ClimateZone 1-7,  !- Name
+  Wood Siding,              !- Outside Layer
+  Wood Frame NonRes Wall Insulation-1.98,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  1980-Post_ExtWall_Mass_ClimateZone 6a,  !- Name
+  1IN Stucco,               !- Outside Layer
+  8IN CONCRETE HW_RefBldg,  !- Layer 2
+  Mass NonRes Wall Insulation-2.48,  !- Layer 3
+  1/2IN Gypsum;             !- Layer 4
+
+Construction,
+  1980-Post_ExtRoof_AtticFloor_ClimateZone 3b_LAX,  !- Name
+  1/2IN Gypsum,             !- Outside Layer
+  AtticFloor NonRes Insulation-1.76,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  2004_ExtWall_Mass_ClimateZone 6,  !- Name
+  1IN Stucco,               !- Outside Layer
+  8IN CONCRETE HW_RefBldg,  !- Layer 2
+  Mass NonRes Wall Insulation-1.69,  !- Layer 3
+  1/2IN Gypsum;             !- Layer 4
+
+Construction,
+  2009-LowEnergyCase_ExtWall_Mass_ClimateZone 1,  !- Name
+  1IN Stucco,               !- Outside Layer
+  8IN Concrete HW,          !- Layer 2
+  Wall Insulation [31],     !- Layer 3
+  1/2IN Gypsum;             !- Layer 4
+
+Construction,
+  1979-Pre_ExtRoof_IEAD_ClimateZone 5a,  !- Name
+  Roof Membrane,            !- Outside Layer
+  IEAD NonRes Roof Insulation-2.50,  !- Layer 2
+  Metal Decking;            !- Layer 3
+
+Construction,
+  2004_ExtWall_Mass_ClimateZone 5,  !- Name
+  1IN Stucco,               !- Outside Layer
+  8IN CONCRETE HW_RefBldg,  !- Layer 2
+  Mass NonRes Wall Insulation-1.43,  !- Layer 3
+  1/2IN Gypsum;             !- Layer 4
+
+Construction,
+  2004_ExtWall_SteelFrame_ClimateZone_alt-res 3,  !- Name
+  Wood Siding,              !- Outside Layer
+  Steel Frame NonRes Wall Insulation-2.10,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  1980-Post_ExtRoof_Metal_ClimateZone 3b_LAS,  !- Name
+  Metal Roofing,            !- Outside Layer
+  Metal Semi-Cond Roof Insulation-3.66;  !- Layer 2
+
+Construction,
+  2004_ExtRoof_Metal_ClimateZone 1,  !- Name
+  Metal Roofing;            !- Outside Layer
+
+Construction,
+  1979-Pre_ExtRoof_AtticFloor_ClimateZone 6,  !- Name
+  1/2IN Gypsum,             !- Outside Layer
+  AtticFloor NonRes Insulation-2.99,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  1980-Post_ExtWall_Metal_ClimateZone 4a,  !- Name
+  Metal Siding,             !- Outside Layer
+  Metal Building Semi-Cond Wall Insulation-1.79,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  2004_ExtWindow_ClimateZone 8,  !- Name
+  WindowMaterial:SimpleGlazingSystem 10;  !- Outside Layer
+
+Construction,
+  1980-Post_ExtWall_WoodFrame_ClimateZone 8,  !- Name
+  Wood Siding,              !- Outside Layer
+  Wood Frame NonRes Wall Insulation-3.91,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  000_AtticRoof_ClimateZone 1-8,  !- Name
+  Roof Membrane,            !- Outside Layer
+  Metal Decking;            !- Layer 2
+
+Construction,
+  1979-Pre_ExtWall_Mass_ClimateZone 4c,  !- Name
+  1IN Stucco,               !- Outside Layer
+  8IN CONCRETE HW_RefBldg,  !- Layer 2
+  Mass NonRes Wall Insulation-1.01,  !- Layer 3
+  1/2IN Gypsum;             !- Layer 4
+
+Construction,
+  000_Exterior Wall,        !- Name
+  000_M01 100mm brick,      !- Outside Layer
+  000_M15 200mm heavyweight concrete,  !- Layer 2
+  000_I02 50mm insulation board,  !- Layer 3
+  000_F04 Wall air space resistance,  !- Layer 4
+  000_G01a 19mm gypsum board;  !- Layer 5
+
+Construction,
+  1980-Post_ExtRoof_Metal_ClimateZone 4b,  !- Name
+  Metal Roofing,            !- Outside Layer
+  Metal Semi-Cond Roof Insulation-2.99;  !- Layer 2
+
+Construction,
+  2004_ExtWall_Mass_ClimateZone_alt-res 5-6,  !- Name
+  1IN Stucco,               !- Outside Layer
+  8IN CONCRETE HW_RefBldg,  !- Layer 2
+  Mass NonRes Wall Insulation-1.96,  !- Layer 3
+  1/2IN Gypsum;             !- Layer 4
+
+Construction,
+  2004_ExtWall_Mass_ClimateZone_alt-res 1-2,  !- Name
+  1IN Stucco,               !- Outside Layer
+  8IN CONCRETE HW_RefBldg,  !- Layer 2
+  Mass NonRes Wall Insulation-1.17,  !- Layer 3
+  1/2IN Gypsum;             !- Layer 4
+
+Construction,
+  2004_ExtWall_Metal_ClimateZone 2-3,  !- Name
+  Metal Siding,             !- Outside Layer
+  Metal Building Semi-Cond Wall Insulation-0.77,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  1980-Post_ExtWindow_ClimateZone 8,  !- Name
+  WindowMaterial:SimpleGlazingSystem 5;  !- Outside Layer
+
+Construction,
+  1979-Pre_ExtRoof_AtticFloor_ClimateZone 8,  !- Name
+  1/2IN Gypsum,             !- Outside Layer
+  AtticFloor NonRes Insulation-2.99,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  1979-Pre_ExtWall_Mass_ClimateZone 5b,  !- Name
+  1IN Stucco,               !- Outside Layer
+  8IN CONCRETE HW_RefBldg,  !- Layer 2
+  Mass NonRes Wall Insulation-1.09,  !- Layer 3
+  1/2IN Gypsum;             !- Layer 4
+
+Construction,
+  2004_ExtWall_Mass_ClimateZone_alt-res 8,  !- Name
+  1IN Stucco,               !- Outside Layer
+  8IN CONCRETE HW_RefBldg,  !- Layer 2
+  Mass NonRes Wall Insulation-2.48,  !- Layer 3
+  1/2IN Gypsum;             !- Layer 4
+
+Construction,
+  1980-Post_ExtRoof_AtticFloor_ClimateZone 7,  !- Name
+  1/2IN Gypsum,             !- Outside Layer
+  AtticFloor NonRes Insulation-4.40,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  1980-Post_ExtRoof_IEAD_ClimateZone 3c,  !- Name
+  Roof Membrane,            !- Outside Layer
+  IEAD NonRes Roof Insulation-2.00,  !- Layer 2
+  Metal Decking;            !- Layer 3
+
+Construction,
+  2009-LowEnergyCase_ExtWall_Metal_ClimateZone 1-3,  !- Name
+  Metal Siding,             !- Outside Layer
+  Wall Insulation [32],     !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  1980-Post_ExtRoof_IEAD_ClimateZone 4a,  !- Name
+  Roof Membrane,            !- Outside Layer
+  IEAD NonRes Roof Insulation-3.03,  !- Layer 2
+  Metal Decking;            !- Layer 3
+
+Construction,
+  2004_ExtWall_SteelFrame_ClimateZone_alt-res 4-6,  !- Name
+  Wood Siding,              !- Outside Layer
+  Steel Frame NonRes Wall Insulation-2.75,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  000_Exterior Roof,        !- Name
+  000_M11 100mm lightweight concrete,  !- Outside Layer
+  000_F05 Ceiling air space resistance,  !- Layer 2
+  000_F16 Acoustic tile;    !- Layer 3
+
+Construction,
+  1980-Post_ExtWall_WoodFrame_ClimateZone 2b,  !- Name
+  Wood Siding,              !- Outside Layer
+  Wood Frame NonRes Wall Insulation-0.73,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  1980-Post_ExtWall_SteelFrame_ClimateZone 5,  !- Name
+  Wood Siding,              !- Outside Layer
+  Steel Frame NonRes Wall Insulation-2.15,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  1980-Post_ExtRoof_AtticFloor_ClimateZone 4b,  !- Name
+  1/2IN Gypsum,             !- Outside Layer
+  AtticFloor NonRes Insulation-2.99,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  2009-LowEnergyCase_ExtWall_Mass_ClimateZone_alt-res 4,  !- Name
+  1IN Stucco,               !- Outside Layer
+  8IN Concrete HW,          !- Layer 2
+  Wall Insulation [40],     !- Layer 3
+  1/2IN Gypsum;             !- Layer 4
+
+Construction,
+  1980-Post_ExtRoof_IEAD_ClimateZone 3b_LAS,  !- Name
+  Roof Membrane,            !- Outside Layer
+  IEAD NonRes Roof Insulation-3.66,  !- Layer 2
+  Metal Decking;            !- Layer 3
+
+Construction,
+  2009-LowEnergyCase_ExtWindow_ClimateZone 6,  !- Name
+  Theoretical Glass [216];  !- Outside Layer
+
+Construction,
+  1979-Pre_ExtWall_Mass_ClimateZone 1-2,  !- Name
+  1IN Stucco,               !- Outside Layer
+  8IN CONCRETE HW_RefBldg,  !- Layer 2
+  Mass NonRes Wall Insulation-0.77,  !- Layer 3
+  1/2IN Gypsum;             !- Layer 4
+
+Construction,
+  1980-Post_ExtRoof_Metal_ClimateZone 2b,  !- Name
+  Metal Roofing,            !- Outside Layer
+  Metal Semi-Cond Roof Insulation-3.83;  !- Layer 2
+
+Construction,
+  1980-Post_ExtWall_Mass_ClimateZone 7,  !- Name
+  1IN Stucco,               !- Outside Layer
+  8IN CONCRETE HW_RefBldg,  !- Layer 2
+  Mass NonRes Wall Insulation-2.89,  !- Layer 3
+  1/2IN Gypsum;             !- Layer 4
+
+Construction,
+  1979-Pre_ExtWall_SteelFrame_ClimateZone 4a,  !- Name
+  Wood Siding,              !- Outside Layer
+  Steel Frame NonRes Wall Insulation-0.99,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  000_ExtSlabCarpet_4in_ClimateZone 1-8,  !- Name
+  MAT-CC05 4 HW CONCRETE,   !- Outside Layer
+  CP02 CARPET PAD;          !- Layer 2
+
+Construction,
+  1980-Post_ExtWindow_ClimateZone 3b_LAX,  !- Name
+  WindowMaterial:SimpleGlazingSystem 3;  !- Outside Layer
+
+Construction,
+  2004_ExtRoof_Metal_ClimateZone 7,  !- Name
+  Metal Roofing,            !- Outside Layer
+  Metal Semi-Cond Roof Insulation-1.81;  !- Layer 2
+
+Construction,
+  1979-Pre_ExtWall_Mass_ClimateZone 3a,  !- Name
+  1IN Stucco,               !- Outside Layer
+  8IN CONCRETE HW_RefBldg,  !- Layer 2
+  Mass NonRes Wall Insulation-0.78,  !- Layer 3
+  1/2IN Gypsum;             !- Layer 4
+
+Construction,
+  2009-LowEnergyCase_ExtWindow_ClimateZone 1,  !- Name
+  Theoretical Glass [167];  !- Outside Layer
+
+Construction,
+  2004_ExtWindow_ClimateZone 4-6,  !- Name
+  WindowMaterial:SimpleGlazingSystem 7;  !- Outside Layer
+
+Construction,
+  2009-LowEnergyCase_ExtWall_Mass_ClimateZone 3,  !- Name
+  1IN Stucco,               !- Outside Layer
+  8IN Concrete HW,          !- Layer 2
+  Wall Insulation [36],     !- Layer 3
+  1/2IN Gypsum;             !- Layer 4
+
+Construction,
+  1980-Post_ExtWall_WoodFrame_ClimateZone 3c,  !- Name
+  Wood Siding,              !- Outside Layer
+  Wood Frame NonRes Wall Insulation-1.36,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  1980-Post_ExtWall_Metal_ClimateZone 4c,  !- Name
+  Metal Siding,             !- Outside Layer
+  Metal Building Semi-Cond Wall Insulation-1.72,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  1980-Post_ExtRoof_IEAD_ClimateZone 6a,  !- Name
+  Roof Membrane,            !- Outside Layer
+  IEAD NonRes Roof Insulation-3.97,  !- Layer 2
+  Metal Decking;            !- Layer 3
+
+Construction,
+  2004_ExtRoof_IEAD_ClimateZone 5-6,  !- Name
+  Roof Membrane,            !- Outside Layer
+  IEAD NonRes Roof Insulation-2.85,  !- Layer 2
+  Metal Decking;            !- Layer 3
+
+Construction,
+  1980-Post_ExtWindow_ClimateZone 7,  !- Name
+  WindowMaterial:SimpleGlazingSystem 4;  !- Outside Layer
+
+Construction,
+  2009-LowEnergyCase_ExtRoof_Metal_ClimateZone 1,  !- Name
+  Metal Roofing,            !- Outside Layer
+  Roof Insulation [19];     !- Layer 2
+
+Construction,
+  1979-Pre_ExtRoof_AtticFloor_ClimateZone 5b,  !- Name
+  1/2IN Gypsum,             !- Outside Layer
+  AtticFloor Res Insulation-2.37,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  1980-Post_ExtWall_Mass_ClimateZone 4a,  !- Name
+  1IN Stucco,               !- Outside Layer
+  8IN CONCRETE HW_RefBldg,  !- Layer 2
+  Mass NonRes Wall Insulation-1.47,  !- Layer 3
+  1/2IN Gypsum;             !- Layer 4
+
+Construction,
+  1980-Post_ExtRoof_IEAD_ClimateZone 4c,  !- Name
+  Roof Membrane,            !- Outside Layer
+  IEAD NonRes Roof Insulation-2.75,  !- Layer 2
+  Metal Decking;            !- Layer 3
+
+Construction,
+  000_Interior Door,        !- Name
+  000_G05 25mm wood;        !- Outside Layer
+
+Construction,
+  2009-LowEnergyCase_ExtWindow_ClimateZone_alt-res 4-5,  !- Name
+  Theoretical Glass [216];  !- Outside Layer
+
+Construction,
+  1980-Post_ExtWall_SteelFrame_ClimateZone 6a,  !- Name
+  Wood Siding,              !- Outside Layer
+  Steel Frame NonRes Wall Insulation-2.71,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  1979-Pre_ExtWall_Mass_ClimateZone 4a,  !- Name
+  1IN Stucco,               !- Outside Layer
+  8IN CONCRETE HW_RefBldg,  !- Layer 2
+  Mass NonRes Wall Insulation-0.99,  !- Layer 3
+  1/2IN Gypsum;             !- Layer 4
+
+Construction,
+  1980-Post_ExtWall_Metal_ClimateZone 4b,  !- Name
+  Metal Siding,             !- Outside Layer
+  Metal Building Semi-Cond Wall Insulation-1.57,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  2009-LowEnergyCase_ExtRoof_IEAD_ClimateZone 2-5,  !- Name
+  Roof Membrane,            !- Outside Layer
+  Roof Insulation [21],     !- Layer 2
+  Metal Decking;            !- Layer 3
+
+Construction,
+  1979-Pre_ExtWall_SteelFrame_ClimateZone 4c,  !- Name
+  Wood Siding,              !- Outside Layer
+  Steel Frame NonRes Wall Insulation-1.01,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  1979-Pre_ExtWall_Metal_ClimateZone 5b,  !- Name
+  Metal Siding,             !- Outside Layer
+  Metal Building Semi-Cond Wall Insulation-0.90,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  2004_ExtRoof_IEAD_ClimateZone 8,  !- Name
+  Roof Membrane,            !- Outside Layer
+  IEAD NonRes Roof Insulation-3.72,  !- Layer 2
+  Metal Decking;            !- Layer 3
+
+Construction,
+  2009-LowEnergyCase_ExtWall_Mass_ClimateZone 7-8,  !- Name
+  1IN Stucco,               !- Outside Layer
+  8IN Concrete HW,          !- Layer 2
+  Wall Insulation [44],     !- Layer 3
+  1/2IN Gypsum;             !- Layer 4
+
+Construction,
+  1979-Pre_ExtWall_Metal_ClimateZone 3b,  !- Name
+  Metal Siding,             !- Outside Layer
+  Metal Building Semi-Cond Wall Insulation-0.57,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  2004_ExtRoof_IEAD_ClimateZone 7,  !- Name
+  Roof Membrane,            !- Outside Layer
+  IEAD NonRes Roof Insulation-2.79,  !- Layer 2
+  Metal Decking;            !- Layer 3
+
+Construction,
+  2009-LowEnergyCase_ExtWindow_ClimateZone 2,  !- Name
+  Theoretical Glass [197];  !- Outside Layer
+
+Construction,
+  1980-Post_ExtWall_WoodFrame_ClimateZone 4c,  !- Name
+  Wood Siding,              !- Outside Layer
+  Wood Frame NonRes Wall Insulation-1.92,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  000_Interior Partition,   !- Name
+  000_G05 25mm wood;        !- Outside Layer
+
+Construction,
+  1980-Post_ExtRoof_IEAD_ClimateZone 5b,  !- Name
+  Roof Membrane,            !- Outside Layer
+  IEAD NonRes Roof Insulation-3.51,  !- Layer 2
+  Metal Decking;            !- Layer 3
+
+Construction,
+  1979-Pre_ExtWall_Mass_ClimateZone 5a,  !- Name
+  1IN Stucco,               !- Outside Layer
+  8IN CONCRETE HW_RefBldg,  !- Layer 2
+  Mass NonRes Wall Insulation-1.13,  !- Layer 3
+  1/2IN Gypsum;             !- Layer 4
+
+Construction,
+  1980-Post_ExtWall_Metal_ClimateZone 7,  !- Name
+  Metal Siding,             !- Outside Layer
+  Metal Building Semi-Cond Wall Insulation-2.85,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  1980-Post_ExtWall_Mass_ClimateZone 4c-5a,  !- Name
+  1IN Stucco,               !- Outside Layer
+  8IN CONCRETE HW_RefBldg,  !- Layer 2
+  Mass NonRes Wall Insulation-1.76,  !- Layer 3
+  1/2IN Gypsum;             !- Layer 4
+
+Construction,
+  2009-LowEnergyCase_ExtWall_SteelFrame_ClimateZone 4-8,  !- Name
+  MAT-SHEATH,               !- Outside Layer
+  Wall Insulation [39],     !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  1980-Post_ExtRoof_IEAD_ClimateZone 2b,  !- Name
+  Roof Membrane,            !- Outside Layer
+  IEAD NonRes Roof Insulation-3.83,  !- Layer 2
+  Metal Decking;            !- Layer 3
+
+Construction,
+  000_Interior Wall,        !- Name
+  000_G01a 19mm gypsum board,  !- Outside Layer
+  000_F04 Wall air space resistance,  !- Layer 2
+  000_G01a 19mm gypsum board;  !- Layer 3
+
+Construction,
+  1980-Post_ExtWall_Metal_ClimateZone 1,  !- Name
+  Metal Siding,             !- Outside Layer
+  1/2IN Gypsum;             !- Layer 2
+
+Construction,
+  1980-Post_ExtRoof_AtticFloor_ClimateZone 4a,  !- Name
+  1/2IN Gypsum,             !- Outside Layer
+  AtticFloor NonRes Insulation-3.04,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  1980-Post_ExtWall_Metal_ClimateZone 8,  !- Name
+  Metal Siding,             !- Outside Layer
+  Metal Building Semi-Cond Wall Insulation-3.72,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  1979-Pre_ExtWall_Mass_ClimateZone 3c,  !- Name
+  1IN Stucco,               !- Outside Layer
+  8IN CONCRETE HW_RefBldg,  !- Layer 2
+  Mass NonRes Wall Insulation-0.79,  !- Layer 3
+  1/2IN Gypsum;             !- Layer 4
+
+Construction,
+  1980-Post_ExtRoof_AtticFloor_ClimateZone 4c,  !- Name
+  1/2IN Gypsum,             !- Outside Layer
+  AtticFloor NonRes Insulation-2.75,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  2009-LowEnergyCase_ExtWall_Mass_ClimateZone 4,  !- Name
+  1IN Stucco,               !- Outside Layer
+  8IN Concrete HW,          !- Layer 2
+  Wall Insulation [37],     !- Layer 3
+  1/2IN Gypsum;             !- Layer 4
+
+Construction,
+  1980-Post_ExtRoof_IEAD_ClimateZone 5a,  !- Name
+  Roof Membrane,            !- Outside Layer
+  IEAD NonRes Roof Insulation-3.38,  !- Layer 2
+  Metal Decking;            !- Layer 3
+
+Construction,
+  1979-Pre_ExtRoof_IEAD_ClimateZone 5b,  !- Name
+  Roof Membrane,            !- Outside Layer
+  IEAD NonRes Roof Insulation-2.37,  !- Layer 2
+  Metal Decking;            !- Layer 3
+
+Construction,
+  1980-Post_ExtWall_Mass_ClimateZone 3a,  !- Name
+  1IN Stucco,               !- Outside Layer
+  8IN CONCRETE HW_RefBldg,  !- Layer 2
+  Mass NonRes Wall Insulation-0.61,  !- Layer 3
+  1/2IN Gypsum;             !- Layer 4
+
+Construction,
+  2004_ExtWall_WoodFrame_ClimateZone 8,  !- Name
+  Wood Siding,              !- Outside Layer
+  Wood Frame NonRes Wall Insulation-3.45,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  1980-Post_ExtWall_WoodFrame_ClimateZone 7,  !- Name
+  Wood Siding,              !- Outside Layer
+  Wood Frame NonRes Wall Insulation-3.04,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  1980-Post_ExtRoof_AtticFloor_ClimateZone 6b,  !- Name
+  1/2IN Gypsum,             !- Outside Layer
+  AtticFloor NonRes Insulation-3.59,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  2004_ExtWall_Metal_ClimateZone 4,  !- Name
+  Metal Siding,             !- Outside Layer
+  Metal Building Semi-Cond Wall Insulation-1.12,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  2004_ExtWindow_ClimateZone_alt-res 7,  !- Name
+  Fixed Window 3.81/0.49/0.38;  !- Outside Layer
+
+Construction,
+  1980-Post_ExtRoof_Metal_ClimateZone 7,  !- Name
+  Metal Roofing,            !- Outside Layer
+  Metal Semi-Cond Roof Insulation-4.41;  !- Layer 2
+
+Construction,
+  1979-Pre_ExtWall_SteelFrame_ClimateZone 3c,  !- Name
+  Wood Siding,              !- Outside Layer
+  Steel Frame NonRes Wall Insulation-0.79,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  1980-Post_ExtWindow_ClimateZone 4b,  !- Name
+  WindowMaterial:SimpleGlazingSystem 14;  !- Outside Layer
+
+Construction,
+  1979-Pre_ExtWindow_ClimateZone 1-4,  !- Name
+  WindowMaterial:SimpleGlazingSystem 2;  !- Outside Layer
+
+Construction,
+  1980-Post_ExtWall_Mass_ClimateZone 2a,  !- Name
+  1IN Stucco,               !- Outside Layer
+  8IN CONCRETE HW_RefBldg,  !- Layer 2
+  Mass NonRes Wall Insulation-0.52,  !- Layer 3
+  1/2IN Gypsum;             !- Layer 4
+
+Construction,
+  1979-Pre_ExtWall_Metal_ClimateZone 6,  !- Name
+  Metal Siding,             !- Outside Layer
+  Metal Building Semi-Cond Wall Insulation-1.02,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  1980-Post_ExtWall_SteelFrame_ClimateZone 3b_LAX,  !- Name
+  Wood Siding,              !- Outside Layer
+  Steel Frame NonRes Wall Insulation-0.80,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  2009-LowEnergyCase_ExtWindow_ClimateZone 7-8,  !- Name
+  Theoretical Glass [221];  !- Outside Layer
+
+Construction,
+  1980-Post_ExtWindow_ClimateZone_alt-lrgoff_hosp 1-8,  !- Name
+  WindowMaterial:SimpleGlazingSystem 1;  !- Outside Layer
+
+Construction,
+  1980-Post_ExtWall_WoodFrame_ClimateZone 4a,  !- Name
+  Wood Siding,              !- Outside Layer
+  Wood Frame NonRes Wall Insulation-1.98,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  1979-Pre_ExtWall_Metal_ClimateZone 4a,  !- Name
+  Metal Siding,             !- Outside Layer
+  Metal Building Semi-Cond Wall Insulation-0.80,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  1980-Post_ExtWall_SteelFrame_ClimateZone 4c,  !- Name
+  Wood Siding,              !- Outside Layer
+  Steel Frame NonRes Wall Insulation-1.92,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  1980-Post_ExtWall_Metal_ClimateZone 6b,  !- Name
+  Metal Siding,             !- Outside Layer
+  Metal Building Semi-Cond Wall Insulation-2.25,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  1979-Pre_ExtWall_SteelFrame_ClimateZone 5a,  !- Name
+  Wood Siding,              !- Outside Layer
+  Steel Frame NonRes Wall Insulation-1.13,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  1980-Post_ExtRoof_AtticFloor_ClimateZone 5b,  !- Name
+  1/2IN Gypsum,             !- Outside Layer
+  AtticFloor NonRes Insulation-3.45,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  1979-Pre_ExtRoof_AtticFloor_ClimateZone 7,  !- Name
+  1/2IN Gypsum,             !- Outside Layer
+  AtticFloor Res Insulation-2.93,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  1980-Post_ExtWall_SteelFrame_ClimateZone 2b,  !- Name
+  Wood Siding,              !- Outside Layer
+  Steel Frame NonRes Wall Insulation-0.73,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  1980-Post_ExtRoof_Metal_ClimateZone 6a,  !- Name
+  Metal Roofing,            !- Outside Layer
+  Metal Semi-Cond Roof Insulation-3.97;  !- Layer 2
+
+Construction,
+  2009-LowEnergyCase_ExtWall_SteelFrame_ClimateZone 1-3,  !- Name
+  MAT-SHEATH,               !- Outside Layer
+  Wall Insulation [33],     !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  1979-Pre_ExtRoof_AtticFloor_ClimateZone 5a,  !- Name
+  1/2IN Gypsum,             !- Outside Layer
+  IEAD NonRes Roof Insulation-2.50,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  1980-Post_ExtWall_Mass_ClimateZone 1,  !- Name
+  1IN Stucco,               !- Outside Layer
+  8IN CONCRETE HW_RefBldg,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  1980-Post_ExtRoof_Metal_ClimateZone 8,  !- Name
+  Metal Roofing,            !- Outside Layer
+  Metal Semi-Cond Roof Insulation-5.75;  !- Layer 2
+
+Construction,
+  2004_ExtWall_SteelFrame_ClimateZone_alt-res 8,  !- Name
+  Wood Siding,              !- Outside Layer
+  Steel Frame NonRes Wall Insulation-3.21,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  1980-Post_ExtWall_WoodFrame_ClimateZone 3b_LAS,  !- Name
+  Wood Siding,              !- Outside Layer
+  Wood Frame NonRes Wall Insulation-1.10,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  Air Wall,                 ! Name
+  Air Wall Material;
+
+Construction,
+  1980-Post_ExtRoof_IEAD_ClimateZone 2a,  !- Name
+  Roof Membrane,            !- Outside Layer
+  IEAD NonRes Roof Insulation-2.67,  !- Layer 2
+  Metal Decking;            !- Layer 3
+
+Construction,
+  2009-LowEnergyCase_ExtWall_Mass_ClimateZone_alt-res 2,  !- Name
+  1IN Stucco,               !- Outside Layer
+  8IN Concrete HW,          !- Layer 2
+  Wall Insulation [36],     !- Layer 3
+  1/2IN Gypsum;             !- Layer 4
+
+Construction,
+  2004_ExtWindow_ClimateZone_alt-resA 3a-3b,  !- Name
+  Fixed Window 3.81/0.39/0.27;  !- Outside Layer
+
+Construction,
+  000_Interior Floor,       !- Name
+  000_F16 Acoustic tile,    !- Outside Layer
+  000_F05 Ceiling air space resistance,  !- Layer 2
+  000_M11 100mm lightweight concrete;  !- Layer 3
+
+Construction,
+  1980-Post_ExtRoof_Metal_ClimateZone 2a,  !- Name
+  Metal Roofing,            !- Outside Layer
+  Metal Semi-Cond Roof Insulation-2.67;  !- Layer 2
+
+Construction,
+  2004_ExtWall_SteelFrame_ClimateZone 7-8,  !- Name
+  Wood Siding,              !- Outside Layer
+  Steel Frame NonRes Wall Insulation-2.75,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  1980-Post_ExtWall_SteelFrame_ClimateZone 4b,  !- Name
+  Wood Siding,              !- Outside Layer
+  Steel Frame NonRes Wall Insulation-1.76,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  1980-Post_ExtRoof_Metal_ClimateZone 3a,  !- Name
+  Metal Roofing,            !- Outside Layer
+  Metal Semi-Cond Roof Insulation-2.44;  !- Layer 2
+
+Construction,
+  2009-LowEnergyCase_ExtRoof_IEAD_ClimateZone 1,  !- Name
+  Roof Membrane,            !- Outside Layer
+  Roof Insulation [18],     !- Layer 2
+  Metal Decking;            !- Layer 3
+
+Construction,
+  1980-Post_ExtRoof_Metal_ClimateZone 4a,  !- Name
+  Metal Roofing,            !- Outside Layer
+  Metal Semi-Cond Roof Insulation-3.03;  !- Layer 2
+
+Construction,
+  1979-Pre_ExtRoof_IEAD_ClimateZone 7,  !- Name
+  Roof Membrane,            !- Outside Layer
+  IEAD NonRes Roof Insulation-2.93,  !- Layer 2
+  Metal Decking;            !- Layer 3
+
+Construction,
+  1980-Post_ExtRoof_IEAD_ClimateZone 3a,  !- Name
+  Roof Membrane,            !- Outside Layer
+  IEAD NonRes Roof Insulation-2.44,  !- Layer 2
+  Metal Decking;            !- Layer 3
+
+Construction,
+  1980-Post_ExtRoof_Metal_ClimateZone 6b,  !- Name
+  Metal Roofing,            !- Outside Layer
+  Metal Semi-Cond Roof Insulation-3.65;  !- Layer 2
+
+Construction,
+  000_Exterior Floor,       !- Name
+  000_I02 50mm insulation board,  !- Outside Layer
+  000_M15 200mm heavyweight concrete;  !- Layer 2
+
+Construction,
+  1980-Post_ExtRoof_AtticFloor_ClimateZone 3b_LAS,  !- Name
+  1/2IN Gypsum,             !- Outside Layer
+  AtticFloor NonRes Insulation-3.67,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  1980-Post_ExtWall_WoodFrame_ClimateZone 6b,  !- Name
+  Wood Siding,              !- Outside Layer
+  Wood Frame NonRes Wall Insulation-2.44,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  1979-Pre_ExtRoof_IEAD_ClimateZone 4b,  !- Name
+  Roof Membrane,            !- Outside Layer
+  IEAD NonRes Roof Insulation-1.98,  !- Layer 2
+  Metal Decking;            !- Layer 3
+
+Construction,
+  1979-Pre_ExtWall_SteelFrame_ClimateZone 8,  !- Name
+  Wood Siding,              !- Outside Layer
+  Steel Frame NonRes Wall Insulation-1.41,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  1980-Post_ExtWall_SteelFrame_ClimateZone 6b,  !- Name
+  Wood Siding,              !- Outside Layer
+  Steel Frame NonRes Wall Insulation-2.44,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  1980-Post_ExtWall_WoodFrame_ClimateZone 1,  !- Name
+  Wood Siding,              !- Outside Layer
+  1/2IN Gypsum;             !- Layer 2
+
+Construction,
+  1980-Post_ExtWall_SteelFrame_ClimateZone 7,  !- Name
+  Wood Siding,              !- Outside Layer
+  Steel Frame NonRes Wall Insulation-3.04,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  1980-Post_ExtWindow_ClimateZone 3a,  !- Name
+  WindowMaterial:SimpleGlazingSystem 11;  !- Outside Layer
+
+Construction,
+  1980-Post_ExtWall_Mass_ClimateZone 2b,  !- Name
+  1IN Stucco,               !- Outside Layer
+  8IN CONCRETE HW_RefBldg,  !- Layer 2
+  Mass NonRes Wall Insulation-0.43,  !- Layer 3
+  1/2IN Gypsum;             !- Layer 4
+
+Construction,
+  2009-LowEnergyCase_ExtWall_Mass_ClimateZone_alt-res 8,  !- Name
+  1IN Stucco,               !- Outside Layer
+  8IN Concrete HW,          !- Layer 2
+  Wall Insulation [46],     !- Layer 3
+  1/2IN Gypsum;             !- Layer 4
+
+Construction,
+  1980-Post_ExtRoof_AtticFloor_ClimateZone 1,  !- Name
+  1/2IN Gypsum,             !- Outside Layer
+  AtticFloor NonRes Insulation-2.38,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  1980-Post_ExtWall_WoodFrame_ClimateZone 5,  !- Name
+  Wood Siding,              !- Outside Layer
+  Wood Frame NonRes Wall Insulation-2.15,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  1980-Post_ExtWall_SteelFrame_ClimateZone 1,  !- Name
+  Wood Siding,              !- Outside Layer
+  1/2IN Gypsum;             !- Layer 2
+
+Construction,
+  1980-Post_ExtWall_Metal_ClimateZone 3c,  !- Name
+  Metal Siding,             !- Outside Layer
+  Metal Building Semi-Cond Wall Insulation-1.16,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  1979-Pre_ExtWall_Mass_ClimateZone 4b,  !- Name
+  1IN Stucco,               !- Outside Layer
+  8IN CONCRETE HW_RefBldg,  !- Layer 2
+  Mass NonRes Wall Insulation-0.96,  !- Layer 3
+  1/2IN Gypsum;             !- Layer 4
+
+Construction,
+  1980-Post_ExtWall_Metal_ClimateZone 3b_LAX,  !- Name
+  Metal Siding,             !- Outside Layer
+  Metal Building Semi-Cond Wall Insulation-0.61,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  2004_ExtWall_Mass_ClimateZone_alt-res 7,  !- Name
+  1IN Stucco,               !- Outside Layer
+  8IN CONCRETE HW_RefBldg,  !- Layer 2
+  Mass NonRes Wall Insulation-2.20,  !- Layer 3
+  1/2IN Gypsum;             !- Layer 4
+
+Construction,
+  1980-Post_ExtWall_SteelFrame_ClimateZone 3a,  !- Name
+  Wood Siding,              !- Outside Layer
+  Steel Frame NonRes Wall Insulation-1.36,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  2009-LowEnergyCase_ExtRoof_Metal_ClimateZone 6,  !- Name
+  Metal Roofing,            !- Outside Layer
+  Roof Insulation [25];     !- Layer 2
+
+Construction,
+  1980-Post_ExtRoof_Metal_ClimateZone 5a,  !- Name
+  Metal Roofing,            !- Outside Layer
+  Metal Semi-Cond Roof Insulation-3.38;  !- Layer 2
+
+Construction,
+  2004_ExtWindow_ClimateZone 7,  !- Name
+  WindowMaterial:SimpleGlazingSystem 12;  !- Outside Layer
+
+Construction,
+  1980-Post_ExtRoof_AtticFloor_ClimateZone 2a,  !- Name
+  1/2IN Gypsum,             !- Outside Layer
+  AtticFloor NonRes Insulation-2.67,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  1980-Post_ExtWindow_ClimateZone 3b_LAS,  !- Name
+  WindowMaterial:SimpleGlazingSystem 1;  !- Outside Layer
+
+Construction,
+  1980-Post_ExtWall_SteelFrame_ClimateZone 3b_LAS,  !- Name
+  Wood Siding,              !- Outside Layer
+  Steel Frame NonRes Wall Insulation-1.10,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  1980-Post_ExtWindow_ClimateZone 4a,  !- Name
+  WindowMaterial:SimpleGlazingSystem 9;  !- Outside Layer
+
+Construction,
+  2009-LowEnergyCase_ExtWindow_ClimateZone 4-5,  !- Name
+  Theoretical Glass [207];  !- Outside Layer
+
+Construction,
+  1979-Pre_ExtWall_Metal_ClimateZone 4b,  !- Name
+  Metal Siding,             !- Outside Layer
+  Metal Building Semi-Cond Wall Insulation-0.77,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  1980-Post_ExtRoof_AtticFloor_ClimateZone 5a,  !- Name
+  1/2IN Gypsum,             !- Outside Layer
+  AtticFloor NonRes Insulation-3.32,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  000_ExtSlabCarpet_8in_ClimateZone 1-8,  !- Name
+  MAT-CC05 8 HW CONCRETE,   !- Outside Layer
+  CP02 CARPET PAD;          !- Layer 2
+
+Construction,
+  1980-Post_ExtWall_Metal_ClimateZone 5,  !- Name
+  Metal Siding,             !- Outside Layer
+  Metal Building Semi-Cond Wall Insulation-1.96,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  1980-Post_ExtRoof_IEAD_ClimateZone 1,  !- Name
+  Roof Membrane,            !- Outside Layer
+  IEAD NonRes Roof Insulation-2.38,  !- Layer 2
+  Metal Decking;            !- Layer 3
+
+Construction,
+  1980-Post_ExtWall_SteelFrame_ClimateZone 8,  !- Name
+  Wood Siding,              !- Outside Layer
+  Steel Frame NonRes Wall Insulation-3.91,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  1979-Pre_ExtRoof_IEAD_ClimateZone 8,  !- Name
+  Roof Membrane,            !- Outside Layer
+  IEAD NonRes Roof Insulation-2.99,  !- Layer 2
+  Metal Decking;            !- Layer 3
+
+Construction,
+  1980-Post_ExtWindow_ClimateZone 3c,  !- Name
+  WindowMaterial:SimpleGlazingSystem 8;  !- Outside Layer
+
+Construction,
+  1980-Post_ExtWall_WoodFrame_ClimateZone 3a,  !- Name
+  Wood Siding,              !- Outside Layer
+  Wood Frame NonRes Wall Insulation-1.36,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  1980-Post_ExtWall_SteelFrame_ClimateZone 4a,  !- Name
+  Wood Siding,              !- Outside Layer
+  Steel Frame NonRes Wall Insulation-1.98,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  1980-Post_ExtRoof_IEAD_ClimateZone 4b,  !- Name
+  Roof Membrane,            !- Outside Layer
+  IEAD NonRes Roof Insulation-2.99,  !- Layer 2
+  Metal Decking;            !- Layer 3
+
+Construction,
+  1980-Post_ExtWall_Metal_ClimateZone 3b_LAS,  !- Name
+  Metal Siding,             !- Outside Layer
+  Metal Building Semi-Cond Wall Insulation-0.91,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  1979-Pre_ExtWall_Metal_ClimateZone 3c,  !- Name
+  Metal Siding,             !- Outside Layer
+  Metal Building Semi-Cond Wall Insulation-0.59,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  2004_ExtWall_SteelFrame_ClimateZone 5-6,  !- Name
+  Wood Siding,              !- Outside Layer
+  Steel Frame NonRes Wall Insulation-2.10,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  1979-Pre_ExtWall_SteelFrame_ClimateZone 6,  !- Name
+  Wood Siding,              !- Outside Layer
+  Steel Frame NonRes Wall Insulation-1.22,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  2009-LowEnergyCase_ExtWall_Mass_ClimateZone 2,  !- Name
+  1IN Stucco,               !- Outside Layer
+  8IN Concrete HW,          !- Layer 2
+  Wall Insulation [35],     !- Layer 3
+  1/2IN Gypsum;             !- Layer 4
+
+Construction,
+  2009-LowEnergyCase_ExtWall_Mass_ClimateZone_alt-res 3,  !- Name
+  1IN Stucco,               !- Outside Layer
+  8IN Concrete HW,          !- Layer 2
+  Wall Insulation [37],     !- Layer 3
+  1/2IN Gypsum;             !- Layer 4
+
+Construction,
+  1980-Post_ExtWall_Metal_ClimateZone 6a,  !- Name
+  Metal Siding,             !- Outside Layer
+  Metal Building Semi-Cond Wall Insulation-2.52,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  1979-Pre_ExtWall_SteelFrame_ClimateZone 1-3b,  !- Name
+  Wood Siding,              !- Outside Layer
+  Steel Frame NonRes Wall Insulation-0.77,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  1979-Pre_ExtWall_Metal_ClimateZone 4c,  !- Name
+  Metal Siding,             !- Outside Layer
+  Metal Building Semi-Cond Wall Insulation-0.81,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  1980-Post_ExtRoof_IEAD_ClimateZone 7,  !- Name
+  Roof Membrane,            !- Outside Layer
+  IEAD NonRes Roof Insulation-4.41,  !- Layer 2
+  Metal Decking;            !- Layer 3
+
+Construction,
+  1980-Post_ExtRoof_AtticFloor_ClimateZone 2b,  !- Name
+  1/2IN Gypsum,             !- Outside Layer
+  AtticFloor NonRes Insulation-3.83,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  1979-Pre_ExtWindow_ClimateZone_alt-lrgoff_hosp 1-8,  !- Name
+  WindowMaterial:SimpleGlazingSystem 2;  !- Outside Layer
+
+Construction,
+  1980-Post_ExtRoof_Metal_ClimateZone 5b,  !- Name
+  Metal Roofing,            !- Outside Layer
+  Metal Semi-Cond Roof Insulation-3.38;  !- Layer 2
+
+Construction,
+  2009-LowEnergyCase_ExtWall_Mass_ClimateZone_alt-res 1,  !- Name
+  1IN Stucco,               !- Outside Layer
+  8IN Concrete HW,          !- Layer 2
+  Wall Insulation [35],     !- Layer 3
+  1/2IN Gypsum;             !- Layer 4
+
+Construction,
+  1980-Post_ExtRoof_IEAD_ClimateZone 6b,  !- Name
+  Roof Membrane,            !- Outside Layer
+  IEAD NonRes Roof Insulation-3.65,  !- Layer 2
+  Metal Decking;            !- Layer 3
+
+Construction,
+  1979-Pre_ExtRoof_AtticFloor_ClimateZone 4b,  !- Name
+  1/2IN Gypsum,             !- Outside Layer
+  IEAD NonRes Roof Insulation-1.98,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  1980-Post_ExtWall_Mass_ClimateZone 3b_LAS,  !- Name
+  1IN Stucco,               !- Outside Layer
+  8IN CONCRETE HW_RefBldg,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  2009-LowEnergyCase_ExtRoof_IEAD_ClimateZone 7-8,  !- Name
+  Roof Membrane,            !- Outside Layer
+  Roof Insulation [26],     !- Layer 2
+  Metal Decking;            !- Layer 3
+
+Construction,
+  2009-LowEnergyCase_ExtWall_WoodFrame_ClimateZone 5,  !- Name
+  Wood Siding,              !- Outside Layer
+  Wall Insulation [41],     !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  2004_ExtWall_Mass_ClimateZone_alt-res 3,  !- Name
+  1IN Stucco,               !- Outside Layer
+  8IN CONCRETE HW_RefBldg,  !- Layer 2
+  Mass NonRes Wall Insulation-1.43,  !- Layer 3
+  1/2IN Gypsum;             !- Layer 4
+
+Construction,
+  1979-Pre_ExtRoof_IEAD_ClimateZone 4a,  !- Name
+  Roof Membrane,            !- Outside Layer
+  IEAD NonRes Roof Insulation-2.04,  !- Layer 2
+  Metal Decking;            !- Layer 3
+
+Construction,
+  1979-Pre_ExtWall_Metal_ClimateZone 8,  !- Name
+  Metal Siding,             !- Outside Layer
+  Metal Building Semi-Cond Wall Insulation-1.22,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  2004_AtticFloor_ClimateZone 1-5,  !- Name
+  1/2IN Gypsum,             !- Outside Layer
+  AtticFloor NonRes Insulation-5.18,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  1980-Post_ExtWall_SteelFrame_ClimateZone 2a,  !- Name
+  Wood Siding,              !- Outside Layer
+  Steel Frame NonRes Wall Insulation-1.17,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  1979-Pre_ExtWall_Mass_ClimateZone 8,  !- Name
+  1IN Stucco,               !- Outside Layer
+  8IN CONCRETE HW_RefBldg,  !- Layer 2
+  Mass NonRes Wall Insulation-1.41,  !- Layer 3
+  1/2IN Gypsum;             !- Layer 4
+
+Construction,
+  2004_ExtRoof_Metal_ClimateZone 3-4,  !- Name
+  Metal Roofing,            !- Outside Layer
+  Metal Semi-Cond Roof Insulation-1.81;  !- Layer 2
+
+Construction,
+  1979-Pre_ExtRoof_AtticFloor_ClimateZone 1-3,  !- Name
+  1/2IN Gypsum,             !- Outside Layer
+  AtticFloor NonRes Insulation-1.76,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  000_ExtSlab_4in_ClimateZone 1-8,  !- Name
+  MAT-CC05 4 HW CONCRETE;   !- Outside Layer
+
+Construction,
+  2004_ExtWindow_ClimateZone_alt-resH 3a-3b,  !- Name
+  WindowMaterial:SimpleGlazingSystem 7;  !- Outside Layer
+
+Construction,
+  1980-Post_ExtWall_Mass_ClimateZone 6b,  !- Name
+  1IN Stucco,               !- Outside Layer
+  8IN CONCRETE HW_RefBldg,  !- Layer 2
+  Mass NonRes Wall Insulation-2.23,  !- Layer 3
+  1/2IN Gypsum;             !- Layer 4
+
+Construction,
+  1980-Post_ExtWindow_ClimateZone 6,  !- Name
+  WindowMaterial:SimpleGlazingSystem 15;  !- Outside Layer
+
+Construction,
+  1980-Post_ExtWindow_ClimateZone 4c,  !- Name
+  WindowMaterial:SimpleGlazingSystem 8;  !- Outside Layer
+
+Construction,
+  2004_ExtWall_Metal_ClimateZone 5,  !- Name
+  Metal Siding,             !- Outside Layer
+  Metal Building Semi-Cond Wall Insulation-1.24,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  1979-Pre_ExtWall_Mass_ClimateZone 3b,  !- Name
+  1IN Stucco,               !- Outside Layer
+  8IN CONCRETE HW_RefBldg,  !- Layer 2
+  Mass NonRes Wall Insulation-0.77,  !- Layer 3
+  1/2IN Gypsum;             !- Layer 4
+
+Construction,
+  1980-Post_ExtRoof_IEAD_ClimateZone 3b_LAX,  !- Name
+  Roof Membrane,            !- Outside Layer
+  IEAD NonRes Roof Insulation-1.76,  !- Layer 2
+  Metal Decking;            !- Layer 3
+
+Construction,
+  2004_ExtWindow_ClimateZone_alt-res 3c,  !- Name
+  Fixed Window 5.84/0.61/0.47;  !- Outside Layer
+
+Construction,
+  2009-LowEnergyCase_ExtRoof_Metal_ClimateZone 2-5,  !- Name
+  Metal Roofing,            !- Outside Layer
+  Roof Insulation [22];     !- Layer 2
+
+Construction,
+  1980-Post_ExtRoof_AtticFloor_ClimateZone 3c,  !- Name
+  1/2IN Gypsum,             !- Outside Layer
+  AtticFloor NonRes Insulation-2.00,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  1979-Pre_ExtWall_SteelFrame_ClimateZone 7,  !- Name
+  Wood Siding,              !- Outside Layer
+  Steel Frame NonRes Wall Insulation-1.30,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  1980-Post_ExtWall_WoodFrame_ClimateZone 4b,  !- Name
+  Wood Siding,              !- Outside Layer
+  Wood Frame NonRes Wall Insulation-1.76,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  2004_AtticFloor_ClimateZone 6-8,  !- Name
+  1/2IN Gypsum,             !- Outside Layer
+  AtticFloor NonRes Insulation-6.52,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  2004_ExtWall_Mass_ClimateZone 3-4,  !- Name
+  1IN Stucco,               !- Outside Layer
+  8IN CONCRETE HW_RefBldg,  !- Layer 2
+  Mass NonRes Wall Insulation-1.17,  !- Layer 3
+  1/2IN Gypsum;             !- Layer 4
+
+Construction,
+  000_Interior Ceiling,     !- Name
+  000_M11 100mm lightweight concrete,  !- Outside Layer
+  000_F05 Ceiling air space resistance,  !- Layer 2
+  000_F16 Acoustic tile;    !- Layer 3
+
+Construction,
+  1979-Pre_ExtWall_Metal_ClimateZone 5a,  !- Name
+  Metal Siding,             !- Outside Layer
+  Metal Building Semi-Cond Wall Insulation-0.94,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  2004_ExtWall_Metal_ClimateZone 6-8,  !- Name
+  Metal Siding,             !- Outside Layer
+  Metal Building Semi-Cond Wall Insulation-1.37,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  2009-LowEnergyCase_ExtRoof_IEAD_ClimateZone 6,  !- Name
+  Roof Membrane,            !- Outside Layer
+  Roof Insulation [24],     !- Layer 2
+  Metal Decking;            !- Layer 3
+
+Construction,
+  2004_ExtWindow_ClimateZone_alt-res 4-6,  !- Name
+  Fixed Window 3.81/0.39/0.27;  !- Outside Layer
+
+Construction,
+  2009-LowEnergyCase_ExtWall_WoodFrame_ClimateZone 6-8,  !- Name
+  Wood Siding,              !- Outside Layer
+  Wall Insulation [43],     !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  2004_ExtWall_SteelFrame_ClimateZone 1-4,  !- Name
+  Wood Siding,              !- Outside Layer
+  Steel Frame NonRes Wall Insulation-1.42,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  1980-Post_ExtWindow_ClimateZone 1-2,  !- Name
+  WindowMaterial:SimpleGlazingSystem 1;  !- Outside Layer
+
+Construction,
+  2009-LowEnergyCase_ExtRoof_Metal_ClimateZone 7-8,  !- Name
+  Metal Roofing,            !- Outside Layer
+  Roof Insulation [27];     !- Layer 2
+
+Construction,
+  1980-Post_ExtRoof_Metal_ClimateZone 1,  !- Name
+  Metal Roofing,            !- Outside Layer
+  Metal Semi-Cond Roof Insulation-2.38;  !- Layer 2
+
+Construction,
+  2009-LowEnergyCase_AtticFloor_ClimateZone 1-8,  !- Name
+  1/2IN Gypsum,             !- Outside Layer
+  AtticFloor Insulation,    !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  2004_ExtWall_Mass_ClimateZone 8,  !- Name
+  1IN Stucco,               !- Outside Layer
+  8IN CONCRETE HW_RefBldg,  !- Layer 2
+  Mass NonRes Wall Insulation-2.20,  !- Layer 3
+  1/2IN Gypsum;             !- Layer 4
+
+Construction,
+  1979-Pre_ExtWall_Metal_ClimateZone 1-2,  !- Name
+  Metal Siding,             !- Outside Layer
+  Metal Building Semi-Cond Wall Insulation-0.57,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  2004_ExtWall_Mass_ClimateZone_alt-res 4,  !- Name
+  1IN Stucco,               !- Outside Layer
+  8IN CONCRETE HW_RefBldg,  !- Layer 2
+  Mass NonRes Wall Insulation-1.69,  !- Layer 3
+  1/2IN Gypsum;             !- Layer 4
+
+Construction,
+  1979-Pre_ExtRoof_IEAD_ClimateZone 1-3,  !- Name
+  Roof Membrane,            !- Outside Layer
+  IEAD NonRes Roof Insulation-1.76,  !- Layer 2
+  Metal Decking;            !- Layer 3
+
+Construction,
+  1980-Post_ExtRoof_Metal_ClimateZone 3b_LAX,  !- Name
+  Metal Roofing,            !- Outside Layer
+  Metal Semi-Cond Roof Insulation-1.76;  !- Layer 2
+
+Construction,
+  2004_ExtWall_Mass_ClimateZone 1-2,  !- Name
+  1IN Stucco,               !- Outside Layer
+  8IN CONCRETE HW_RefBldg,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  2009-LowEnergyCase_ExtWall_Mass_ClimateZone 5,  !- Name
+  1IN Stucco,               !- Outside Layer
+  8IN Concrete HW,          !- Layer 2
+  Wall Insulation [40],     !- Layer 3
+  1/2IN Gypsum;             !- Layer 4
+
+Construction,
+  1980-Post_ExtWall_Mass_ClimateZone 8,  !- Name
+  1IN Stucco,               !- Outside Layer
+  8IN CONCRETE HW_RefBldg,  !- Layer 2
+  Mass NonRes Wall Insulation-3.75,  !- Layer 3
+  1/2IN Gypsum;             !- Layer 4
+
+Construction,
+  1980-Post_ExtWall_SteelFrame_ClimateZone 3c,  !- Name
+  Wood Siding,              !- Outside Layer
+  Steel Frame NonRes Wall Insulation-1.36,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  1979-Pre_ExtWall_Metal_ClimateZone 7,  !- Name
+  Metal Siding,             !- Outside Layer
+  Metal Building Semi-Cond Wall Insulation-1.10,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+!-   ===========  ALL OBJECTS IN CLASS: CONSTRUCTION ===========
+Construction,
+  2009-LowEnergyCase_ExtWall_WoodFrame_ClimateZone 1-4,  !- Name
+  Wood Siding,              !- Outside Layer
+  Wall Insulation [34],     !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  2004_ExtWindow_ClimateZone 3a-3b,  !- Name
+  Fixed Window 3.24/0.25/0.16;  !- Outside Layer
+
+Construction,
+  2009-LowEnergyCase_ExtWall_Metal_ClimateZone 4-8,  !- Name
+  Metal Siding,             !- Outside Layer
+  Wall Insulation [38],     !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  1980-Post_ExtWall_Metal_ClimateZone 3a,  !- Name
+  Metal Siding,             !- Outside Layer
+  Metal Building Semi-Cond Wall Insulation-1.16,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  1980-Post_ExtWall_WoodFrame_ClimateZone 2a,  !- Name
+  Wood Siding,              !- Outside Layer
+  Wood Frame NonRes Wall Insulation-1.17,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  2004_ExtWindow_ClimateZone_alt-res 8,  !- Name
+  Fixed Window 2.67/0.30/0.21;  !- Outside Layer
+
+Construction,
+  1979-Pre_ExtWall_SteelFrame_ClimateZone 4b,  !- Name
+  Wood Siding,              !- Outside Layer
+  Steel Frame NonRes Wall Insulation-0.96,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  1980-Post_ExtWall_Mass_ClimateZone 5b,  !- Name
+  1IN Stucco,               !- Outside Layer
+  8IN CONCRETE HW_RefBldg,  !- Layer 2
+  Mass NonRes Wall Insulation-1.26,  !- Layer 3
+  1/2IN Gypsum;             !- Layer 4
+
+Construction,
+  1980-Post_ExtWindow_ClimateZone 5,  !- Name
+  WindowMaterial:SimpleGlazingSystem 13;  !- Outside Layer
+
+Construction,
+  2004_ExtRoof_Metal_ClimateZone 8,  !- Name
+  Metal Roofing,            !- Outside Layer
+  Metal Semi-Cond Roof Insulation-2.50;  !- Layer 2
+
+Construction,
+  000_Exterior Window,      !- Name
+  000_Clear 3mm,            !- Outside Layer
+  000_Air 13mm,             !- Layer 2
+  000_Clear 3mm;            !- Layer 3
+
+Construction,
+  2009-LowEnergyCase_ExtWall_Mass_ClimateZone_alt-res 5,  !- Name
+  1IN Stucco,               !- Outside Layer
+  8IN Concrete HW,          !- Layer 2
+  Wall Insulation [42],     !- Layer 3
+  1/2IN Gypsum;             !- Layer 4
+
+Construction,
+  1980-Post_ExtWall_WoodFrame_ClimateZone 6a,  !- Name
+  Wood Siding,              !- Outside Layer
+  Wood Frame NonRes Wall Insulation-2.71,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  2009-LowEnergyCase_ExtWindow_ClimateZone 3,  !- Name
+  Theoretical Glass [202];  !- Outside Layer
+
+Construction,
+  2004_ExtRoof_Metal_ClimateZone 2,  !- Name
+  Metal Roofing,            !- Outside Layer
+  Metal Semi-Cond Roof Insulation-1.05;  !- Layer 2
+
+Construction,
+  1979-Pre_ExtWall_Metal_ClimateZone 3a,  !- Name
+  Metal Siding,             !- Outside Layer
+  Metal Building Semi-Cond Wall Insulation-0.59,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  1980-Post_ExtWall_WoodFrame_ClimateZone 3b_LAX,  !- Name
+  Wood Siding,              !- Outside Layer
+  Wood Frame NonRes Wall Insulation-0.80,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  2009-LowEnergyCase_ExtWall_Mass_ClimateZone_alt-res 7,  !- Name
+  1IN Stucco,               !- Outside Layer
+  8IN Concrete HW,          !- Layer 2
+  Wall Insulation [44],     !- Layer 3
+  1/2IN Gypsum;             !- Layer 4
+
+Construction,
+  1980-Post_ExtRoof_AtticFloor_ClimateZone 3a,  !- Name
+  1/2IN Gypsum,             !- Outside Layer
+  AtticFloor NonRes Insulation-2.45,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  2004_ExtRoof_Metal_ClimateZone 5-6,  !- Name
+  Metal Roofing,            !- Outside Layer
+  Metal Semi-Cond Roof Insulation-1.87;  !- Layer 2
+
+Construction,
+  000_Exterior Door,        !- Name
+  000_F08 Metal surface,    !- Outside Layer
+  000_I01 25mm insulation board;  !- Layer 2
+
+Construction,
+  2004_ExtWall_Metal_ClimateZone 1,  !- Name
+  Metal Siding,             !- Outside Layer
+  1/2IN Gypsum;             !- Layer 2
+
+Construction,
+  1979-Pre_ExtRoof_AtticFloor_ClimateZone 4c,  !- Name
+  1/2IN Gypsum,             !- Outside Layer
+  IEAD NonRes Roof Insulation-2.07,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  1980-Post_ExtRoof_Metal_ClimateZone 3c,  !- Name
+  Metal Roofing,            !- Outside Layer
+  Metal Semi-Cond Roof Insulation-2.00;  !- Layer 2
+
+Construction,
+  2009-LowEnergyCase_ExtWall_Mass_ClimateZone 6,  !- Name
+  1IN Stucco,               !- Outside Layer
+  8IN Concrete HW,          !- Layer 2
+  Wall Insulation [42],     !- Layer 3
+  1/2IN Gypsum;             !- Layer 4
+
+Construction,
+  000_ExtSlab_8in_ClimateZone 1-8,  !- Name
+  MAT-CC05 8 HW CONCRETE;   !- Outside Layer
+
+Construction,
+  1979-Pre_ExtWindow_ClimateZone 5-8,  !- Name
+  WindowMaterial:SimpleGlazingSystem 6;  !- Outside Layer
+
+Construction,
+  1979-Pre_ExtWall_Mass_ClimateZone 7,  !- Name
+  1IN Stucco,               !- Outside Layer
+  8IN CONCRETE HW_RefBldg,  !- Layer 2
+  Mass NonRes Wall Insulation-1.30,  !- Layer 3
+  1/2IN Gypsum;             !- Layer 4
+
+Construction,
+  1979-Pre_ExtWall_Mass_ClimateZone 6,  !- Name
+  1IN Stucco,               !- Outside Layer
+  8IN CONCRETE HW_RefBldg,  !- Layer 2
+  Mass NonRes Wall Insulation-1.22,  !- Layer 3
+  1/2IN Gypsum;             !- Layer 4
+
+Construction,
+  1980-Post_ExtWall_Mass_ClimateZone 3b_LAX,  !- Name
+  1IN Stucco,               !- Outside Layer
+  8IN CONCRETE HW_RefBldg,  !- Layer 2
+  Mass NonRes Wall Insulation-0.61,  !- Layer 3
+  1/2IN Gypsum;             !- Layer 4
+
+Construction,
+  1980-Post_ExtRoof_IEAD_ClimateZone 8,  !- Name
+  Roof Membrane,            !- Outside Layer
+  IEAD NonRes Roof Insulation-5.75,  !- Layer 2
+  Metal Decking;            !- Layer 3
+
+Construction,
+  2004_ExtWindow_ClimateZone 3c,  !- Name
+  WindowMaterial:SimpleGlazingSystem 16;  !- Outside Layer
+
+Construction,
+  1979-Pre_ExtWall_SteelFrame_ClimateZone 5b,  !- Name
+  Wood Siding,              !- Outside Layer
+  Steel Frame NonRes Wall Insulation-1.09,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  1980-Post_ExtRoof_Metal_ClimateZone 4c,  !- Name
+  Metal Roofing,            !- Outside Layer
+  Metal Semi-Cond Roof Insulation-2.75;  !- Layer 2
+
+Construction,
+  1979-Pre_ExtRoof_IEAD_ClimateZone 6,  !- Name
+  Roof Membrane,            !- Outside Layer
+  IEAD NonRes Roof Insulation-2.99,  !- Layer 2
+  Metal Decking;            !- Layer 3
+
+Construction,
+  2004_ExtWindow_ClimateZone 1-2,  !- Name
+  WindowMaterial:SimpleGlazingSystem 1;  !- Outside Layer
+
+Construction,
+  1980-Post_ExtRoof_AtticFloor_ClimateZone 8,  !- Name
+  1/2IN Gypsum,             !- Outside Layer
+  AtticFloor NonRes Insulation-5.68,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  1980-Post_ExtRoof_AtticFloor_ClimateZone 6a,  !- Name
+  1/2IN Gypsum,             !- Outside Layer
+  AtticFloor NonRes Insulation-3.91,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+Construction,
+  2004_ExtWindow_ClimateZone_alt-ware 1-8,  !- Name
+  Fixed Window 5.84/0.70/0.60;  !- Outside Layer
+
+Construction,
+  2009-LowEnergyCase_ExtWall_Mass_ClimateZone_alt-res 6,  !- Name
+  1IN Stucco,               !- Outside Layer
+  8IN Concrete HW,          !- Layer 2
+  Wall Insulation [44],     !- Layer 3
+  1/2IN Gypsum;             !- Layer 4
+
+Construction,
+  1980-Post_ExtWall_Mass_ClimateZone 4b,  !- Name
+  1IN Stucco,               !- Outside Layer
+  8IN CONCRETE HW_RefBldg,  !- Layer 2
+  Mass NonRes Wall Insulation-0.93,  !- Layer 3
+  1/2IN Gypsum;             !- Layer 4
+
+Construction,
+  1980-Post_ExtWall_Mass_ClimateZone 3c,  !- Name
+  1IN Stucco,               !- Outside Layer
+  8IN CONCRETE HW_RefBldg,  !- Layer 2
+  1/2IN Gypsum;             !- Layer 3
+
+GlobalGeometryRules,
+  UpperLeftCorner,          !- Starting Vertex Position
+  CounterClockWise,         !- Vertex Entry Direction
+  Relative;                 !- Coordinate System
+
+Zone,
+  Zone 1,                   ! Name
+  -0,
+  0,
+  0,
+  0;
+
+Zone,
+  Zone 2,                   ! Name
+  -0,
+  0,
+  0,
+  2.7000000000000002;
+
+BuildingSurface:Detailed,
+  BuildingSurface:Detailed 2,  ! Name
+  Wall,                     ! Surface Type
+  000_Exterior Wall,        ! Construction Name
+  Zone 1,                   ! Zone Name
+  Outdoors,                 ! Outside Boundary Condition
+  ,                         ! Outside Boundary Condition Object
+  SunExposed,               ! Sun Exposure
+  WindExposed,              ! Wind Exposure
+  autocalculate,            ! View Factor to Ground
+  autocalculate,            ! Number of Vertices
+  8,
+  6,
+  2.7000000000000002,
+  8,
+  6,
+  0,
+  0,
+  6,
+  0,
+  0,
+  6,
+  2.7000000000000002;
+
+BuildingSurface:Detailed,
+  BuildingSurface:Detailed 5,  ! Name
+  Wall,                     ! Surface Type
+  000_Exterior Wall,        ! Construction Name
+  Zone 1,                   ! Zone Name
+  Outdoors,                 ! Outside Boundary Condition
+  ,                         ! Outside Boundary Condition Object
+  SunExposed,               ! Sun Exposure
+  WindExposed,              ! Wind Exposure
+  autocalculate,            ! View Factor to Ground
+  autocalculate,            ! Number of Vertices
+  0,
+  0,
+  2.7000000000000002,
+  0,
+  0,
+  0,
+  8,
+  0,
+  0,
+  8,
+  0,
+  2.7000000000000002;
+
+BuildingSurface:Detailed,
+  BuildingSurface:Detailed 1,  ! Name
+  Floor,                    ! Surface Type
+  000_Exterior Floor,       ! Construction Name
+  Zone 1,                   ! Zone Name
+  Ground,                   ! Outside Boundary Condition
+  ,                         ! Outside Boundary Condition Object
+  NoSun,                    ! Sun Exposure
+  NoWind,                   ! Wind Exposure
+  autocalculate,            ! View Factor to Ground
+  autocalculate,            ! Number of Vertices
+  8,
+  6,
+  0,
+  8,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  6,
+  0;
+
+BuildingSurface:Detailed,
+  BuildingSurface:Detailed 4,  ! Name
+  Wall,                     ! Surface Type
+  000_Exterior Wall,        ! Construction Name
+  Zone 1,                   ! Zone Name
+  Outdoors,                 ! Outside Boundary Condition
+  ,                         ! Outside Boundary Condition Object
+  SunExposed,               ! Sun Exposure
+  WindExposed,              ! Wind Exposure
+  autocalculate,            ! View Factor to Ground
+  autocalculate,            ! Number of Vertices
+  8,
+  0,
+  2.7000000000000002,
+  8,
+  0,
+  0,
+  8,
+  6,
+  0,
+  8,
+  6,
+  2.7000000000000002;
+
+BuildingSurface:Detailed,
+  BuildingSurface:Detailed 3,  ! Name
+  Wall,                     ! Surface Type
+  000_Exterior Wall,        ! Construction Name
+  Zone 1,                   ! Zone Name
+  Outdoors,                 ! Outside Boundary Condition
+  ,                         ! Outside Boundary Condition Object
+  SunExposed,               ! Sun Exposure
+  WindExposed,              ! Wind Exposure
+  autocalculate,            ! View Factor to Ground
+  autocalculate,            ! Number of Vertices
+  0,
+  6,
+  2.7000000000000002,
+  0,
+  6,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  2.7000000000000002;
+
+BuildingSurface:Detailed,
+  BuildingSurface:Detailed 12,  ! Name
+  Wall,                     ! Surface Type
+  000_Exterior Wall,        ! Construction Name
+  Zone 2,                   ! Zone Name
+  Outdoors,                 ! Outside Boundary Condition
+  ,                         ! Outside Boundary Condition Object
+  SunExposed,               ! Sun Exposure
+  WindExposed,              ! Wind Exposure
+  autocalculate,            ! View Factor to Ground
+  autocalculate,            ! Number of Vertices
+  0,
+  0,
+  2.7000000000000002,
+  0,
+  0,
+  0,
+  8,
+  0,
+  0,
+  8,
+  0,
+  2.7000000000000002;
+
+BuildingSurface:Detailed,
+  BuildingSurface:Detailed 8,  ! Name
+  Roof,                     ! Surface Type
+  000_Exterior Roof,        ! Construction Name
+  Zone 2,                   ! Zone Name
+  Outdoors,                 ! Outside Boundary Condition
+  ,                         ! Outside Boundary Condition Object
+  SunExposed,               ! Sun Exposure
+  WindExposed,              ! Wind Exposure
+  autocalculate,            ! View Factor to Ground
+  autocalculate,            ! Number of Vertices
+  8,
+  0,
+  2.7000000000000002,
+  8,
+  6,
+  2.7000000000000002,
+  0,
+  6,
+  2.7000000000000002,
+  0,
+  0,
+  2.7000000000000002;
+
+BuildingSurface:Detailed,
+  BuildingSurface:Detailed 10,  ! Name
+  Wall,                     ! Surface Type
+  000_Exterior Wall,        ! Construction Name
+  Zone 2,                   ! Zone Name
+  Outdoors,                 ! Outside Boundary Condition
+  ,                         ! Outside Boundary Condition Object
+  SunExposed,               ! Sun Exposure
+  WindExposed,              ! Wind Exposure
+  autocalculate,            ! View Factor to Ground
+  autocalculate,            ! Number of Vertices
+  0,
+  6,
+  2.7000000000000002,
+  0,
+  6,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  2.7000000000000002;
+
+BuildingSurface:Detailed,
+  BuildingSurface:Detailed 9,  ! Name
+  Wall,                     ! Surface Type
+  000_Exterior Wall,        ! Construction Name
+  Zone 2,                   ! Zone Name
+  Outdoors,                 ! Outside Boundary Condition
+  ,                         ! Outside Boundary Condition Object
+  SunExposed,               ! Sun Exposure
+  WindExposed,              ! Wind Exposure
+  autocalculate,            ! View Factor to Ground
+  autocalculate,            ! Number of Vertices
+  8,
+  0,
+  2.7000000000000002,
+  8,
+  0,
+  0,
+  8,
+  6,
+  0,
+  8,
+  6,
+  2.7000000000000002;
+
+BuildingSurface:Detailed,
+  BuildingSurface:Detailed 7,  ! Name
+  Floor,                    ! Surface Type
+  000_Exterior Floor,       ! Construction Name
+  Zone 2,                   ! Zone Name
+  Ground,                   ! Outside Boundary Condition
+  ,                         ! Outside Boundary Condition Object
+  NoSun,                    ! Sun Exposure
+  NoWind,                   ! Wind Exposure
+  autocalculate,            ! View Factor to Ground
+  autocalculate,            ! Number of Vertices
+  8,
+  6,
+  0,
+  8,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  6,
+  0;
+
+BuildingSurface:Detailed,
+  BuildingSurface:Detailed 11,  ! Name
+  Wall,                     ! Surface Type
+  000_Exterior Wall,        ! Construction Name
+  Zone 2,                   ! Zone Name
+  Outdoors,                 ! Outside Boundary Condition
+  ,                         ! Outside Boundary Condition Object
+  SunExposed,               ! Sun Exposure
+  WindExposed,              ! Wind Exposure
+  autocalculate,            ! View Factor to Ground
+  autocalculate,            ! Number of Vertices
+  8,
+  6,
+  2.7000000000000002,
+  8,
+  6,
+  0,
+  0,
+  6,
+  0,
+  0,
+  6,
+  2.7000000000000002;
+
+BuildingSurface:Detailed,
+  BuildingSurface:Detailed 6,  ! Name
+  Roof,                     ! Surface Type
+  000_Exterior Roof,        ! Construction Name
+  Zone 1,                   ! Zone Name
+  Outdoors,                 ! Outside Boundary Condition
+  ,                         ! Outside Boundary Condition Object
+  SunExposed,               ! Sun Exposure
+  WindExposed,              ! Wind Exposure
+  autocalculate,            ! View Factor to Ground
+  autocalculate,            ! Number of Vertices
+  8,
+  0,
+  2.7000000000000002,
+  8,
+  6,
+  2.7000000000000002,
+  0,
+  6,
+  2.7000000000000002,
+  0,
+  0,
+  2.7000000000000002;
+
+FenestrationSurface:Detailed,
+  FenestrationSurface:Detailed 2,  ! Name
+  Window,                   ! Surface Type
+  000_Exterior Window,      ! Construction Name
+  BuildingSurface:Detailed 12,  ! Building Surface Name
+  ,                         ! Outside Boundary Condition Object
+  autocalculate,            ! View Factor to Ground
+  ,                         ! Shading Control Name
+  ,                         ! Frame and Divider Name
+  1.0,                      ! Multiplier
+  autocalculate,            ! Number of Vertices
+  1,
+  0,
+  2.5,
+  1,
+  0,
+  0.5,
+  6.9999999999999991,
+  0,
+  0.5,
+  6.9999999999999991,
+  0,
+  2.5;
+
+FenestrationSurface:Detailed,
+  FenestrationSurface:Detailed 1,  ! Name
+  Window,                   ! Surface Type
+  000_Exterior Window,      ! Construction Name
+  BuildingSurface:Detailed 5,  ! Building Surface Name
+  ,                         ! Outside Boundary Condition Object
+  autocalculate,            ! View Factor to Ground
+  ,                         ! Shading Control Name
+  ,                         ! Frame and Divider Name
+  1.0,                      ! Multiplier
+  autocalculate,            ! Number of Vertices
+  1,
+  0,
+  2.5,
+  1,
+  0,
+  0.5,
+  6.9999999999999991,
+  0,
+  0.5,
+  6.9999999999999991,
+  0,
+  2.5;
+
+Shading:Building:Detailed,
+  OS:Shading:Detailed 1,    ! Name
+  ,                         ! Transmittance Schedule Name
+  autocalculate,            ! Number of Vertices
+  7.9999999999999982,
+  -2,
+  5.4000000000000004,
+  7.9999999999999982,
+  0,
+  5.4000000000000004,
+  0,
+  0,
+  5.4000000000000004,
+  0,
+  -2,
+  5.4000000000000004;
+
+HVACTemplate:Thermostat,
+  MediumOffice Thermostat,  ! Name
+  Medium Office_HTGSETP_SCH,  ! Heating Setpoint Schedule Name
+  ,                         ! Constant Heating Setpoint
+  Medium Office_CLGSETP_SCH,  ! Cooling Setpoint Schedule Name
+  ;                         ! Constant Cooling Setpoint
+
+Output:VariableDictionary,
+  IDF;
+
+Output:Table:SummaryReports,
+  AllSummaryAndMonthly;     !- Report Name
+
+OutputControl:Table:Style,
+  HTML;                     !- Column Separator
+
+Output:Variable,
+  *,
+  Zone/Sys Sensible Heating Rate,
+  hourly;                   !- HVAC Average [W]
+
+Output:Variable,
+  *,
+  Daylight Illum at Ref Point 1,
+  hourly;                   !- Zone Average [lux]
+
+Output:Variable,
+  *,
+  Surface Outside Temperature,
+  Hourly;
+
+Output:Variable,
+  *,
+  Zone Mean Radiant Temperature,
+  hourly;                   !- Zone Average [C]
+
+Output:Variable,
+  *,
+  Glare Index at Ref Point 1,
+  hourly;                   !- Zone Average []
+
+Output:Variable,
+  *,
+  Surface Ext Solar Incident,
+  hourly;                   !- Zone Average [W/m2]
+
+Output:Variable,
+  *,
+  Glare Index at Ref Point 2,
+  hourly;                   !- Zone Average []
+
+Output:Variable,
+  *,
+  Daylight Illum at Ref Point 2,
+  hourly;                   !- Zone Average [lux]
+
+Output:Variable,
+  *,
+  Zone Mean Air Temperature,
+  hourly;                   !- Zone Average [C]
+
+Output:Variable,
+  *,
+  Zone/Sys Sensible Cooling Rate,
+  hourly;                   !- HVAC Average [W]
+
+Output:Variable,
+  *,
+  Surface Inside Temperature,
+  Hourly;
+
+Output:Meter,
+  BldgHeating,              ! Name
+  Hourly;
+
+Output:Meter,
+  BldgCooling,              ! Name
+  Hourly;
+
+Meter:Custom,
+  BldgCooling,              ! Name
+  Generic,                  ! Fuel Type
+  *,
+  Ideal Loads Air Total Cooling Energy;
+
+Meter:Custom,
+  BldgHeating,              ! Name
+  Generic,                  ! Fuel Type
+  *,
+  Ideal Loads Air Heating Energy;
+
+Output:SQLite,
+  SimpleAndTabular;         !- Option Type
+

@@ -1,0 +1,14 @@
+pypm install PACKAGE_NAME
+
+Numpy lapack?lite bug, solved, use the -g option to install
+http://bugs.activestate.com/show_bug.cgi?id=89474
+
+LXML
+Doesn't work:
+	easy_install lxml==2.2
+	easy_install --allow-hosts=lxml.de,*.python.org lxml==2.2.2
+Download the binary manually! Stored copy in D: Drive
+
+
+DJANGO
+easy_install django

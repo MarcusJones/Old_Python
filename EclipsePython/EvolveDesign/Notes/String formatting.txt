@@ -1,0 +1,12 @@
+>>> "Name: {0}, age: {1}".format('John', 35) 
+'Name: John, age: 35' 
+>>> i = 45 
+>>> 'dec: {0}/oct: {0:#o}/hex: {0:#X}'.format(i) 
+'dec: 45/oct: 0o55/hex: 0X2D' 
+>>> "MM/DD/YY = {0:02d}/{1:02d}/{2:02d}".format(12, 7, 41) 
+'MM/DD/YY = 12/07/41' 
+>>> 'Total with tax: ${0:.2f}'.format(13.00 * 1.0825) 
+'Total with tax: $14.07' 
+>>> d = {'web': 'user', 'page': 42} 
+>>> 'http://xxx.yyy.zzz/{web}/{page}.html'.format(**d) 
+'http://xxx.yyy.zzz/user/42.html'

@@ -1,0 +1,15 @@
+BuildingSurface:Detailed,
+  OS:Surface 3,             ! Name
+  Wall,                     ! Surface Type
+  ASHRAE_189.1-2009_ExtWall_SteelFrame_ClimateZone 4-8,  ! Construction Name
+  OS:ThermalZone 2,         ! Zone Name
+  Outdoors,                 ! Outside Boundary Condition
+  ,                         ! Outside Boundary Condition Object
+  SunExposed,               ! Sun Exposure
+  WindExposed,              ! Wind Exposure
+  ,                         ! View Factor to Ground
+  ,                         ! Number of Vertices
+  7.5054,7.5054,3,          ! X,Y,Z Vertex 1 {m}
+  7.5054,7.5054,0,          ! X,Y,Z Vertex 2 {m}
+  0,7.5054,0,               ! X,Y,Z Vertex 3 {m}
+  0,7.5054,3;               ! X,Y,Z Vertex 4 {m}

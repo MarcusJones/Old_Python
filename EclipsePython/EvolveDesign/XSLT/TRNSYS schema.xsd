@@ -1,0 +1,76 @@
+      def surround(tag_name, data):
+      return "<%(tag)s>%(data)s</%(tag)s>" % {'tag': tag_name, 'data': data}
+      print surround("hobby", "swimming") # prints "<hobby>swimming</hobby>"
+
+http://www.ida.liu.se/~adrpo/modelica/ModelicaXML-Presentation-2003-11-04.pdf
+http://www.ida.liu.se/~adrpo/modelica/xml/
+??Store the structure of the Modelica codeusing analternative representation
+??Perform the tasks on this alternative representation
+??The alternative representation should
+??be easy accessible from any programming language
+??be easy to transform, query and manipulate
+??support validation
+??XML has all these properties
+?? Use regexp's to ID the elements
+
+Element, A constant [text+]=[number], with constant flag
+Element, [TOLERANCES]
+CONSTANTS
+SIMULATION
+TOLERANCES
+LIMITS
+DFQ 
+WIDTH
+LIST 	
+SOLVER
+NAN_CHECK
+OVERWRITE_CHECK 
+TIME_REPORT
+EQSOLVER 
+
+<xs:schema 
+	xmlns:xs='http://www.w3.org/2001/XMLSchema'>
+	
+	<xs:complexType name="CONSTANT">
+		<xs:attribute name="Id" type="xs:integer" use="required" />
+	</xs:complexType>
+	
+	<xs:complexType name="SIMULATION">
+		<xs:attribute name="Start time" type="xs:integer" use="required" />
+		<xs:attribute name="End time" type="xs:integer" use="required" />
+		<xs:attribute name="Time step" type="xs:integer" use="required" />
+	</xs:complexType>
+	
+	<xs:complexType name="TOLERANCES">
+		<xs:attribute name="Integration" type="xs:integer" use="required" />
+		<xs:attribute name="Convergence" type="xs:integer" use="required" />
+	</xs:complexType>	
+	
+	<xs:complexType name="LIMITS">
+		<xs:attribute name="Max iterations" type="xs:integer" use="required" />
+		<xs:attribute name="Max warnings" type="xs:integer" use="required" />
+		<xs:attribute name="Trace limit" type="xs:integer" use="required" />
+	</xs:complexType>
+	
+	<xs:complexType name="DFQ">
+		<xs:attribute name="TRNSYS numerical integration solver method" type="xs:integer" use="required" />
+	</xs:complexType>
+	
+	<xs:complexType name="WIDTH">
+		<xs:attribute name="Id" type="xs:integer" use="required" />
+	</xs:complexType>
+	
+	<xs:complexType name="UNIT">
+		<xs:sequence>
+		  <xs:element name="PARAMETER" type="xs:string"/>
+		  <xs:complexType name="INPUT" type="xs:string"/>
+				<xs:element name="FROM UNIT" type="xs:integer"/>
+				<xs:element name="INTO INPUT" type="xs:integer"/>
+		  <xs:element name="INITIAL VALUES" type="xs:string"/>
+		  <xs:element name="ASSIGN" type="xs:string"/>
+		</xs:sequence>		
+		<xs:attribute name="TYPE" type="xs:integer" use="required" />
+		<xs:attribute name="Name" type="xs:string" use="required" />
+	</xs:complexType>
+	
+</xs:schema>

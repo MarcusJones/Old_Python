@@ -1,0 +1,52 @@
+Manifest-Version: 1.0
+
+Name: ttp$doit$edge.class
+Digest-Algorithms: SHA MD5 
+SHA-Digest: bbZqJghsUVn23dCVQxjXo03RgGU=
+MD5-Digest: skaJ6An9XmsPO7n94SBZJw==
+
+Name: AppletFrame.class
+Digest-Algorithms: SHA MD5 
+SHA-Digest: tkluUqbjABhP0k97oSU3Nd4olbI=
+MD5-Digest: Ad2l6CrWB8JKXxeYH74l9w==
+
+Name: ttp$doit$node.class
+Digest-Algorithms: SHA MD5 
+SHA-Digest: bYoOb84rAIh8RgH9cZHx2FtEXmk=
+MD5-Digest: Xr6KS1ySBTWHsCsAPqn6pg==
+
+Name: ttp.class
+Digest-Algorithms: SHA MD5 
+SHA-Digest: 3LtcRYnYiowd7/dmSOz2c3cBDng=
+MD5-Digest: OEnm0wTFLOGuy2CbujErhQ==
+
+Name: bheap.class
+Digest-Algorithms: SHA MD5 
+SHA-Digest: hyda/ILylfb+wy4xSrUd2kIk1Ac=
+MD5-Digest: ovRB0E+YLN0OVe9WZ36Naw==
+
+Name: ttp$doit.class
+Digest-Algorithms: SHA MD5 
+SHA-Digest: YBw8vkNKGWGv7CcB4bEaJCCNWGc=
+MD5-Digest: 3rY3Z0hbmsI/sl2cTKKpHg==
+
+Name: ttp$SymAction.class
+Digest-Algorithms: SHA MD5 
+SHA-Digest: brzRfWfihrYjLKL0T2sSAP+LruU=
+MD5-Digest: birOA5ru6czBE07T62nzmg==
+
+Name: ttp$SymItem.class
+Digest-Algorithms: SHA MD5 
+SHA-Digest: HbGXfE3FMcq4g1JZrJUBdR8AKpU=
+MD5-Digest: as8LTeuc8wl78b20hcZGFA==
+
+Name: ttp$doit$trip.class
+Digest-Algorithms: SHA MD5 
+SHA-Digest: ihPMwivxXlLntl0E+48gT/SvyL8=
+MD5-Digest: 1J07+jr76cnlomdZvjvkvQ==
+
+Name: bheap$bheapx.class
+Digest-Algorithms: SHA MD5 
+SHA-Digest: LSh/pCy6rQ+HDy6Mt29eQvYVqH8=
+MD5-Digest: K5Bea0FxIxGQ5VAIN3bE0g==
+

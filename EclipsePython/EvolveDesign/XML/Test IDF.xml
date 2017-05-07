@@ -1,0 +1,188 @@
+<EnergyPlus_XML XML_version="0.1">
+  <!--XML Schema for EnergyPlus version 6 'IDF' files and OpenStudio version 0.3.0 'OSM' files-->
+  <!--Schema created April. 2011 by Marcus Jones-->
+  <OBJECT>
+    <NAME>SimulationControl</NAME>
+    <ATTR Comment="- Do Zone Sizing Calculation">No</ATTR>
+    <ATTR Comment="- Do System Sizing Calculation">No</ATTR>
+    <ATTR Comment="- Do Plant Sizing Calculation">No</ATTR>
+    <ATTR Comment="- Run Simulation for Sizing Periods">Yes</ATTR>
+    <ATTR Comment="- Run Simulation for Weather File Run Periods">Yes</ATTR>
+  </OBJECT>
+  <OBJECT>
+    <NAME>Building</NAME>
+    <ATTR Comment="- Name">Untitled</ATTR>
+    <ATTR Comment="- North Axis {deg}">-0</ATTR>
+    <ATTR Comment="- Terrain">CITY</ATTR>
+    <ATTR Comment="- Loads Convergence Tolerance Value">0.040000000000000001</ATTR>
+    <ATTR Comment="- Temperature Convergence Tolerance Value {deltaC}">0.40000000000000002</ATTR>
+    <ATTR Comment="- Solar Distribution">FULLINTERIORANDEXTERIOR</ATTR>
+    <ATTR Comment="- Maximum Number of Warmup Days">25</ATTR>
+  </OBJECT>
+  <OBJECT>
+    <NAME>Timestep</NAME>
+    <ATTR Comment="">4</ATTR>
+  </OBJECT>
+  <OBJECT>
+    <NAME>Site:Location</NAME>
+    <ATTR Comment="Name">SINGAPORE- -- SGP</ATTR>
+    <ATTR Comment="Latitude">1.3700000000000001</ATTR>
+    <ATTR Comment="Longitude">103.98</ATTR>
+    <ATTR Comment="Time Zone">8</ATTR>
+    <ATTR Comment="Elevation">16</ATTR>
+  </OBJECT>
+  <OBJECT>
+    <NAME>RunPeriod</NAME>
+    <ATTR Comment="Name"></ATTR>
+    <ATTR Comment="Begin Month">1</ATTR>
+    <ATTR Comment="Begin Day of Month">1</ATTR>
+    <ATTR Comment="End Month">1</ATTR>
+    <ATTR Comment="End Day of Month">2</ATTR>
+    <ATTR Comment="Day of Week for Start Day">USEWEATHERFILE</ATTR>
+    <ATTR Comment="Use Weather File Holidays and Special Days">Yes</ATTR>
+    <ATTR Comment="Use Weather File Daylight Saving Period">Yes</ATTR>
+    <ATTR Comment="Apply Weekend Holiday Rule">No</ATTR>
+    <ATTR Comment="Use Weather File Rain Indicators">Yes</ATTR>
+    <ATTR Comment="Use Weather File Snow Indicators">Yes</ATTR>
+  </OBJECT>
+  <OBJECT>
+    <NAME>OS:Version</NAME>
+    <ATTR Comment="">0.2</ATTR>
+  </OBJECT>
+  <OBJECT>
+    <NAME>OS:WeatherFile</NAME>
+    <ATTR Comment="City">SINGAPORE</ATTR>
+    <ATTR Comment="State Province Region">-</ATTR>
+    <ATTR Comment="Country">SGP</ATTR>
+    <ATTR Comment="Data Source">IWEC Data</ATTR>
+    <ATTR Comment="WMO Number">486980</ATTR>
+    <ATTR Comment="Latitude">1.3700000000000001</ATTR>
+    <ATTR Comment="Longitude">103.98</ATTR>
+    <ATTR Comment="Time Zone">8</ATTR>
+    <ATTR Comment="">16</ATTR>
+    <ATTR Comment="">C:/Freelance/042_TheSurin/WEA/SGP_Singapore.486980_IWEC.epw</ATTR>
+    <ATTR Comment="">C69A8DF4</ATTR>
+  </OBJECT>
+  <OBJECT>
+    <NAME>OS:DefaultConstructionSet</NAME>
+    <ATTR Comment="- Name">Default Constructions</ATTR>
+  </OBJECT>
+  <OBJECT>
+    <NAME>OS:ConstructionSet</NAME>
+    <ATTR Comment="- Name">Default Constructions</ATTR>
+    <ATTR Comment="- Exterior Floor">Exterior Floor</ATTR>
+    <ATTR Comment="- Exterior Wall">Exterior Wall</ATTR>
+    <ATTR Comment="- Exterior Roof">Exterior Roof</ATTR>
+    <ATTR Comment="- Exterior Window">Exterior Window</ATTR>
+    <ATTR Comment="- Exterior Door">Exterior Door</ATTR>
+    <ATTR Comment="- Interior Floor">Interior Floor</ATTR>
+    <ATTR Comment="- Interior Wall">Interior Wall</ATTR>
+    <ATTR Comment="- Interior Ceiling">Interior Ceiling</ATTR>
+    <ATTR Comment="- Interior Partition">Interior Partition</ATTR>
+    <ATTR Comment="- Interior Window">Interior Window</ATTR>
+    <ATTR Comment="- Interior Door">Interior Door</ATTR>
+    <ATTR Comment="- Glass Door">Exterior Window</ATTR>
+    <ATTR Comment="- Skylight">Exterior Window</ATTR>
+    <ATTR Comment="- Tubular Daylight Dome">Interior Window</ATTR>
+    <ATTR Comment="- Tubular Daylight Diffuser">Interior Window</ATTR>
+  </OBJECT>
+  <OBJECT>
+    <NAME>OS:ZoneLoads</NAME>
+    <ATTR Comment="- Name">Office Zone Loads</ATTR>
+    <ATTR Comment="- People per Zone Floor Area">0.05382</ATTR>
+    <ATTR Comment="- Number of People Schedule Name">Office Occupancy Schedule</ATTR>
+    <ATTR Comment="- People Activity Level Schedule Name">Office Activity Schedule</ATTR>
+    <ATTR Comment="- Lighting Watts per Zone Floor Area">10.7639</ATTR>
+    <ATTR Comment="- Lighting Schedule Name">Office Lights Schedule</ATTR>
+    <ATTR Comment="- Electric Equipment Watts per Zone Floor Area">10.7639</ATTR>
+    <ATTR Comment="- Electric Equipment Schedule Name">Office Equipment Schedule</ATTR>
+    <ATTR Comment="- Gas Equipment Watts per Zone Floor Area">0</ATTR>
+    <ATTR Comment="- Gas Equipment Schedule Name">Office Equipment Schedule</ATTR>
+    <ATTR Comment="- Ventilation Flow Rate per Person">0.0023600000000000001</ATTR>
+    <ATTR Comment="- Ventilation per Person Schedule Name">Office Occupancy Schedule</ATTR>
+    <ATTR Comment="- Ventilation Flow Rate per Zone Floor Area">0.00030499999999999999</ATTR>
+    <ATTR Comment="- Ventilation per Floor Area Schedule Name">Always On</ATTR>
+    <ATTR Comment="- Infiltration Air Changes per Hour">0.5</ATTR>
+    <ATTR Comment="- Infiltration Schedule Name">Infiltration Half On Schedule</ATTR>
+  </OBJECT>
+  <OBJECT>
+    <NAME>OS:ZoneLoads</NAME>
+    <ATTR Comment="Name">Restaurant</ATTR>
+    <ATTR Comment="People per Zone Floor Area">0.10800000000000001</ATTR>
+    <ATTR Comment="Number of People Schedule Name">Restaurant Occupancy</ATTR>
+    <ATTR Comment="People Activity Level Schedule Name">Office Activity Schedule</ATTR>
+    <ATTR Comment="Lighting Watts per Zone Floor Area">15.1</ATTR>
+    <ATTR Comment="Lighting Schedule Name">Restaurant Lighting</ATTR>
+    <ATTR Comment="Electric Equipment Watts per Zone Floor Area">1.0800000000000001</ATTR>
+    <ATTR Comment="Electric Equipment Schedule Name">Restaurant Lighting</ATTR>
+    <ATTR Comment="Gas Equipment Watts per Zone Floor Area">0</ATTR>
+    <ATTR Comment="Gas Equipment Schedule Name">Restaurant Lighting</ATTR>
+    <ATTR Comment="Ventilation Flow Rate per Person">0.0025000000000000001</ATTR>
+    <ATTR Comment="Ventilation per Person Schedule Name">Restaurant HVAC</ATTR>
+    <ATTR Comment="Ventilation Flow Rate per Zone Floor Area">0.00029999999999999997</ATTR>
+    <ATTR Comment="Ventilation per Floor Area Schedule Name">Restaurant HVAC</ATTR>
+    <ATTR Comment="Infiltration Air Changes per Hour">0.5</ATTR>
+    <ATTR Comment="Infiltration Schedule Name">Infiltration Half On Schedule</ATTR>
+  </OBJECT>
+  <OBJECT>
+    <NAME>OS:ZoneLoads</NAME>
+    <ATTR Comment="Name">Gym</ATTR>
+    <ATTR Comment="People per Zone Floor Area">0.0040000000000000001</ATTR>
+    <ATTR Comment="Number of People Schedule Name">Office Occupancy Schedule</ATTR>
+    <ATTR Comment="People Activity Level Schedule Name">Office Activity Schedule</ATTR>
+    <ATTR Comment="Lighting Watts per Zone Floor Area">9.6799999999999997</ATTR>
+    <ATTR Comment="Lighting Schedule Name">Office Lights Schedule</ATTR>
+    <ATTR Comment="Electric Equipment Watts per Zone Floor Area">1</ATTR>
+    <ATTR Comment="Electric Equipment Schedule Name">Office Lights Schedule</ATTR>
+    <ATTR Comment="Gas Equipment Watts per Zone Floor Area">0</ATTR>
+    <ATTR Comment="Gas Equipment Schedule Name"></ATTR>
+    <ATTR Comment="Ventilation Flow Rate per Person">0.010800000000000001</ATTR>
+    <ATTR Comment="Ventilation per Person Schedule Name">Office Occupancy Schedule</ATTR>
+    <ATTR Comment="Ventilation Flow Rate per Zone Floor Area">0.0001</ATTR>
+    <ATTR Comment="Ventilation per Floor Area Schedule Name">Always On</ATTR>
+    <ATTR Comment="Infiltration Air Changes per Hour">0.5</ATTR>
+    <ATTR Comment="Infiltration Schedule Name">Infiltration Half On Schedule</ATTR>
+  </OBJECT>
+  <OBJECT>
+    <NAME>OS:ZoneLoads</NAME>
+    <ATTR Comment="Name">MEP Rooms</ATTR>
+    <ATTR Comment="People per Zone Floor Area">0.02</ATTR>
+    <ATTR Comment="Number of People Schedule Name">Warehouse Occupancy</ATTR>
+    <ATTR Comment="People Activity Level Schedule Name">Office Activity Schedule</ATTR>
+    <ATTR Comment="Lighting Watts per Zone Floor Area">16.140000000000001</ATTR>
+    <ATTR Comment="Lighting Schedule Name">Warehouse Lighting</ATTR>
+    <ATTR Comment="Electric Equipment Watts per Zone Floor Area">1.0700000000000001</ATTR>
+    <ATTR Comment="Electric Equipment Schedule Name">Warehouse Lighting</ATTR>
+    <ATTR Comment="Gas Equipment Watts per Zone Floor Area">0</ATTR>
+    <ATTR Comment="Gas Equipment Schedule Name"></ATTR>
+    <ATTR Comment="Ventilation Flow Rate per Person">0.0025000000000000001</ATTR>
+    <ATTR Comment="Ventilation per Person Schedule Name">Warehouse HVAC</ATTR>
+    <ATTR Comment="Ventilation Flow Rate per Zone Floor Area">0.00029999999999999997</ATTR>
+    <ATTR Comment="Ventilation per Floor Area Schedule Name">Warehouse HVAC</ATTR>
+    <ATTR Comment="Infiltration Air Changes per Hour">0.5</ATTR>
+    <ATTR Comment="Infiltration Schedule Name">Infiltration Half On Schedule</ATTR>
+  </OBJECT>
+  <OBJECT>
+    <NAME>OS:ZoneLoads</NAME>
+    <ATTR Comment="Name">Hotel guest rooms</ATTR>
+    <ATTR Comment="People per Zone Floor Area">0.040000000000000001</ATTR>
+    <ATTR Comment="Number of People Schedule Name">Hotel Occupancy</ATTR>
+    <ATTR Comment="People Activity Level Schedule Name">Office Activity Schedule</ATTR>
+    <ATTR Comment="Lighting Watts per Zone Floor Area">11.84</ATTR>
+    <ATTR Comment="Lighting Schedule Name">Hotel Lighting</ATTR>
+    <ATTR Comment="Electric Equipment Watts per Zone Floor Area">2.6899999999999999</ATTR>
+    <ATTR Comment="Electric Equipment Schedule Name">Multifamily OneZone Equipment</ATTR>
+    <ATTR Comment="Gas Equipment Watts per Zone Floor Area">0</ATTR>
+    <ATTR Comment="Gas Equipment Schedule Name"></ATTR>
+    <ATTR Comment="Ventilation Flow Rate per Person">0.0025000000000000001</ATTR>
+    <ATTR Comment="Ventilation per Person Schedule Name">Hotel HVAC</ATTR>
+    <ATTR Comment="Ventilation Flow Rate per Zone Floor Area">0.00029999999999999997</ATTR>
+    <ATTR Comment="Ventilation per Floor Area Schedule Name">Hotel HVAC</ATTR>
+    <ATTR Comment="Infiltration Air Changes per Hour">0.5</ATTR>
+    <ATTR Comment="Infiltration Schedule Name">Infiltration Quarter On Schedule</ATTR>
+  </OBJECT>
+  <OBJECT>
+    <NAME>OS:Material:AirWall</NAME>
+    <ATTR Comment="- Name">Air Wall Material</ATTR>
+  </OBJECT>
+</EnergyPlus_XML>

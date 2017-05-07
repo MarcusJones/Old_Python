@@ -1,0 +1,17 @@
+OpenUP
+http://epf.eclipse.org/wikis/openup/index.htm
+
+http://www.network-theory.co.uk/docs/pytut/index.html
+
+# Logging!
+http://blog.tplus1.com/index.php/2007/09/28/the-python-logging-module-is-much-better-than-print-statements/
+
+Tips
+http://www.linux.com/archive/feed/59831
+
+http://www.ibm.com/developerworks/library/l-pycon.html
+
+Logging!!!
+http://sgillies.net/blog/832/python-logging/
+http://docs.python.org/release/2.5.2/lib/multiple-destinations.html
+http://docs.python.org/py3k/howto/logging-cookbook.html

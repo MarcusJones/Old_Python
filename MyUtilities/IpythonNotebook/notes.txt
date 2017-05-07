@@ -1,0 +1,32 @@
+
+set the ipython dir and create a default profile
+ 
+ 
+# DOES NOT WORK
+ipython --ipython-dir="D:\EclipseSpace2\MyUtilities\src\..\IpythonNotebook\myIPythonDir" profile create new
+
+# THIS WORKS - set the order of argumnets!
+#ipython profile create --ipython-dir="D:\EclipseSpace2\MyUtilities\src\..\IpythonNotebook\myIPythonDir"
+
+#ipython notebook profile create --ipython-dir="D:\EclipseSpace2\MyUtilities\src\..\IpythonNotebook\myIPythonDir"
+
+#ipython notebook --ipython-dir="D:\EclipseSpace2\MyUtilities\src\..\IpythonNotebook\myIPythonDir" --notebook-dir="D:\EclipseSpace2\MyUtilities\src\..\IpythonNotebook\myIPythonDir" --profile=testtt
+
+
+# To run
+ipython notebook --pylab inline
+# Create the default profile and ipython_notebook_config.py file;
+ipython profile create default 
+
+
+# FINALLY WORKS
+#ipython profile create myHomeProfile --ipython-dir="D:\EclipseSpace2\MyUtilities\src\..\IpythonNotebook\myIPythonDir"
+
+ipython profile create myHomeProfile --ipython-dir="D:\EclipseSpace2\MyUtilities\src\..\IpythonNotebook\myIPythonDir"
+ipython profile create myHomeProfile
+
+ipython notebook --profile=myHomeProfile --ipython-dir="D:\EclipseSpace2\MyUtilities\src\..\IpythonNotebook\myIPythonDir" --notebook-dir="D:\EclipseSpace2\MyUtilities\src\..\IpythonNotebook\myIPythonDir"
+
+
+Matplotlib in a web application server
+http://matplotlib.org/faq/howto_faq.html#matplotlib-in-a-web-application-server

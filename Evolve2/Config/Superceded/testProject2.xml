@@ -1,0 +1,54 @@
+<project>
+<a>test</a>
+
+<designspace list="variables">
+	<variables list="val">
+		<name>Color</name>
+		<ordered>False</ordered>
+		<val>Red</val>
+		<val>Brown</val>
+		<val>Blue</val>
+		<val>Orange</val>
+		<val>Green</val>
+		<val>Purple</val>
+	</variables>
+	<variables list="val">
+		<name>Size</name>
+		<ordered>True</ordered>
+			<val>1</val>
+	</variables>	
+	<variables list="val">
+		<name>Size</name>
+		<ordered>True</ordered>
+			<val>1</val>
+			<val>2</val>
+			<val>45</val>
+			<val>100</val>
+	</variables>
+	<variables list="val">
+		<name>Slope</name>
+		<ordered>True</ordered>
+		<min>1</min>
+		<step>2</step>
+		<max>45</max>
+	</variables>
+</designspace>
+
+<algorithm list="operators">
+	<operators list="parameters">
+		<name>Neutral</name>
+		<arity>1</arity>
+	</operators>
+	
+	<operators list="parameters">
+		<name>Mutate</name>
+		<arity>1</arity>
+		<parameters >2
+			<name>rate</name>
+			<val>2</val>
+		</parameters>
+	</operators>
+	
+
+</algorithm>
+</project>
