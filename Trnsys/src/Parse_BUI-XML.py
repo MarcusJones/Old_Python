@@ -153,23 +153,23 @@ def zRADIATIONMODE(lines, lineIndex, currentXML):
 def zREGIME(lines, lineIndex, currentXML):
    print lineIndex, whoami(),
    lineIndex = lineIndex + 1
-   return lineIndex, currentXML
+   return lineIndex, currentXML
 def zGAIN(lines, lineIndex, currentXML):
    print lineIndex, whoami(),
    lineIndex = lineIndex + 1
-   return lineIndex, currentXML
+   return lineIndex, currentXML
 def zVENTILATION(lines, lineIndex, currentXML):
    print lineIndex, whoami(),
    lineIndex = lineIndex + 1
-   return lineIndex, currentXML
+   return lineIndex, currentXML
 def zCOOLING(lines, lineIndex, currentXML):
    print lineIndex, whoami(),
    lineIndex = lineIndex + 1
-   return lineIndex, currentXML
+   return lineIndex, currentXML
 def zHEATING(lines, lineIndex, currentXML):
    print lineIndex, whoami(),
    lineIndex = lineIndex + 1
-   return lineIndex, currentXML
+   return lineIndex, currentXML
 def zCAPACITANCE(lines, lineIndex, currentXML):
    print lineIndex, whoami(),
    lineIndex = lineIndex + 1
