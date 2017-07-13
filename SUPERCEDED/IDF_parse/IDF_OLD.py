@@ -333,30 +333,6 @@ def getAllObjectsTable(IDFobj):
 
     return tableHeader + tableAlign + sorted(tableRows)
 
-def getObjectCountTable(IDFobj):
-
-    names = IDFobj.XML.xpath('//CLASS')
-    
-    L = [name.text for name in names]
-
-    d = defaultdict(int)
-    for i in L:
-        d[i] += 1
-    
-    tableHeader = [("Class", "Count")]
-    tableAlign = [("r", "l")]
-    tableRows = list()
-
-    for pairs in d.items():
-        classType = pairs[0],
-        classType = classType[0]
-        classCount = pairs[1]
-        aPair =  (classType,classCount)
-        tableRows.append(aPair)
-
-    return tableHeader + tableAlign + sorted(tableRows)
-
-
 #--- Assembly
 def applyDefaultConstNames(IDFobj, IDDobj):
     

@@ -1968,28 +1968,6 @@ def extractClassesCopy(IDFobj, className):
 
 
 
-def cleanOutObjectLeaveGeom(IDFobj):
-          
-    # List comprehension
-    currentClasses = set([thisTuple[0] for thisTuple in IDFobj.countAllClasses(0)])
-
-    deletedClasses = currentClasses - keptClassNames
-
-    logging.debug(idStr(
-        "Out of {0} classes in this IDF, {1} are deleted".format(
-           len(currentClasses),
-           len(deletedClasses),
-           len(keptClassNames),
-           ),IDFobj.ID))   
-    
-    #print "All classes: ", currentClasses
-    #print "Kept classes: ", keptClassNames
-    
-    #testSet =set(['A','B']) 
-    #print "Deleted classes:", deletedClasses
-
-    IDFobj.deleteClasses(list(deletedClasses),1)
-
          
 
 
