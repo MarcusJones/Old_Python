@@ -49,7 +49,7 @@ def runNotebook():
     
     wholeCommandString = " ".join(wholeCommand)
     
-    print wholeCommandString
+    print(wholeCommandString)
     
     #p = subprocess.Popen(wholeCommandString, stdout=PIPE, stderr=PIPE, stdin=PIPE,shell=True).wait()
     p = subprocess.Popen(wholeCommandString,shell=True)
@@ -68,7 +68,7 @@ def runNotebook():
 # Main
 #===============================================================================
 if __name__ == "__main__":
-    print ABSOLUTE_LOGGING_PATH
+    print(ABSOLUTE_LOGGING_PATH)
     logging.config.fileConfig(ABSOLUTE_LOGGING_PATH)
     
     
@@ -80,6 +80,6 @@ if __name__ == "__main__":
     #print FREELANCE_DIR
     
     runNotebook()
-            
+    
     logging.debug("Finished _main".format())
     
